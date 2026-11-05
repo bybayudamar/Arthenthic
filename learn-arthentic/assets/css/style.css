@@ -298,6 +298,60 @@ a {
   color: var(--red-500);
 }
 
+/* Language Switcher (ID / EN) */
+.lang-switcher {
+  display: inline-flex;
+  align-items: center;
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-full);
+  padding: 3px;
+  gap: 3px;
+  height: 40px;
+  box-sizing: border-box;
+}
+
+.lang-btn {
+  background: transparent;
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text-2);
+  padding: 5px 11px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  line-height: 1;
+}
+
+.lang-btn:hover {
+  color: var(--text-0);
+  background: var(--bg-2);
+}
+
+.lang-btn.active {
+  background: var(--red-500);
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(225, 29, 46, 0.35);
+}
+
+.mobile-lang-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+  margin-top: 6px;
+}
+
+.mobile-lang-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
 /* ==========================================================================
    2. NAVBAR
    ========================================================================== */
@@ -959,6 +1013,28 @@ html[data-theme="dark"] .floating-spec-card {
   width: 100%;
   max-width: 300px;
   height: 300px;
+}
+
+.sol-illustration-wrapper {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sol-illustration-img {
+  width: 100%;
+  height: auto;
+  max-height: 320px;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.09));
+  border-radius: var(--radius-md);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sol-illustration-img:hover {
+  transform: translateY(-4px) scale(1.02);
 }
 
 .sol-callout {
