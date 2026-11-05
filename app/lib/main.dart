@@ -10,6 +10,7 @@ import 'features/marketplace/marketplace_screen.dart';
 import 'features/web_consoles/gallery_safe_console.dart';
 import 'features/web_consoles/conservator_console.dart';
 import 'features/web_consoles/admin_incident_console.dart';
+import 'features/web_consoles/consoles_hub_screen.dart';
 import 'features/verify/public_nfc_tap_screen.dart';
 import 'features/genesis/genesis_intake_screen.dart';
 import 'features/genesis/coa_screen.dart';
@@ -113,12 +114,37 @@ class MainTabShell extends StatefulWidget {
 
 class _MainTabShellState extends State<MainTabShell> {
   late int _currentIndex;
+  int _consoleSubIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    _currentIndex = widget.initialIndex;
+    // Resolve initial index gracefully (supports both 5-tab system and legacy indices)
+    _resolveTabAndSubIndex(widget.initialIndex);
     _initApp();
+  }
+
+  void _resolveTabAndSubIndex(int index) {
+    if (index == 1 && widget.initialIndex == 1) {
+      _currentIndex = 1; // Market
+    } else if (index == 2) {
+      // If legacy requested Gallery Safe (index 2 in 7-tab), route to Consoles tab with Gallery Safe
+      _currentIndex = 3;
+      _consoleSubIndex = 0;
+    } else if (index == 3) {
+      // If legacy requested Conservator (index 3 in 7-tab), route to Consoles tab with Conservator
+      _currentIndex = 3;
+      _consoleSubIndex = 1;
+    } else if (index == 4) {
+      _currentIndex = 4; // Wallet
+    } else if (index == 5) {
+      _currentIndex = 1; // Market (legacy index 5)
+    } else if (index == 6) {
+      _currentIndex = 3; // Governance (legacy index 6)
+      _consoleSubIndex = 2;
+    } else {
+      _currentIndex = index.clamp(0, 4);
+    }
   }
 
   Future<void> _initApp() async {
@@ -131,30 +157,47 @@ class _MainTabShellState extends State<MainTabShell> {
   }
 
   void _onTabSelected(int index) {
-    setState(() => _currentIndex = index);
+    setState(() {
+      _resolveTabAndSubIndex(index);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    // All screens available across both mobile and macOS / desktop
+    // 5 Clean Core Tabs:
+    // 0: Verify (Home, LiDAR scan, NFC tap, Artwork Intake)
+    // 1: Market (Marketplace Listings, Carrier Escrow)
+    // 2: Provenance (On-Chain Provenance Ledger, CoA Viewers)
+    // 3: Consoles (Unified Institutional Hub: Gallery Safe, Conservator Studio, Governance)
+    // 4: Wallet (Account, Paymaster Gas, Custody)
     final allScreens = [
       HomeScreen(onTabSelected: _onTabSelected),
-      const ProvenanceScreen(),
-      const GallerySafeConsole(),
-      const ConservatorStudioConsole(),
-      const WalletScreen(),
       const MarketplaceScreen(),
-      const AdminIncidentConsole(),
+      const ProvenanceScreen(),
+      ConsolesHubScreen(
+        initialConsoleIndex: _consoleSubIndex,
+        key: ValueKey('console_hub_$_consoleSubIndex'),
+      ),
+      const WalletScreen(),
     ];
 
-    // Airbnb-style Shell: Navigation is cleanly positioned at the BOTTOM
-    // for both macOS / Desktop and Mobile
+    final isConsoleTab = _currentIndex == 3;
+    final maxContentWidth = isConsoleTab ? 1080.0 : 580.0;
+
     return AppLockGate(
       child: Scaffold(
-        backgroundColor: Colors.white,
-        body: IndexedStack(
-          index: _currentIndex < allScreens.length ? _currentIndex : 0,
-          children: allScreens,
+        backgroundColor: const Color(0xFFF7F7F8),
+        body: Center(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: maxContentWidth),
+            child: Container(
+              color: Colors.white,
+              child: IndexedStack(
+                index: _currentIndex < allScreens.length ? _currentIndex : 0,
+                children: allScreens,
+              ),
+            ),
+          ),
         ),
         bottomNavigationBar: Container(
           decoration: BoxDecoration(
@@ -176,24 +219,28 @@ class _MainTabShellState extends State<MainTabShell> {
               height: 68,
               child: Center(
                 child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 860),
+                  constraints: const BoxConstraints(maxWidth: 580),
                   child: BottomNavigationBar(
                     type: BottomNavigationBarType.fixed,
                     currentIndex: _currentIndex < allScreens.length ? _currentIndex : 0,
-                    onTap: _onTabSelected,
+                    onTap: (index) {
+                      setState(() {
+                        _currentIndex = index;
+                      });
+                    },
                     elevation: 0,
                     backgroundColor: Colors.white,
                     selectedItemColor: const Color(0xFFFF385C), // Airbnb Coral
                     unselectedItemColor: const Color(0xFF717171),
-                    selectedFontSize: 10.5,
-                    unselectedFontSize: 10.5,
+                    selectedFontSize: 11,
+                    unselectedFontSize: 11,
                     selectedLabelStyle: GoogleFonts.plusJakartaSans(
-                      fontSize: 10.5,
+                      fontSize: 11,
                       fontWeight: FontWeight.w700,
                       color: const Color(0xFFFF385C),
                     ),
                     unselectedLabelStyle: GoogleFonts.plusJakartaSans(
-                      fontSize: 10.5,
+                      fontSize: 11,
                       fontWeight: FontWeight.w500,
                       color: const Color(0xFF717171),
                     ),
@@ -212,50 +259,6 @@ class _MainTabShellState extends State<MainTabShell> {
                       BottomNavigationBarItem(
                         icon: Padding(
                           padding: EdgeInsets.only(bottom: 2),
-                          child: Icon(Icons.history_edu_outlined),
-                        ),
-                        activeIcon: Padding(
-                          padding: EdgeInsets.only(bottom: 2),
-                          child: Icon(Icons.history_edu_rounded),
-                        ),
-                        label: 'Provenance',
-                      ),
-                      BottomNavigationBarItem(
-                        icon: Padding(
-                          padding: EdgeInsets.only(bottom: 2),
-                          child: Icon(Icons.account_balance_outlined),
-                        ),
-                        activeIcon: Padding(
-                          padding: EdgeInsets.only(bottom: 2),
-                          child: Icon(Icons.account_balance_rounded),
-                        ),
-                        label: 'Gallery Safe',
-                      ),
-                      BottomNavigationBarItem(
-                        icon: Padding(
-                          padding: EdgeInsets.only(bottom: 2),
-                          child: Icon(Icons.biotech_outlined),
-                        ),
-                        activeIcon: Padding(
-                          padding: EdgeInsets.only(bottom: 2),
-                          child: Icon(Icons.biotech_rounded),
-                        ),
-                        label: 'Conservator',
-                      ),
-                      BottomNavigationBarItem(
-                        icon: Padding(
-                          padding: EdgeInsets.only(bottom: 2),
-                          child: Icon(Icons.account_balance_wallet_outlined),
-                        ),
-                        activeIcon: Padding(
-                          padding: EdgeInsets.only(bottom: 2),
-                          child: Icon(Icons.account_balance_wallet_rounded),
-                        ),
-                        label: 'Wallet',
-                      ),
-                      BottomNavigationBarItem(
-                        icon: Padding(
-                          padding: EdgeInsets.only(bottom: 2),
                           child: Icon(Icons.storefront_outlined),
                         ),
                         activeIcon: Padding(
@@ -267,13 +270,35 @@ class _MainTabShellState extends State<MainTabShell> {
                       BottomNavigationBarItem(
                         icon: Padding(
                           padding: EdgeInsets.only(bottom: 2),
-                          child: Icon(Icons.shield_outlined),
+                          child: Icon(Icons.history_edu_outlined),
                         ),
                         activeIcon: Padding(
                           padding: EdgeInsets.only(bottom: 2),
-                          child: Icon(Icons.shield_rounded),
+                          child: Icon(Icons.history_edu_rounded),
                         ),
-                        label: 'Governance',
+                        label: 'Provenance',
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Padding(
+                          padding: EdgeInsets.only(bottom: 2),
+                          child: Icon(Icons.hub_outlined),
+                        ),
+                        activeIcon: Padding(
+                          padding: EdgeInsets.only(bottom: 2),
+                          child: Icon(Icons.hub_rounded),
+                        ),
+                        label: 'Consoles',
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Padding(
+                          padding: EdgeInsets.only(bottom: 2),
+                          child: Icon(Icons.account_balance_wallet_outlined),
+                        ),
+                        activeIcon: Padding(
+                          padding: EdgeInsets.only(bottom: 2),
+                          child: Icon(Icons.account_balance_wallet_rounded),
+                        ),
+                        label: 'Wallet',
                       ),
                     ],
                   ),

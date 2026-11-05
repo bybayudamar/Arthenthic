@@ -800,91 +800,102 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: AppTheme.textPrimary,
                           ),
                         ),
-                        Row(
-                          children: [
-                            const FeatureHelpButton(
-                              helpData: _homeVerifyHelp,
-                              color: Color(0xFFFF385C), // Airbnb Coral
-                            ),
-                            const SizedBox(width: 8),
-                            // Multi-role switcher icon
-                            if (!_isGuest && _availableRoles.length > 1) ...[
-                              GestureDetector(
-                                onTap: _showRoleSwitcher,
-                                child: Container(
-                                  margin: const EdgeInsets.only(right: 8),
-                                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xFFFF385C).withOpacity(0.08),
-                                    borderRadius: BorderRadius.circular(20),
-                                    border: Border.all(color: const Color(0xFFFF385C).withOpacity(0.2)),
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Icon(_getRoleIcon(_selectedRole), size: 14, color: const Color(0xFFFF385C)),
-                                      const SizedBox(width: 4),
-                                      const Icon(Icons.unfold_more_rounded, size: 14, color: Color(0xFFFF385C)),
-                                    ],
-                                  ),
+                        Flexible(
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            reverse: true,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const FeatureHelpButton(
+                                  helpData: _homeVerifyHelp,
+                                  color: Color(0xFFFF385C), // Airbnb Coral
                                 ),
-                              ),
-                            ],
-                            // Wallet / Guest Pill (Airbnb Style)
-                            GestureDetector(
-                              onTap: () => widget.onTabSelected(2),
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(24),
-                                  border: Border.all(color: const Color(0xFFE5E7EB)),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(0.04),
-                                      blurRadius: 8,
-                                      offset: const Offset(0, 2),
-                                    ),
-                                  ],
-                                ),
-                                child: Text(
-                                  _isGuest ? "Guest" : walletService.shortAddress,
-                                  style: GoogleFonts.plusJakartaSans(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w600,
-                                    color: AppTheme.textPrimary,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            if (!_isGuest) ...[
-                              const SizedBox(width: 8),
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (_) => const SettingsScreen()),
-                                  );
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.all(8),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    shape: BoxShape.circle,
-                                    border: Border.all(color: const Color(0xFFE5E7EB)),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.04),
-                                        blurRadius: 8,
-                                        offset: const Offset(0, 2),
+                                const SizedBox(width: 8),
+                                // Multi-role switcher icon
+                                if (!_isGuest && _availableRoles.length > 1) ...[
+                                  GestureDetector(
+                                    onTap: _showRoleSwitcher,
+                                    child: Container(
+                                      margin: const EdgeInsets.only(right: 8),
+                                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFFFF385C).withOpacity(0.08),
+                                        borderRadius: BorderRadius.circular(20),
+                                        border: Border.all(color: const Color(0xFFFF385C).withOpacity(0.2)),
                                       ),
-                                    ],
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Icon(_getRoleIcon(_selectedRole), size: 14, color: const Color(0xFFFF385C)),
+                                          const SizedBox(width: 4),
+                                          const Icon(Icons.unfold_more_rounded, size: 14, color: Color(0xFFFF385C)),
+                                        ],
+                                      ),
+                                    ),
                                   ),
-                                  child: const Icon(Icons.settings_outlined, size: 18, color: AppTheme.textPrimary),
+                                ],
+                                // Wallet / Guest Pill (Airbnb Style)
+                                GestureDetector(
+                                  onTap: () => widget.onTabSelected(4), // Tab 4: Wallet
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(24),
+                                      border: Border.all(color: const Color(0xFFE5E7EB)),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.04),
+                                          blurRadius: 8,
+                                          offset: const Offset(0, 2),
+                                        ),
+                                      ],
+                                    ),
+                                    child: Text(
+                                      _isGuest ? "Guest" : walletService.shortAddress,
+                                      style: GoogleFonts.plusJakartaSans(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w600,
+                                        color: AppTheme.textPrimary,
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ],
+                                if (!_isGuest) ...[
+                                  const SizedBox(width: 8),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (_) => const SettingsScreen()),
+                                      );
+                                    },
+                                    child: Container(
+                                      padding: const EdgeInsets.all(8),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        shape: BoxShape.circle,
+                                        border: Border.all(color: const Color(0xFFE5E7EB)),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.black.withOpacity(0.04),
+                                            blurRadius: 8,
+                                            offset: const Offset(0, 2),
+                                          ),
+                                        ],
+                                      ),
+                                      child: const Icon(
+                                        Icons.settings_outlined,
+                                        size: 18,
+                                        color: AppTheme.textSecondary,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ],
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -1153,7 +1164,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 // UC-C Physical-Confirmation Escrow Marketplace Entry Card
                 InkWell(
-                  onTap: () => widget.onTabSelected(3),
+                  onTap: () => widget.onTabSelected(1), // Tab 1: Market
                   borderRadius: BorderRadius.circular(18),
                   child: Container(
                     padding: const EdgeInsets.all(16),

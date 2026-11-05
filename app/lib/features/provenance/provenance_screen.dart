@@ -155,27 +155,30 @@ class _ProvenanceScreenState extends State<ProvenanceScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Provenance",
-                          style: GoogleFonts.plusJakartaSans(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w800,
-                            color: AppTheme.textPrimary,
-                            letterSpacing: -0.5,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Provenance",
+                            style: GoogleFonts.plusJakartaSans(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w800,
+                              color: AppTheme.textPrimary,
+                              letterSpacing: -0.5,
+                            ),
                           ),
-                        ),
-                        Text(
-                          "Immutable on-chain verification chain",
-                          style: GoogleFonts.plusJakartaSans(
-                            fontSize: 12,
-                            color: AppTheme.textSecondary,
+                          Text(
+                            "Immutable on-chain verification chain",
+                            style: GoogleFonts.plusJakartaSans(
+                              fontSize: 12,
+                              color: AppTheme.textSecondary,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
+                    const SizedBox(width: 8),
                     const FeatureHelpButton(helpData: _provenanceHelp),
                   ],
                 ),
@@ -401,9 +404,13 @@ class _ProvenanceScreenState extends State<ProvenanceScreen> {
             children: [
               Icon(icon, size: 12, color: color),
               const SizedBox(width: 4),
-              Text(
-                label,
-                style: GoogleFonts.plusJakartaSans(fontSize: 10, color: AppTheme.textSecondary),
+              Expanded(
+                child: Text(
+                  label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: GoogleFonts.plusJakartaSans(fontSize: 10, color: AppTheme.textSecondary),
+                ),
               ),
             ],
           ),
@@ -509,14 +516,19 @@ class _ProvenanceScreenState extends State<ProvenanceScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              "Chronological Event Graph (${displayEvents.length} events)",
-              style: GoogleFonts.plusJakartaSans(
-                fontSize: 14,
-                fontWeight: FontWeight.w700,
-                color: AppTheme.textPrimary,
+            Expanded(
+              child: Text(
+                "Chronological Event Graph (${displayEvents.length} events)",
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: GoogleFonts.plusJakartaSans(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: AppTheme.textPrimary,
+                ),
               ),
             ),
+            const SizedBox(width: 8),
             Text(
               "Base L2 Verified",
               style: GoogleFonts.plusJakartaSans(

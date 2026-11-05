@@ -284,9 +284,17 @@ void main() {
       await tester.pump();
       expect(find.byType(BottomNavigationBar), findsOneWidget);
       expect(find.text('Verify'), findsOneWidget);
-      expect(find.text('Gallery Safe'), findsOneWidget);
-      expect(find.text('Conservator'), findsOneWidget);
-      expect(find.text('Governance'), findsOneWidget);
+      expect(find.text('Market'), findsOneWidget);
+      expect(find.text('Provenance'), findsOneWidget);
+      expect(find.text('Consoles'), findsOneWidget);
+      expect(find.text('Wallet'), findsOneWidget);
+
+      // Verify Institutional Consoles Hub exposes Gallery Safe, Conservator, and Governance
+      await tester.tap(find.text('Consoles'));
+      await tester.pumpAndSettle();
+      expect(find.text('Gallery Safe'), findsWidgets);
+      expect(find.text('Conservator'), findsWidgets);
+      expect(find.text('Governance'), findsWidgets);
     });
   });
 }
