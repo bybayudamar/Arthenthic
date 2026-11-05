@@ -181,56 +181,638 @@ function initLottieAnimations() {
 }
 
 /* ==========================================================================
-   4. HERO TELEMETRY TYPEWRITER (12-Second Loop)
+   4. HERO VERIFICATION & WORLDWIDE ARTIST GLOBE ANIMATION (Loop & Interactive)
    ========================================================================== */
+
+/**
+ * High-performance 3D Holographic Globe Canvas Renderer
+ * Illustrates the decentralized Arthentic protocol connecting artists worldwide.
+ */
+class HeroGlobeRenderer {
+  constructor(canvas) {
+    this.canvas = canvas;
+    this.ctx = canvas.getContext("2d");
+    this.animationFrameId = null;
+    this.rotationAngle = 0.85; // Initial view focuses on Asia/Pacific & Europe/Africa sweep
+    this.pitch = 0.22; // 12.6 degrees orbital tilt
+    this.autoRotateSpeed = 0.0042;
+    this.isDragging = false;
+    this.lastMouseX = 0;
+    this.lastMouseY = 0;
+    this.dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    // Key Global Artist Hubs
+    this.hubs = [
+      { name: "Jakarta", country: "ID", lat: -6.2088, lon: 106.8456, role: "Nusantara Studio", color: "#E11D2E", primary: true },
+      { name: "Tokyo", country: "JP", lat: 35.6762, lon: 139.6503, role: "Ginza Phygital", color: "#10B981", primary: true },
+      { name: "Paris", country: "FR", lat: 48.8566, lon: 2.3522, role: "Musée Provenance", color: "#E11D2E", primary: true },
+      { name: "London", country: "GB", lat: 51.5074, lon: -0.1278, role: "Tate Curator", color: "#3B82F6", primary: false },
+      { name: "New York", country: "US", lat: 40.7128, lon: -74.006, role: "Chelsea Atelier", color: "#F59E0B", primary: true },
+      { name: "São Paulo", country: "BR", lat: -23.5505, lon: -46.6333, role: "Bienal Arts", color: "#10B981", primary: false },
+      { name: "Berlin", country: "DE", lat: 52.52, lon: 13.405, role: "Kreuzberg Base", color: "#8B5CF6", primary: false },
+      { name: "Sydney", country: "AU", lat: -33.8688, lon: 151.2093, role: "Pacific Heritage", color: "#06B6D4", primary: false },
+      { name: "Cape Town", country: "ZA", lat: -33.9249, lon: 18.4241, role: "Zeitz Gallery", color: "#EC4899", primary: false },
+      { name: "Florence", country: "IT", lat: 43.7696, lon: 11.2558, role: "Renaissance Vault", color: "#F97316", primary: false },
+    ];
+
+    // Cryptographic Interconnection Arcs
+    this.arcs = [
+      { from: "Jakarta", to: "Tokyo", speed: 0.0035, offset: 0.1 },
+      { from: "Jakarta", to: "Paris", speed: 0.0028, offset: 0.35 },
+      { from: "Paris", to: "London", speed: 0.0045, offset: 0.2 },
+      { from: "London", to: "New York", speed: 0.0030, offset: 0.6 },
+      { from: "New York", to: "São Paulo", speed: 0.0032, offset: 0.4 },
+      { from: "Tokyo", to: "Sydney", speed: 0.0028, offset: 0.75 },
+      { from: "Paris", to: "Berlin", speed: 0.0040, offset: 0.5 },
+      { from: "Paris", to: "Cape Town", speed: 0.0025, offset: 0.15 },
+    ];
+
+    this.landPoints = this.generateLandmassPoints();
+    this.initEvents();
+    this.resize();
+    this.start();
+  }
+
+  generateLandmassPoints() {
+    const pts = [];
+    const continents = [
+      // Asia & SE Asia & Indonesia
+      { minLat: -10, maxLat: 50, minLon: 70, maxLon: 145, count: 120 },
+      // Europe
+      { minLat: 36, maxLat: 64, minLon: -10, maxLon: 40, count: 80 },
+      // Africa
+      { minLat: -34, maxLat: 35, minLon: -17, maxLon: 50, count: 90 },
+      // North America
+      { minLat: 20, maxLat: 60, minLon: -125, maxLon: -65, count: 90 },
+      // South America
+      { minLat: -54, maxLat: 12, minLon: -80, maxLon: -35, count: 70 },
+      // Oceania / Australia
+      { minLat: -42, maxLat: -12, minLon: 114, maxLon: 154, count: 50 },
+    ];
+
+    continents.forEach((c) => {
+      for (let i = 0; i < c.count; i++) {
+        const lat = c.minLat + Math.random() * (c.maxLat - c.minLat);
+        const lon = c.minLon + Math.random() * (c.maxLon - c.minLon);
+        pts.push({ lat, lon });
+      }
+    });
+
+    return pts;
+  }
+
+  initEvents() {
+    window.addEventListener("resize", () => this.resize());
+
+    // Mouse drag controls for interactive spinning
+    this.canvas.addEventListener("mousedown", (e) => {
+      this.isDragging = true;
+      this.lastMouseX = e.clientX;
+      this.lastMouseY = e.clientY;
+    });
+
+    window.addEventListener("mousemove", (e) => {
+      if (!this.isDragging) return;
+      const dx = e.clientX - this.lastMouseX;
+      const dy = e.clientY - this.lastMouseY;
+      this.rotationAngle += dx * 0.006;
+      this.pitch = Math.max(-0.55, Math.min(0.55, this.pitch + dy * 0.004));
+      this.lastMouseX = e.clientX;
+      this.lastMouseY = e.clientY;
+    });
+
+    window.addEventListener("mouseup", () => {
+      this.isDragging = false;
+    });
+
+    // Touch controls for mobile
+    this.canvas.addEventListener("touchstart", (e) => {
+      if (e.touches.length === 1) {
+        this.isDragging = true;
+        this.lastMouseX = e.touches[0].clientX;
+        this.lastMouseY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    window.addEventListener("touchmove", (e) => {
+      if (!this.isDragging || e.touches.length !== 1) return;
+      const dx = e.touches[0].clientX - this.lastMouseX;
+      const dy = e.touches[0].clientY - this.lastMouseY;
+      this.rotationAngle += dx * 0.006;
+      this.pitch = Math.max(-0.55, Math.min(0.55, this.pitch + dy * 0.004));
+      this.lastMouseX = e.touches[0].clientX;
+      this.lastMouseY = e.touches[0].clientY;
+    }, { passive: true });
+
+    window.addEventListener("touchend", () => {
+      this.isDragging = false;
+    });
+  }
+
+  resize() {
+    const rect = this.canvas.parentElement.getBoundingClientRect();
+    this.width = rect.width || 600;
+    this.height = rect.height || 265;
+    this.canvas.width = this.width * this.dpr;
+    this.canvas.height = this.height * this.dpr;
+    this.ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
+
+    // Responsive globe center and radius
+    if (this.width < 500) {
+      // Mobile: Globe is placed slightly higher with smaller radius
+      this.globeRadius = Math.min(this.width, this.height) * 0.32;
+      this.cx = this.width * 0.5;
+      this.cy = this.height * 0.36;
+    } else {
+      // Desktop: Globe placed on left side to balance with floating spec card on right
+      this.globeRadius = Math.min(this.height * 0.42, 98);
+      this.cx = Math.max(140, this.width * 0.34);
+      this.cy = this.height * 0.52;
+    }
+  }
+
+  // 3D Spherical Coordinate Projection with Euler Rotation
+  project(lat, lon, extraRadius = 0) {
+    const phi = (lat * Math.PI) / 180;
+    const lambda = (lon * Math.PI) / 180;
+    const r = this.globeRadius + extraRadius;
+
+    // Unit sphere coordinates
+    const x0 = r * Math.cos(phi) * Math.sin(lambda);
+    const y0 = r * Math.sin(phi);
+    const z0 = r * Math.cos(phi) * Math.cos(lambda);
+
+    // Rotate Y axis (yaw / spin)
+    const sinA = Math.sin(this.rotationAngle);
+    const cosA = Math.cos(this.rotationAngle);
+    const x1 = x0 * cosA + z0 * sinA;
+    const y1 = y0;
+    const z1 = -x0 * sinA + z0 * cosA;
+
+    // Rotate X axis (pitch / tilt)
+    const sinB = Math.sin(this.pitch);
+    const cosB = Math.cos(this.pitch);
+    const x2 = x1;
+    const y2 = y1 * cosB - z1 * sinB;
+    const z2 = y1 * sinB + z1 * cosB;
+
+    return {
+      x: this.cx + x2,
+      y: this.cy - y2,
+      z: z2,
+      visible: z2 > -10,
+      isFront: z2 > 0,
+    };
+  }
+
+  draw() {
+    const ctx = this.ctx;
+    const now = performance.now();
+    ctx.clearRect(0, 0, this.width, this.height);
+
+    if (!this.isDragging) {
+      this.rotationAngle += this.autoRotateSpeed;
+    }
+
+    const cx = this.cx;
+    const cy = this.cy;
+    const R = this.globeRadius;
+
+    // 1. Atmosphere / Outer Rim Glow
+    const glowGrad = ctx.createRadialGradient(cx, cy, R * 0.7, cx, cy, R * 1.35);
+    glowGrad.addColorStop(0, "rgba(225, 29, 46, 0.12)");
+    glowGrad.addColorStop(0.5, "rgba(225, 29, 46, 0.04)");
+    glowGrad.addColorStop(1, "rgba(225, 29, 46, 0)");
+    ctx.fillStyle = glowGrad;
+    ctx.beginPath();
+    ctx.arc(cx, cy, R * 1.35, 0, Math.PI * 2);
+    ctx.fill();
+
+    // 2. Dark Sphere Body Base
+    const sphereGrad = ctx.createRadialGradient(cx - R * 0.35, cy - R * 0.35, R * 0.1, cx, cy, R);
+    sphereGrad.addColorStop(0, "#191D28");
+    sphereGrad.addColorStop(0.7, "#0D111A");
+    sphereGrad.addColorStop(1, "#07090E");
+    ctx.fillStyle = sphereGrad;
+    ctx.beginPath();
+    ctx.arc(cx, cy, R, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Sphere Rim Stroke
+    ctx.strokeStyle = "rgba(225, 29, 46, 0.38)";
+    ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    ctx.arc(cx, cy, R, 0, Math.PI * 2);
+    ctx.stroke();
+
+    // Clip rendering inside the sphere for wireframe & landmass
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(cx, cy, R, 0, Math.PI * 2);
+    ctx.clip();
+
+    // 3. Longitude Meridians
+    for (let lon = -180; lon < 180; lon += 30) {
+      ctx.beginPath();
+      let first = true;
+      for (let lat = -90; lat <= 90; lat += 5) {
+        const p = this.project(lat, lon);
+        if (p.isFront) {
+          if (first) {
+            ctx.moveTo(p.x, p.y);
+            first = false;
+          } else {
+            ctx.lineTo(p.x, p.y);
+          }
+        } else {
+          first = true;
+        }
+      }
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.07)";
+      ctx.lineWidth = 0.75;
+      ctx.stroke();
+    }
+
+    // 4. Latitude Parallels
+    const latLines = [-60, -30, 0, 30, 60];
+    latLines.forEach((lat) => {
+      ctx.beginPath();
+      let first = true;
+      for (let lon = -180; lon <= 180; lon += 6) {
+        const p = this.project(lat, lon);
+        if (p.isFront) {
+          if (first) {
+            ctx.moveTo(p.x, p.y);
+            first = false;
+          } else {
+            ctx.lineTo(p.x, p.y);
+          }
+        } else {
+          first = true;
+        }
+      }
+      if (lat === 0) {
+        // Equator Highlight
+        ctx.strokeStyle = "rgba(225, 29, 46, 0.35)";
+        ctx.lineWidth = 1;
+      } else {
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.06)";
+        ctx.lineWidth = 0.75;
+      }
+      ctx.stroke();
+    });
+
+    // 5. Continental Landmass Dots
+    this.landPoints.forEach((pt) => {
+      const p = this.project(pt.lat, pt.lon);
+      if (p.isFront) {
+        const alpha = Math.max(0.15, (p.z / R) * 0.75);
+        ctx.fillStyle = `rgba(180, 200, 225, ${alpha.toFixed(2)})`;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 1.1, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    });
+
+    ctx.restore(); // End clipping
+
+    // Map city names to projection
+    const hubMap = {};
+    this.hubs.forEach((h) => {
+      hubMap[h.name] = { ...h, proj: this.project(h.lat, h.lon) };
+    });
+
+    // 6. 3D Cryptographic Connection Arcs
+    this.arcs.forEach((arc) => {
+      const hFrom = hubMap[arc.from];
+      const hTo = hubMap[arc.to];
+      if (!hFrom || !hTo) return;
+
+      const pA = hFrom.proj;
+      const pB = hTo.proj;
+
+      // Draw arc if at least one node is partially visible
+      if (pA.visible || pB.visible) {
+        const steps = 24;
+        ctx.beginPath();
+        let first = true;
+        for (let i = 0; i <= steps; i++) {
+          const t = i / steps;
+          const lat = hFrom.lat + (hTo.lat - hFrom.lat) * t;
+          const lon = hFrom.lon + (hTo.lon - hFrom.lon) * t;
+          // Arc height reaches its peak in the center
+          const arcElevation = Math.sin(Math.PI * t) * (R * 0.28);
+          const p = this.project(lat, lon, arcElevation);
+
+          if (first) {
+            ctx.moveTo(p.x, p.y);
+            first = false;
+          } else {
+            ctx.lineTo(p.x, p.y);
+          }
+        }
+        ctx.strokeStyle = "rgba(225, 29, 46, 0.32)";
+        ctx.lineWidth = 1.2;
+        ctx.setLineDash([3, 4]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Animated traveling attestation photon
+        const tPhoton = ((now * arc.speed + arc.offset) % 1);
+        const latP = hFrom.lat + (hTo.lat - hFrom.lat) * tPhoton;
+        const lonP = hFrom.lon + (hTo.lon - hFrom.lon) * tPhoton;
+        const elevP = Math.sin(Math.PI * tPhoton) * (R * 0.28);
+        const photon = this.project(latP, lonP, elevP);
+
+        if (photon.isFront) {
+          ctx.fillStyle = "#FFFFFF";
+          ctx.shadowColor = "#E11D2E";
+          ctx.shadowBlur = 10;
+          ctx.beginPath();
+          ctx.arc(photon.x, photon.y, 2.2, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        }
+      }
+    });
+
+    // 7. Global Artist Hub Nodes & Pulsing Beacons
+    this.hubs.forEach((hub) => {
+      const p = hubMap[hub.name].proj;
+      if (!p.isFront) return;
+
+      const depthRatio = Math.max(0.2, p.z / R);
+      const pulseT = (now * 0.003) % 1;
+      const rippleR = 3 + pulseT * 12;
+
+      // Radar Ripple
+      ctx.strokeStyle = hub.color;
+      ctx.lineWidth = 1;
+      ctx.globalAlpha = (1 - pulseT) * depthRatio * 0.85;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, rippleR, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+
+      // Core Node Dot
+      ctx.fillStyle = hub.color;
+      ctx.shadowColor = hub.color;
+      ctx.shadowBlur = 8;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, hub.primary ? 3.5 : 2.6, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      // Hub Label Typography (rendered when facing viewer)
+      if (p.z > R * 0.15) {
+        ctx.font = "600 9px 'JetBrains Mono', monospace";
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillText(hub.name, p.x + 8, p.y + 3);
+
+        if (hub.primary && p.z > R * 0.35) {
+          ctx.font = "500 7.5px 'Plus Jakarta Sans', sans-serif";
+          ctx.fillStyle = "rgba(225, 29, 46, 0.9)";
+          ctx.fillText(`● ${hub.role}`, p.x + 8, p.y + 13);
+        }
+      }
+    });
+
+    this.animationFrameId = requestAnimationFrame(() => this.draw());
+  }
+
+  start() {
+    if (!this.animationFrameId) {
+      this.draw();
+    }
+  }
+
+  stop() {
+    if (this.animationFrameId) {
+      cancelAnimationFrame(this.animationFrameId);
+      this.animationFrameId = null;
+    }
+  }
+}
+
+/**
+ * Unified Hero Console Orchestrator
+ * Coordinates Phase 1 (Physical Artwork Verification) and Phase 2 (Global Artist Network Globe)
+ */
 function initHeroTelemetry() {
   const terminal = document.getElementById("hero-telemetry");
   const verdict = document.getElementById("hero-verdict");
+  const verdictText = document.getElementById("hero-verdict-text");
+  const stageArtwork = document.getElementById("hero-stage-artwork");
+  const stageGlobe = document.getElementById("hero-stage-globe");
+  const tabArtwork = document.getElementById("tab-phase-artwork");
+  const tabGlobe = document.getElementById("tab-phase-globe");
+  const specContentArtwork = document.getElementById("spec-content-artwork");
+  const specContentGlobe = document.getElementById("spec-content-globe");
+  const globeCanvas = document.getElementById("hero-globe-canvas");
+
   if (!terminal) return;
 
-  const sequence = [
-    { text: "> inisialisasi node arthentic: chain_id 8453 (Base L2)", delay: 800 },
-    { text: "> tap SUN token… enkripsi AES-128 OK (Nonce #8421)", delay: 1500 },
-    { text: "> tamper-evident substrate: INTACT (antena utuh)", delay: 1600 },
-    { text: "> ekstraksi fitur AI: serat kanvas, impasto, retakan mikro…", delay: 2200 },
-    { text: "> cosine similarity: 94.8% (ambang minimal 88.0%) PASS", delay: 1600 },
-    { text: "> attestation EIP-712 ditandatangani via HSM Node ✓", delay: 1400 },
-    { text: "> STATUS: KARYA TERVERIFIKASI ASLI SECARA ON-CHAIN", delay: 2600, showVerdict: true },
-  ];
+  // Initialize Canvas 3D Globe
+  let globeInstance = null;
+  if (globeCanvas) {
+    globeInstance = new HeroGlobeRenderer(globeCanvas);
+  }
+
+  let currentPhase = "artwork"; // 'artwork' | 'globe'
+  let isManualOverride = false;
+  let overrideTimer = null;
+
+  function switchPhase(newPhase, manual = false) {
+    currentPhase = newPhase;
+
+    if (newPhase === "artwork") {
+      if (stageArtwork) stageArtwork.classList.add("active");
+      if (stageGlobe) stageGlobe.classList.remove("active");
+      if (tabArtwork) {
+        tabArtwork.classList.add("active");
+        tabArtwork.setAttribute("aria-selected", "true");
+      }
+      if (tabGlobe) {
+        tabGlobe.classList.remove("active");
+        tabGlobe.setAttribute("aria-selected", "false");
+      }
+      if (specContentArtwork) specContentArtwork.style.display = "block";
+      if (specContentGlobe) specContentGlobe.style.display = "none";
+    } else {
+      if (stageArtwork) stageArtwork.classList.remove("active");
+      if (stageGlobe) stageGlobe.classList.add("active");
+      if (tabArtwork) {
+        tabArtwork.classList.remove("active");
+        tabArtwork.setAttribute("aria-selected", "false");
+      }
+      if (tabGlobe) {
+        tabGlobe.classList.add("active");
+        tabGlobe.setAttribute("aria-selected", "true");
+      }
+      if (specContentArtwork) specContentArtwork.style.display = "none";
+      if (specContentGlobe) specContentGlobe.style.display = "block";
+    }
+
+    if (manual) {
+      isManualOverride = true;
+      clearTimeout(overrideTimer);
+      // Resume autonomous cycle after 14 seconds of user inactivity
+      overrideTimer = setTimeout(() => {
+        isManualOverride = false;
+      }, 14000);
+    }
+  }
+
+  // Bind Header Phase Buttons
+  if (tabArtwork) {
+    tabArtwork.addEventListener("click", () => switchPhase("artwork", true));
+  }
+  if (tabGlobe) {
+    tabGlobe.addEventListener("click", () => switchPhase("globe", true));
+  }
+
+  // Bilingual Telemetry Sequences
+  function getSequence() {
+    const isEn = typeof ArthenticI18n !== "undefined" && ArthenticI18n.getCurrentLang() === "en";
+
+    if (isEn) {
+      return [
+        // --- PHASE 1: Physical Fine Art Intake & On-Chain Authentication ---
+        { phase: "artwork", text: "> initializing node: chain_id 8453 (Base L2 Sepolia)", delay: 900 },
+        { phase: "artwork", text: "> tapping SUN crypto-chip… AES-128 handshake OK (#8421)", delay: 1500 },
+        { phase: "artwork", text: "> tamper-evident substrate: INTACT (loop antenna intact)", delay: 1400 },
+        { phase: "artwork", text: "> AI optical fingerprint: canvas weave, micro-cracks & impasto…", delay: 2000 },
+        { phase: "artwork", text: "> cosine similarity: 94.8% (threshold ≥ 88.0%) PASS", delay: 1500 },
+        { phase: "artwork", text: "> EIP-712 attestation signed via Protocol HSM Node ✓", delay: 1300 },
+        {
+          phase: "artwork",
+          text: "> STATUS: MASTERPIECE ON-CHAIN VERIFIED AUTHENTIC",
+          delay: 2800,
+          showVerdict: true,
+          verdictMsg: "VERIFIED · 94.8% ≥ 88% PASS"
+        },
+
+        // --- PHASE 2: Global Protocol Synchronization (Artists Worldwide) ---
+        {
+          phase: "globe",
+          text: "> BROADCASTING PROVENANCE TO WORLDWIDE ARTIST NETWORK 🌐…",
+          delay: 1600,
+          switchPhase: true
+        },
+        { phase: "globe", text: "> node [Jakarta 🇮🇩]: local artist genesis registered on Base L2", delay: 1600 },
+        { phase: "globe", text: "> node [Paris 🇫🇷]: museum & gallery curator syncs EIP-712 certificate", delay: 1600 },
+        { phase: "globe", text: "> node [Tokyo 🇯🇵]: cross-continent consensus confirmed in 1.4s", delay: 1600 },
+        { phase: "globe", text: "> node [New York 🇺🇸]: smart escrow ready for secure global custody", delay: 1600 },
+        {
+          phase: "globe",
+          text: "> ARTHENTIC MISSION: INITIATIVE FOR ALL ARTISTS IN THE WORLD 🌍",
+          delay: 3800,
+          showVerdict: true,
+          verdictMsg: "GLOBAL ARTIST NETWORK · 7 CONTINENTS CONNECTED"
+        },
+      ];
+    }
+
+    // Default: Indonesian (ID)
+    return [
+      // --- FASE 1: Verifikasi Karya Fisik Seni di Node Lokal ---
+      { phase: "artwork", text: "> inisialisasi node arthentic: chain_id 8453 (Base L2)", delay: 900 },
+      { phase: "artwork", text: "> tap SUN token… enkripsi AES-128 OK (Nonce #8421)", delay: 1500 },
+      { phase: "artwork", text: "> tamper-evident substrate: INTACT (antena utuh)", delay: 1400 },
+      { phase: "artwork", text: "> ekstraksi fitur AI: serat kanvas, impasto, retakan mikro…", delay: 2000 },
+      { phase: "artwork", text: "> cosine similarity: 94.8% (ambang minimal 88.0%) PASS", delay: 1500 },
+      { phase: "artwork", text: "> attestation EIP-712 ditandatangani via HSM Node ✓", delay: 1300 },
+      {
+        phase: "artwork",
+        text: "> STATUS: KARYA TERVERIFIKASI ASLI SECARA ON-CHAIN",
+        delay: 2800,
+        showVerdict: true,
+        verdictMsg: "TERVERIFIKASI · 94,8% ≥ 88% PASS"
+      },
+
+      // --- FASE 2: Siaran & Sinkronisasi Jaringan Seniman Global ---
+      {
+        phase: "globe",
+        text: "> BROADCAST ATTESTATION KE JARINGAN SENIMAN DUNIA 🌐…",
+        delay: 1600,
+        switchPhase: true
+      },
+      { phase: "globe", text: "> node [Jakarta 🇮🇩]: genesis karya seniman lokal terdaftar di L2", delay: 1600 },
+      { phase: "globe", text: "> node [Paris 🇫🇷]: kurator galeri menyinkronkan sertifikat EIP-712", delay: 1600 },
+      { phase: "globe", text: "> node [Tokyo 🇯🇵]: konsensus provenance lintas benua diverifikasi", delay: 1600 },
+      { phase: "globe", text: "> node [New York 🇺🇸]: smart escrow siap untuk transaksi global aman", delay: 1600 },
+      {
+        phase: "globe",
+        text: "> MISI ARTHENTIC: INISIATIF UNTUK SELURUH SENIMAN DI DUNIA 🌍",
+        delay: 3800,
+        showVerdict: true,
+        verdictMsg: "JARINGAN SENIMAN DUNIA · 7 BENUA TERHUBUNG"
+      },
+    ];
+  }
 
   let currentStep = 0;
+  let stepTimeout = null;
 
   function runStep() {
+    const sequence = getSequence();
+
     if (currentStep === 0) {
       terminal.innerHTML = "";
       if (verdict) verdict.classList.remove("active");
+      if (!isManualOverride) {
+        switchPhase("artwork");
+      }
     }
 
     if (currentStep >= sequence.length) {
-      setTimeout(() => {
+      stepTimeout = setTimeout(() => {
         currentStep = 0;
         runStep();
-      }, 3000);
+      }, 2500);
       return;
     }
 
     const item = sequence[currentStep];
+
+    // Automatically transition visual phase unless user manually locked it
+    if (!isManualOverride && item.switchPhase) {
+      switchPhase(item.phase);
+    } else if (!isManualOverride && currentStep === 0) {
+      switchPhase("artwork");
+    }
+
     const line = document.createElement("div");
-    if (item.showVerdict) line.className = "spec-val-ok";
+    if (item.showVerdict) {
+      line.className = "spec-val-ok";
+      line.style.fontWeight = "700";
+    }
     line.textContent = item.text;
     terminal.appendChild(line);
     terminal.scrollTop = terminal.scrollHeight;
 
     if (item.showVerdict && verdict) {
+      if (verdictText && item.verdictMsg) {
+        verdictText.textContent = item.verdictMsg;
+      }
       verdict.classList.add("active");
     }
 
     currentStep++;
-    setTimeout(runStep, item.delay);
+    stepTimeout = setTimeout(runStep, item.delay);
   }
+
+  // Language Change Listener: Restart sequence with updated bilingual strings
+  window.addEventListener("arthentic:lang-changed", () => {
+    clearTimeout(stepTimeout);
+    currentStep = 0;
+    runStep();
+  });
 
   runStep();
 }
+
+/* ==========================================================================
 
 /* ==========================================================================
    5. SOLUTION TABS (3 LAPIS PROTEKSI)

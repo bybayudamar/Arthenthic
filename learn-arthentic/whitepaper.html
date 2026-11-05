@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Whitepaper Protokol Arthentic · Otentikasi Phygital & Jaringan Seniman Global</title>
+  <meta name="description" content="Spesifikasi teknis dan whitepaper resmi protokol Arthentic: arsitektur kriptografis 3-lapis, biometrik AI, smart contract Base L2, dan inisiatif seniman dunia.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="wp-body">
+
+  <!-- ==========================================================================
+       WHITEPAPER TOP NAVIGATION
+       ========================================================================== -->
+  <header class="wp-top-nav">
+    <div class="container wp-nav-inner">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <a href="index.html" class="nav-brand" aria-label="Arthentic Beranda">
+          <div class="brand-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2L2 12l10 10 10-10L12 2zm0 4.5l6.5 6.5-6.5 6.5L5.5 13 12 6.5z"/>
+            </svg>
+          </div>
+          <span>ARTHENTIC</span>
+        </a>
+        <span class="wp-nav-title">/ PROTOCOL WHITEPAPER</span>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <a href="index.html" class="wp-back-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          <span>Kembali ke Beranda</span>
+        </a>
+
+        <button type="button" class="wp-back-btn" onclick="window.print()" title="Cetak atau Simpan sebagai PDF">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 6 2 18 2 18 9"/>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+            <rect x="6" y="14" width="12" height="8"/>
+          </svg>
+          <span>Cetak / PDF</span>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button class="theme-toggle-btn" id="wp-theme-toggle" aria-label="Ganti Tema">
+          <svg width="18" height="18" viewBox="0 0 24 24" id="theme-toggle-icon">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       WHITEPAPER LAYOUT (Sticky TOC + Reading Column)
+       ========================================================================== -->
+  <div class="container wp-layout-container">
+
+    <!-- Sticky Table of Contents Sidebar -->
+    <aside class="wp-sidebar">
+      <div class="wp-toc-card">
+        <div class="wp-toc-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="8" y1="6" x2="21" y2="6"/>
+            <line x1="8" y1="12" x2="21" y2="12"/>
+            <line x1="8" y1="18" x2="21" y2="18"/>
+            <line x1="3" y1="6" x2="3.01" y2="6"/>
+            <line x1="3" y1="12" x2="3.01" y2="12"/>
+            <line x1="3" y1="18" x2="3.01" y2="18"/>
+          </svg>
+          <span>Daftar Isi Dokumen</span>
+        </div>
+        <nav>
+          <ul class="wp-toc-list">
+            <li><a href="#sec-abstract" class="wp-toc-link"><span class="wp-toc-num">1.0</span><span>Abstrak Eksekutif</span></a></li>
+            <li><a href="#sec-problem" class="wp-toc-link"><span class="wp-toc-num">2.0</span><span>Krisis Keaslian Pasar Seni</span></a></li>
+            <li><a href="#sec-global" class="wp-toc-link"><span class="wp-toc-num">3.0</span><span>Inisiatif Seniman Seluruh Dunia</span></a></li>
+            <li><a href="#sec-architecture" class="wp-toc-link"><span class="wp-toc-num">4.0</span><span>Arsitektur Tri-Lapis Phygital</span></a></li>
+            <li><a href="#sec-cryptography" class="wp-toc-link"><span class="wp-toc-num">5.0</span><span>Kriptografi Fisik SUN Token</span></a></li>
+            <li><a href="#sec-biometrics" class="wp-toc-link"><span class="wp-toc-num">6.0</span><span>Biometrik Optik AI & Cosine Math</span></a></li>
+            <li><a href="#sec-contracts" class="wp-toc-link"><span class="wp-toc-num">7.0</span><span>Desain Smart Contract (Base L2)</span></a></li>
+            <li><a href="#sec-escrow" class="wp-toc-link"><span class="wp-toc-num">8.0</span><span>Smart Escrow & Royalti Seniman</span></a></li>
+            <li><a href="#sec-scaling" class="wp-toc-link"><span class="wp-toc-num">9.0</span><span>Skalabilitas L2 & Merkle Anchor L1</span></a></li>
+            <li><a href="#sec-security" class="wp-toc-link"><span class="wp-toc-num">10.0</span><span>Model Keamanan & Analisis Serangan</span></a></li>
+            <li><a href="#sec-governance" class="wp-toc-link"><span class="wp-toc-num">11.0</span><span>Tata Kelola & Konservasi Budaya</span></a></li>
+            <li><a href="#sec-appendix" class="wp-toc-link"><span class="wp-toc-num">12.0</span><span>Lampiran Matematis & Formula</span></a></li>
+          </ul>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- Main Whitepaper Content Article -->
+    <main class="wp-article wp-prose">
+
+      <!-- Metadata Header Banner -->
+      <div class="wp-meta-banner">
+        <div class="wp-doc-type">
+          <span>● SPESIFIKASI PROTOKOL TEKNIS · BASE L2 MAINNET SPECIFICATION</span>
+        </div>
+        <h1 class="wp-title">ARTHENTIC: Protokol Otentikasi Phygital & Jaringan Provenance Terdesentralisasi untuk Seniman Seluruh Dunia</h1>
+        <p class="wp-subtitle">
+          Arsitektur pengikatan kriptografis tiga lapis (*Tri-Fold Cryptographic Binding*), verifikasi optik mikroskopis berbasis AI, dan konsensus smart contract terdistribusi untuk perlindungan hak cipta dan keaslian karya seni rupa fisik global.
+        </p>
+
+        <div class="wp-meta-grid">
+          <div>
+            <div class="wp-meta-item-label">Versi Dokumen</div>
+            <div class="wp-meta-item-val">v1.0.4 (Maret 2026)</div>
+          </div>
+          <div>
+            <div class="wp-meta-item-label">Infrastruktur Blockchain</div>
+            <div class="wp-meta-item-val">Base L2 (OP Stack) + Ethereum L1</div>
+          </div>
+          <div>
+            <div class="wp-meta-item-label">Standar Token & Bukti</div>
+            <div class="wp-meta-item-val">ERC-721 · EIP-712 · EIP-2981</div>
+          </div>
+          <div>
+            <div class="wp-meta-item-label">Klasifikasi Kriptografi</div>
+            <div class="wp-meta-item-val">NTAG 424 DNA AES-128 SUN</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======================================================================
+           1.0 ABSTRAK EKSEKUTIF
+           ====================================================================== -->
+      <section class="wp-section" id="sec-abstract">
+        <div class="wp-section-header">
+          <span class="wp-section-num">1.0</span>
+          <h2 class="wp-section-title">Abstrak Eksekutif</h2>
+        </div>
+        <p>
+          Pasar seni rupa fisik global yang bernilai lebih dari <strong>$65 Miliar</strong> per tahun menghadapi krisis kepercayaan struktural: diperkirakan <strong>30% hingga 50%</strong> karya yang beredar di pasar sekunder diragukan keasliannya atau teridentifikasi sebagai barang tiruan. Model pembuktian konvensional saat ini masih mengandalkan sertifikat kertas (*Certificate of Authenticity* / CoA), stempel galeri, dan penilaian subjektif para penilai (*appraisers*), yang semuanya berada di luar objek fisik karya dan rentan dipalsukan, hilang, atau dimanipulasi saat perpindahan tangan.
+        </p>
+        <p>
+          Di sisi lain, gelombang NFT (*Non-Fungible Token*) generasi pertama gagal menjembatani kesenjangan ini karena token digital murni hanya menunjuk ke URI gambar di server web, tanpa ikatan fisik tak terbantahkan ke kanvas atau material karya yang sebenarnya. Akibatnya, token dapat diperdagangkan sementara lukisan fisiknya tertukar, dipalsukan, atau dicuri.
+        </p>
+        <p>
+          <strong>Arthentic</strong> memperkenalkan protokol otentikasi *phygital* (fisik-digital) desentralistis pertama yang mengikat karya seni fisik ke kembaran digitalnya (*digital twin*) di blockchain Base L2 melalui tiga lapisan perlindungan matematis yang saling mengunci:
+        </p>
+        <ol>
+          <li><strong>Lapisan Fisik Kriptografis:</strong> Menggunakan chip anti-kloning <em>NXP NTAG 424 DNA</em> berantena *tamper-evident* yang terpasang langsung pada kanvas, menghasilkan kode verifikasi dinamis berbasis enkripsi AES-128 (*Secure Unique NFC / SUN*) yang berubah di setiap sentuhan ponsel.</li>
+          <li><strong>Lapisan Biometrik Optik AI:</strong> Kamera mikroskopis menangkap sidik jari serat kanvas (*canvas weave*), pola impasto cat minyak, dan formasi retakan mikro (*craquelure*), lalu mengekstraksi vektor 512-dimensi yang diverifikasi dengan kesamaan kosinus (*Cosine Similarity* $\ge 88.0\%$).</li>
+          <li><strong>Lapisan Konsensus Blockchain:</strong> Smart contract modular di Base L2 (Ethereum L2) mencatat sertifikat keaslian permanen (EIP-712), menyediakan *escrow* terdesentralisasi dengan pembayaran royalti otomatis kepada seniman (EIP-2981), serta melakukan *checkpoint* bukti riwayat (*provenance*) ke Ethereum L1 melalui jangkar pohon Merkle (*Merkle Anchor*).</li>
+        </ol>
+      </section>
+
+      <!-- ======================================================================
+           2.0 KRISIS PEMBUKTIAN PASAR SENI
+           ====================================================================== -->
+      <section class="wp-section" id="sec-problem">
+        <div class="wp-section-header">
+          <span class="wp-section-num">2.0</span>
+          <h2 class="wp-section-title">Krisis Keaslian Pasar Seni Rupa Konvensional</h2>
+        </div>
+        <p>
+          Integritas pasar seni bergantung pada pembuktian dua hal: <em>keaslian</em> (apakah karya ini benar-benar dibuat oleh seniman yang bersangkutan) dan <em>provenance</em> (rekam jejak kepemilikan dan rantai penguasaan barang dari studio seniman hingga kolektor saat ini). Mekanisme tradisional memiliki kelemahan mendasar:
+        </p>
+        <ul>
+          <li><strong>Sertifikat Kertas Mudah Dipalsukan:</strong> Dokumen fisik tidak memiliki ikatan kriptografis dengan lukisan. Kertas dapat dipindai ulang, tanda tangan dapat dipalsukan, dan sertifikat asli dapat dipasangkan dengan lukisan tiruan (*forgery pairing*).</li>
+          <li><strong>Tag NFC / Barcode Biasa Mudah Dikloning:</strong> Banyak proyek mencoba menggunakan tag RFID/NFC standar berharga murah. Namun tag tersebut memancarkan nomor seri (*UID*) statis yang dapat disalin dalam 3 detik menggunakan perangkat genggam sederhana seperti Flipper Zero atau smartphone komersial.</li>
+          <li><strong>Putusnya Jejak Audit Pasar Gelap:</strong> Lebih dari 70% transaksi karya seni sekunder terjadi secara privat tanpa transparansi publik. Ketika karya muncul kembali setelah puluhan tahun, riwayat restorasi, peminjaman museum, dan bukti kepemilikan sah seringkali hilang atau dimanipulasi.</li>
+          <li><strong>Eksploitasi Seniman Tanpa Royalti:</strong> Ketika sebuah karya seni fisik melonjak nilainya dari ratusan dollar menjadi jutaan dollar di balai lelang sekunder, seniman awal umumnya menerima 0% royalti karena tidak adanya sistem penegakan otomatis lintas yurisdiksi hukum.</li>
+        </ul>
+
+        <div class="wp-callout wp-callout-important">
+          <div style="font-weight: 800; font-size: 1.1rem;">⚠️ Paradoks Autentisitas Konvensional</div>
+          <div>
+            Jika bukti keaslian dapat dipisahkan secara fisik dari lukisan aslinya, maka bukti tersebut memiliki nilai keamanan nol di pasar sekunder. Keaslian sejati harus menjadi <strong>karakteristik intrinsik</strong> yang menyatu dengan partikel kanvas dan kriptografi chip itu sendiri.
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           3.0 INISIATIF SENIMAN SELURUH DUNIA
+           ====================================================================== -->
+      <section class="wp-section" id="sec-global">
+        <div class="wp-section-header">
+          <span class="wp-section-num">3.0</span>
+          <h2 class="wp-section-title">Inisiatif Seniman Seluruh Dunia (*Worldwide Artist Initiative*)</h2>
+        </div>
+        
+        <div class="wp-global-network-callout">
+          <div class="wp-global-title">
+            <span>🌍</span>
+            <span>Misi Global: Menghubungkan & Melindungi Seniman di 7 Benua</span>
+          </div>
+          <p style="margin-bottom: 0;">
+            Arthentic tidak dirancang sebagai instrumen eksklusif untuk segelintir balai lelang elit di New York atau London semata. Protokol ini diinisiasi sebagai <strong>infrastruktur publik terdesentralisasi yang inklusif untuk seluruh seniman di dunia</strong> — dari perupa independen di Yogyakarta, Bali, dan Bandung, hingga studio kontemporer di Tokyo, atelier klasik di Florence dan Paris, kolektif avant-garde di Berlin, seniman mural di São Paulo, hingga kurator museum di Cape Town dan Sydney.
+          </p>
+        </div>
+
+        <p>
+          Tiga pilar demokratisasi hak cipta dalam inisiatif global ini mencakup:
+        </p>
+        <ul>
+          <li><strong>Aksesibilitas Tanpa Friksi Teknis (Zero Friction Onboarding):</strong> Melalui integrasi standar <em>Account Abstraction ERC-4337</em> dan <em>WebAuthn / Passkeys</em>, seniman tidak perlu membeli token kripto atau menghafal 12 kata frasa sandi (*seed phrase*). Seniman cukup masuk menggunakan sensor biometrik ponsel (Face ID / Touch ID), sementara seluruh biaya gas transaksi di Base L2 disponsori penuh oleh Paymaster protokol.</li>
+          <li><strong>Sertifikasi Genesis Seumur Hidup:</strong> Setiap seniman di belahan dunia mana pun dapat mendaftarkan karya baru (*genesis mint*) langsung dari studionya saat cat masih basah, mengunci tanda tangan digital EIP-712 yang tidak dapat direbut atau dibantah oleh perantara manapun.</li>
+          <li><strong>Penegakan Hak Royalti Abadi Lintas Batas (Enforceable Resale Royalties):</strong> Melalui modul <code>ArthenticEscrow.sol</code> yang mematuhi standar EIP-2981, setiap kali lukisan berpindah tangan antar kolektor internasional di masa depan, persentase royalti sekunder (misal 5%–10%) otomatis dikreditkan langsung ke smart wallet seniman seketika saat verifikasi fisik selesai.</li>
+        </ul>
+      </section>
+
+      <!-- ======================================================================
+           4.0 ARSITEKTUR TRI-LAPIS PHYGITAL
+           ====================================================================== -->
+      <section class="wp-section" id="sec-architecture">
+        <div class="wp-section-header">
+          <span class="wp-section-num">4.0</span>
+          <h2 class="wp-section-title">Arsitektur Tri-Lapis Phygital (*The Tri-Fold Architecture*)</h2>
+        </div>
+        <p>
+          Arsitektur protokol Arthentic membagi beban verifikasi ke dalam 3 domain independen yang saling memvalidasi (*defense-in-depth*):
+        </p>
+
+        <div class="wp-table-wrapper">
+          <table class="wp-table">
+            <thead>
+              <tr>
+                <th>Lapisan</th>
+                <th>Substrat Teknologi</th>
+                <th>Metrik Verifikasi</th>
+                <th>Pertahanan Terhadap Serangan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Lapis 1: Kriptografi Fisik</strong></td>
+                <td>NXP NTAG 424 DNA (AES-128 SUN) + Antena Loop Tamper-Evident</td>
+                <td>Dinamika Nonce, Dekripsi CMAC, Integritas Sirkuit Antena</td>
+                <td>Mencegah kloning tag, penyalinan sinyal RFID, dan pelepasan chip dari kanvas.</td>
+              </tr>
+              <tr>
+                <td><strong>Lapis 2: Biometrik Optik AI</strong></td>
+                <td>Mikroskop Lensa Makro + Jaringan Syaraf Tiruan Siamese (512-D)</td>
+                <td>Kesamaan Kosinus $\ge 88.0\%$ terhadap Genesis Hash</td>
+                <td>Mencegah penukaran kanvas asli dengan salinan tiruan jika chip dipindahkan secara paksa.</td>
+              </tr>
+              <tr>
+                <td><strong>Lapis 3: Konsensus On-Chain</strong></td>
+                <td>Base L2 (OP Stack) + EIP-712 Signatures + Merkle Anchor L1</td>
+                <td>Validitas Tanda Tangan HSM Node, Nonce Replay Prevention</td>
+                <td>Mencegah pemalsuan catatan kepemilikan, pembatalan sepihak, dan manipulasi riwayat lelang.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           5.0 KRIPTOGRAFI FISIK SUN TOKEN
+           ====================================================================== -->
+      <section class="wp-section" id="sec-cryptography">
+        <div class="wp-section-header">
+          <span class="wp-section-num">5.0</span>
+          <h2 class="wp-section-title">Kriptografi Fisik: NTAG 424 DNA SUN Token</h2>
+        </div>
+        <p>
+          Standar chip NTAG 424 DNA memperkenalkan inovasi kriptografi perangkat keras berupa <strong>Secure Unique NFC (SUN)</strong>. Berbeda dengan NFC konvensional yang menyiarkan payload statis, chip ini menghasilkan URL unik yang memuat kriptogram AES-128 termutakhir di setiap interaksi induksi elektromagnetik:
+        </p>
+
+        <div class="wp-math-box">
+          <div class="wp-math-formula">
+            \text{URL} = \text{https://verify.arthentic.xyz/?picc\_data=} E_{K_{enc}}(\text{UID} \parallel \text{SDMCounter}) \parallel \text{CMAC}_{K_{mac}}(\dots)
+          </div>
+          <div class="wp-math-caption">
+            Formula payload kriptografis dinamis SUN: Enkripsi AES-128 dari UID unik chip dan nilai hitungan counter pemindaian internal monolitik, divalidasi dengan kode otentikasi pesan CMAC.
+          </div>
+        </div>
+
+        <p>
+          Keunggulan matematis mekanisme ini meliputi:
+        </p>
+        <ul>
+          <li><strong>Ketahanan Terhadap Replay Attack:</strong> Setiap pemindaian menaikkan <code>SDMCounter</code> internal di dalam silikon chip. Sinyal yang dicegat atau dicatat tidak dapat digunakan ulang karena backend verifier dan smart contract menolak nonce yang bernilai lebih kecil atau sama dengan riwayat verifikasi sebelumnya.</li>
+          <li><strong>Antena Tamper-Evident:</strong> Chip dipasang menggunakan perekat berkekuatan struktural tinggi dengan jalur loop antena melintasi batas perekat. Jika chip dicongkel atau dipindahkan dari kanvas lukisan, antena seketika putus (*circuit break*), menyebabkan chip mati permanen atau melaporkan bit *tamper-detected* pada payload status.</li>
+        </ul>
+      </section>
+
+      <!-- ======================================================================
+           6.0 BIOMETRIK OPTIK AI
+           ====================================================================== -->
+      <section class="wp-section" id="sec-biometrics">
+        <div class="wp-section-header">
+          <span class="wp-section-num">6.0</span>
+          <h2 class="wp-section-title">Biometrik Optik AI: 512-D Canvas Vector & Cosine Similarity</h2>
+        </div>
+        <p>
+          Meskipun chip kriptografis menawarkan tingkat keamanan militer, protokol Arthentic mensyaratkan perlindungan ganda: bagaimana jika seorang pemalsu mencoba meniru gaya sapuan kuas pada kanvas lain lalu menanam chip legal? Di sinilah <strong>Lapisan Biometrik AI</strong> bekerja.
+        </p>
+        <p>
+          Struktur fisik kanvas lukisan bersifat unik pada tingkat mikroskopis:
+        </p>
+        <ul>
+          <li>Jalinan serat rami (*linen/cotton weave patterns*) memiliki ketidakteraturan acak bawaan pabrik.</li>
+          <li>Kepadatan dan orientasi goresan cat timbul (*impasto brushwork*) mencerminkan memori otot dan tekanan tangan spesifik seniman.</li>
+          <li>Pola retakan varnish dan lapisan pigmen (*micro-craquelure*) yang terbentuk selama pengeringan mustahil ditiru secara identik oleh pemalsu mana pun.</li>
+        </ul>
+
+        <div class="wp-math-box">
+          <div class="wp-math-formula">
+            S_C(\mathbf{u}, \mathbf{v}) = \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}\| \|\mathbf{v}\|} = \frac{\sum_{i=1}^{512} u_i v_i}{\sqrt{\sum_{i=1}^{512} u_i^2} \sqrt{\sum_{i=1}^{512} v_i^2}} \ge 0.880
+          </div>
+          <div class="wp-math-caption">
+            Kalkulasi Kesamaan Kosinus (*Cosine Similarity*): Mengukur sudut antara vektor embedding fitur optik karya saat verifikasi ($\mathbf{u}$) dengan vektor genesis saat pencetakan awal ($\mathbf{v}$). Ambang batas kelulusan ditetapkan pada $88.0\%$ (0.880).
+          </div>
+        </div>
+
+        <p>
+          Hasil ekstraksi vektor dikonversi menjadi hash identitas <code>bytes32 genesisVectorHash</code> yang disimpan di dalam smart contract <code>ArthenticNFT.sol</code>, memastikan verifikasi di masa depan bersifat deterministik dan objektif tanpa ketergantungan pada selera individu.
+        </p>
+      </section>
+
+      <!-- ======================================================================
+           7.0 DESAIN SMART CONTRACT
+           ====================================================================== -->
+      <section class="wp-section" id="sec-contracts">
+        <div class="wp-section-header">
+          <span class="wp-section-num">7.0</span>
+          <h2 class="wp-section-title">Desain Smart Contract On-Chain (Base L2)</h2>
+        </div>
+        <p>
+          Protokol Arthentic diimplementasikan dalam 5 smart contract Solidity yang modular dan teruji secara ketat, memanfaatkan pustaka OpenZeppelin v5 untuk menjamin keamanan akses dan integritas memori:
+        </p>
+
+        <div class="wp-table-wrapper">
+          <table class="wp-table">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama Kontrak</th>
+                <th>Fungsi Utama</th>
+                <th>Input Parameter</th>
+                <th>Output / Event</th>
+                <th>Aktor yang Berwenang</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td><code>ArthenticNFT.sol</code></td>
+                <td><code>genesisMint()</code>: Mencetak NFT karya baru & mengikat hash vektor + ID chip</td>
+                <td><code>artist, genesisVectorHash, chipIdHash, metadataURI</code></td>
+                <td><code>tokenId</code>; Emit <code>GenesisRegistered</code></td>
+                <td>Verifier Terdaftar</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td><code>ArthenticNFT.sol</code></td>
+                <td><code>recordVerification()</code>: Mencatat hasil audit verifikasi Level 1 atau Level 2</td>
+                <td><code>Attestation, signature</code></td>
+                <td>Emit <code>VerificationRecorded</code></td>
+                <td>Kolektor / Pembeli Sekunder (via Node)</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td><code>ArthenticNFT.sol</code></td>
+                <td><code>updateCondition()</code>: Menambah log restorasi kanvas dan vektor baru</td>
+                <td><code>tokenId, newVectorHash, noteURI</code></td>
+                <td>Emit <code>ConditionUpdated</code> (data genesis tetap)</td>
+                <td>Konservator Terakreditasi</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td><code>ArthenticNFT.sol</code></td>
+                <td><code>replaceChip()</code>: Mengganti chip rusak setelah persetujuan multisig 3 pihak</td>
+                <td><code>tokenId, newChipIdHash, 3 signatures, attestation</code></td>
+                <td>Emit <code>ChipReplaced</code></td>
+                <td>Verifier Safe, Kolektor, Seniman</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td><code>ArthenticNFT.sol</code></td>
+                <td><code>markDestroyed() / burn()</code>: Menandai karya hancur total atau hilang</td>
+                <td><code>tokenId, proofURI</code> (berita acara/klaim asuransi)</td>
+                <td>Status <code>PhysicalAssetDestroyed</code></td>
+                <td>Kolektor (Disetujui Admin/Verifier)</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td><code>ArthenticEscrow.sol</code></td>
+                <td><code>createListing()</code>: Penjual menitipkan NFT fisik ke escrow dengan harga jual</td>
+                <td><code>tokenId, price, expiry</code></td>
+                <td><code>listingId</code></td>
+                <td>Penjual / Pemilik Sah</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td><code>ArthenticEscrow.sol</code></td>
+                <td><code>deposit()</code>: Pembeli mengunci dana pembelian (ETH/Stablecoin)</td>
+                <td><code>listingId, funds</code></td>
+                <td>Status Listing <code>Funded</code></td>
+                <td>Kolektor / Pembeli</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td><code>ArthenticEscrow.sol</code></td>
+                <td><code>claim()</code>: Melepas NFT ke pembeli & dana ke penjual + royalti seniman</td>
+                <td><code>listingId, Attestation, signature</code></td>
+                <td>NFT ke pembeli; Dana ke penjual; Royalti ke seniman</td>
+                <td>Kolektor (Setelah SUN Valid)</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td><code>ArthenticEscrow.sol</code></td>
+                <td><code>refund()</code>: Pengembalian dana pembeli bila melewati batas waktu / sengketa</td>
+                <td><code>listingId</code></td>
+                <td>Dana kembali ke pembeli; NFT kembali ke penjual</td>
+                <td>Pembeli / Penjual</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td><code>AttestationVerifier.sol</code></td>
+                <td><code>verifyAttestation()</code>: Validasi tanda tangan EIP-712, kedaluwarsa, nonce, ambang skor</td>
+                <td><code>Attestation, signature, requireOptical</code></td>
+                <td>Revert jika tidak valid</td>
+                <td>Internal (Dipakai oleh NFT & Escrow)</td>
+              </tr>
+              <tr>
+                <td>11</td>
+                <td><code>MerkleAnchor.sol</code></td>
+                <td><code>anchorRoot()</code>: Menyimpan akar pohon Merkle batch event provenance di L1</td>
+                <td><code>root, fromBlock, toBlock</code></td>
+                <td>Emit <code>RootAnchored</code></td>
+                <td>Admin / Protocol Relay Node</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="wp-code-block">
+          <pre><code>// Contoh Definisi Struktur Attestation EIP-712 pada AttestationVerifier.sol
+struct Attestation {
+    bytes32 chipIdHash;      // Hash SHA-256 ID chip fisik
+    bytes32 opticalHash;     // Hash embedding 512-D biometrik optik
+    uint256 tokenId;         // ID NFT kembaran digital
+    uint256 nonce;           // Counter anti-replay
+    uint256 timestamp;       // Waktu pemindaian
+    uint256 expiry;          // Batas kedaluwarsa attestation
+    uint16  cosineScoreBps;  // Skor kesamaan kosinus dalam basis point (e.g. 9480 = 94.8%)
+    uint8   verificationLevel;// Level 1 (Tap NFC Cepat) atau Level 2 (Optik Makro AI Penuh)
+}</code></pre>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           8.0 PROTOKOL SMART ESCROW
+           ====================================================================== -->
+      <section class="wp-section" id="sec-escrow">
+        <div class="wp-section-header">
+          <span class="wp-section-num">8.0</span>
+          <h2 class="wp-section-title">Smart Escrow & Perlindungan Royalti Seniman Global</h2>
+        </div>
+        <p>
+          Transaksi karya seni bernilai tinggi rentan terhadap risiko logistik: pembeli khawatir mentransfer dana sebelum lukisan tiba dan dipastikan keasliannya; penjual khawatir mengirimkan lukisan tanpa jaminan pembayaran yang pasti.
+        </p>
+        <p>
+          Modul <code>ArthenticEscrow.sol</code> menyelesaikan kebuntuan ini melalui mekanisme <em>Delivery-vs-Payment (DvP)</em> berbasis kriptografi fisik:
+        </p>
+        <ol>
+          <li>Penjual mengunci NFT ke kontrak escrow melalui <code>createListing()</code>.</li>
+          <li>Pembeli menyetorkan dana ke smart contract melalui <code>deposit()</code>. Dana terkunci secara aman tanpa kendali perantara manusia.</li>
+          <li>Kurir seni mengirimkan paket fisik ke lokasi pembeli.</li>
+          <li>Saat paket tiba, pembeli menyentuhkan ponsel pintarnya ke chip lukisan. Node protokol memvalidasi SUN token dan menghasilkan tanda tangan attestation EIP-712.</li>
+          <li>Pembeli memanggil <code>claim()</code> dengan menyertakan bukti attestation. Smart contract secara atomik (dalam 1 blok transaksi Base L2):
+            <ul>
+              <li>Mentransfer kepemilikan NFT ke dompet pembeli.</li>
+              <li>Mentransfer dana pembelian ke penjual setelah dipotong royalti.</li>
+              <li>Mentransfer royalti sekunder (misal 5%) langsung ke dompet seniman pencipta awal (*artist royalty fee*).</li>
+            </ul>
+          </li>
+          <li>Jika batas waktu pengiriman habis tanpa verifikasi valid, dana dikembalikan penuh ke pembeli via <code>refund()</code>.</li>
+        </ol>
+      </section>
+
+      <!-- ======================================================================
+           9.0 SKALABILITAS L2 & MERKLE ANCHOR
+           ====================================================================== -->
+      <section class="wp-section" id="sec-scaling">
+        <div class="wp-section-header">
+          <span class="wp-section-num">9.0</span>
+          <h2 class="wp-section-title">Skalabilitas Base L2 & Jangkar Merkle L1 Ethereum</h2>
+        </div>
+        <p>
+          Untuk mendukung jutaan karya seni di seluruh dunia, biaya transaksi harus mendekati nol. Jika protokol berjalan langsung di Ethereum Mainnet L1, setiap sentuhan pemindaian karya dapat menelan biaya gas $5 hingga $40 USD — menjadikannya tidak layak secara ekonomi untuk seniman independen.
+        </p>
+        <p>
+          Arthentic beroperasi di atas <strong>Base L2</strong>, roll-up Optimistic berkinerja tinggi yang diamankan oleh konsensus Ethereum:
+        </p>
+        <ul>
+          <li><strong>Biaya Transaksi Sub-Sen (&lt; $0.005 USD):</strong> Memungkinkan verifikasi harian di museum dan galeri tanpa membebani pengunjung.</li>
+          <li><strong>Penyelesaian Transaksi Instan (&lt; 2 Detik):</strong> Memberikan respons waktu nyata saat ponsel menyentuh kanvas.</li>
+          <li><strong>Penyimpanan Jangka Panjang L1 (Merkle Anchor):</strong> Sekali setiap periode (misal 50.000 transaksi atau 7 hari), sebuah batch akar pohon Merkle (*Merkle Root*) dari seluruh catatan provenance di L2 ditambatkan ke kontrak <code>MerkleAnchor.sol</code> di Ethereum Mainnet L1. Hal ini menjamin bahwa meskipun sequencer L2 mengalami gangguan sementara di masa depan, catatan kepemilikan karya tetap tersimpan abadi setara dengan kekekalan jaringan Ethereum.</li>
+        </ul>
+      </section>
+
+      <!-- ======================================================================
+           10.0 MODEL KEAMANAN
+           ====================================================================== -->
+      <section class="wp-section" id="sec-security">
+        <div class="wp-section-header">
+          <span class="wp-section-num">10.0</span>
+          <h2 class="wp-section-title">Model Keamanan, Vektor Serangan & Mitigasi</h2>
+        </div>
+        <p>
+          Protokol Arthentic dianalisis terhadap ancaman keamanan siber dan kecurangan fisik (*adversarial threat modeling*):
+        </p>
+
+        <div class="wp-callout wp-callout-note">
+          <div style="font-weight: 800; font-size: 1.05rem;">🛡️ Matriks Ketahanan Keamanan</div>
+          <div>
+            <strong>1. Kloning Tag Radio (Replay Attack):</strong> Dicegah oleh enkripsi AES-128 dinamis dan penolakan nonce yang tidak bertambah secara sekuensial.<br>
+            <strong>2. Pemindahan Paksa Chip ke Lukisan Tiruan:</strong> Dicegah oleh antena rapuh loop *tamper-evident* (rusak saat dikelupas) dan kegagalan uji pencocokan biometrik AI (skor kosinus &lt; 88.0%).<br>
+            <strong>3. Serangan Man-in-the-Middle (MITM):</strong> Dicegah oleh tanda tangan kriptografis EIP-712 dengan domain separator unik Base L2.<br>
+            <strong>4. Klaim Kerusakan / Kehilangan Palsu:</strong> Penggantian chip (<code>replaceChip</code>) mensyaratkan multisig 3 pihak (seniman, kurator, dan verifier protokol).
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           11.0 TATA KELOLA & KONSERVASI
+           ====================================================================== -->
+      <section class="wp-section" id="sec-governance">
+        <div class="wp-section-header">
+          <span class="wp-section-num">11.0</span>
+          <h2 class="wp-section-title">Tata Kelola Terdesentralisasi, Konservasi & Masa Depan</h2>
+        </div>
+        <p>
+          Karya seni klasik mengalami penuaan fisik alami selama berabad-abad (oksidasi varnish, pembersihan kotoran jelaga, atau penambalan kanvas sobek oleh konservator museum). Jika data biometrik dikunci statis seumur hidup tanpa toleransi restorasi, karya sah yang direstorasi secara resmi dapat keliru dianggap palsu di masa depan.
+        </p>
+        <p>
+          Protokol Arthentic mengatasi dinamika material ini melalui peran <strong>Konservator Terakreditasi (<code>CONSERVATOR_ROLE</code>)</strong> pada fungsi <code>updateCondition()</code>:
+        </p>
+        <ul>
+          <li>Data *genesisVectorHash* awal seniman tidak pernah dihapus dan tetap menjadi catatan fondasi abadi.</li>
+          <li>Konservator dapat menyematkan log pembaruan kondisi fisik, laporan ilmiah laboratorium, dan vektor optik pasca-restorasi yang ditautkan ke IPFS/Arweave.</li>
+          <li>Rantai perubahan kondisi kanvas terdokumentasi secara transparan, mengubah restorasi dari titik buta pasar gelap menjadi aset sejarah yang menambah prestise karya.</li>
+        </ul>
+      </section>
+
+      <!-- ======================================================================
+           12.0 LAMPIRAN MATEMATIS
+           ====================================================================== -->
+      <section class="wp-section" id="sec-appendix">
+        <div class="wp-section-header">
+          <span class="wp-section-num">12.0</span>
+          <h2 class="wp-section-title">Lampiran Matematis & Formula Kriptografi</h2>
+        </div>
+        <p>
+          Spesifikasi teknis pembuktian matematis yang diterapkan di seluruh node validator Arthentic:
+        </p>
+
+        <div class="wp-math-box">
+          <div class="wp-math-formula">
+            \text{EIP-712 Domain Separator} = \text{keccak256}\left(\text{abi.encode}(\text{TYPE\_HASH}, \text{name}, \text{version}, \text{chainId}, \text{verifyingContract})\right)
+          </div>
+          <div class="wp-math-caption">
+            Formula domain separator EIP-712 mencegah serangan lintas rantai (*cross-chain replay attack*) dengan mengikat identitas smart contract verifier dan ID rantai Base L2 (8453).
+          </div>
+        </div>
+
+        <div class="wp-math-box">
+          <div class="wp-math-formula">
+            R_{Merkle} = H\left(H(E_1 \parallel E_2) \parallel H(E_3 \parallel E_4)\right)
+          </div>
+          <div class="wp-math-caption">
+            Konstruksi pohon Merkle biner kriptografis untuk agregasi riwayat provenance lukisan sebelum ditambatkan ke Ethereum L1.
+          </div>
+        </div>
+
+        <p style="margin-top: 32px; color: var(--text-2); font-size: 0.875rem;">
+          © 2026 Arthentic Protocol Foundation. Dokumen ini dilisensikan di bawah Creative Commons Attribution 4.0 International (CC-BY 4.0). Kode sumber smart contract dilisensikan di bawah lisensi MIT.
+        </p>
+
+        <div style="margin-top: 40px; display: flex; gap: 16px; flex-wrap: wrap;">
+          <a href="index.html" class="btn-primary">Kembali ke Beranda Utama →</a>
+          <a href="index.html#demo" class="btn-ghost">Coba Simulasi Verifikasi Interaktif</a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ==========================================================================
+       WHITEPAPER FOOTER
+       ========================================================================== -->
+  <footer class="footer" style="margin-top: 60px;">
+    <div class="container footer-bottom" style="border-top: 1px solid var(--line); padding-top: 24px;">
+      <div>© 2026 Arthentic Protocol. Dokumen Spesifikasi Resmi. Diterbitkan untuk Seluruh Seniman di Dunia.</div>
+      <div>
+        <a href="index.html" style="color: var(--text-1); text-decoration: none; margin-right: 16px;">Beranda</a>
+        <a href="index.html#solusi" style="color: var(--text-1); text-decoration: none; margin-right: 16px;">Solusi</a>
+        <a href="index.html#keamanan" style="color: var(--text-1); text-decoration: none; margin-right: 16px;">Keamanan</a>
+        <a href="#" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;" style="color: var(--red-500); text-decoration: none; font-weight: 600;">Kembali ke Atas ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       LIGHT/DARK THEME & SCROLLSPY TOC SCRIPT
+       ========================================================================== -->
+  <script>
+    // Theme Manager
+    const themeBtn = document.getElementById("wp-theme-toggle");
+    const storedTheme = localStorage.getItem("arthentic-theme") || "light";
+    document.documentElement.setAttribute("data-theme", storedTheme);
+
+    if (themeBtn) {
+      themeBtn.addEventListener("click", () => {
+        const current = document.documentElement.getAttribute("data-theme") || "light";
+        const next = current === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", next);
+        localStorage.setItem("arthentic-theme", next);
+      });
+    }
+
+    // Scrollspy TOC Active Tracking
+    const sections = document.querySelectorAll(".wp-section");
+    const navLinks = document.querySelectorAll(".wp-toc-link");
+
+    function updateActiveTOC() {
+      const scrollPos = window.scrollY + 120;
+      let currentSectionId = "";
+
+      sections.forEach((sec) => {
+        const top = sec.offsetTop;
+        const height = sec.offsetHeight;
+        if (scrollPos >= top && scrollPos < top + height) {
+          currentSectionId = sec.getAttribute("id");
+        }
+      });
+
+      if (!currentSectionId && sections.length > 0) {
+        currentSectionId = sections[0].getAttribute("id");
+      }
+
+      navLinks.forEach((link) => {
+        const href = link.getAttribute("href").substring(1);
+        if (href === currentSectionId) {
+          link.classList.add("active");
+        } else {
+          link.classList.remove("active");
+        }
+      });
+    }
+
+    window.addEventListener("scroll", updateActiveTOC, { passive: true });
+    window.addEventListener("DOMContentLoaded", updateActiveTOC);
+  </script>
+</body>
+</html>
+
