@@ -44,7 +44,7 @@ html[data-theme="light"] {
   --font-head: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  --max-w: 1240px;
+  --max-w: 1440px;
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 24px;
@@ -377,6 +377,9 @@ html[data-theme="dark"] .navbar {
   align-items: center;
   justify-content: space-between;
   height: 78px;
+  max-width: 1440px;
+  width: 100%;
+  gap: 24px;
 }
 
 .nav-brand {
@@ -388,6 +391,8 @@ html[data-theme="dark"] .navbar {
   font-size: 1.25rem;
   color: var(--text-0);
   letter-spacing: -0.01em;
+  flex-shrink: 0;
+  margin-right: 28px;
 }
 
 .brand-icon {
@@ -399,6 +404,7 @@ html[data-theme="dark"] .navbar {
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 14px var(--red-glow);
+  flex-shrink: 0;
 }
 
 .brand-icon svg {
@@ -407,22 +413,36 @@ html[data-theme="dark"] .navbar {
   fill: #FFFFFF;
 }
 
+.navbar nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: clamp(12px, 1.4vw, 24px);
   list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: nowrap;
 }
 
 .nav-link {
   font-family: var(--font-mono);
-  font-size: 0.875rem;
+  font-size: clamp(0.78rem, 0.85vw, 0.875rem);
   color: var(--text-2);
   font-weight: 500;
   position: relative;
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  white-space: nowrap;
+  padding: 6px 2px;
+  line-height: 1;
 }
 
 .nav-link:hover {
@@ -432,7 +452,9 @@ html[data-theme="dark"] .navbar {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
+  flex-shrink: 0;
+  margin-left: 24px;
 }
 
 .hamburger-btn {
@@ -442,6 +464,7 @@ html[data-theme="dark"] .navbar {
   cursor: pointer;
   padding: 8px;
   color: var(--text-0);
+  flex-shrink: 0;
 }
 
 /* ==========================================================================
@@ -2117,20 +2140,9 @@ html[data-theme="dark"] .cta-final-section {
 /* ==========================================================================
    18. RESPONSIVENESS
    ========================================================================== */
-@media (max-width: 1024px) {
-  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
-  .sol-tab-pane.active { grid-template-columns: 1fr; }
-  .sim-layout { grid-template-columns: 1fr; }
-  .stepper-container { grid-template-columns: repeat(3, 1fr); }
-  .stats-grid { grid-template-columns: repeat(2, 1fr); }
-  .roles-grid { grid-template-columns: repeat(2, 1fr); }
-  .agitate-grid { grid-template-columns: 1fr; }
-  .footer-top { grid-template-columns: 1fr 1fr; }
-}
-
-@media (max-width: 768px) {
-  .nav-links { display: none; }
-  .hamburger-btn { display: block; }
+@media (max-width: 1180px) {
+  .nav-links { display: none !important; }
+  .hamburger-btn { display: block !important; }
   .mobile-drawer {
     display: flex;
     flex-direction: column;
@@ -2144,6 +2156,20 @@ html[data-theme="dark"] .cta-final-section {
     gap: 14px;
     box-shadow: var(--shadow-lg);
   }
+}
+
+@media (max-width: 1024px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .sol-tab-pane.active { grid-template-columns: 1fr; }
+  .sim-layout { grid-template-columns: 1fr; }
+  .stepper-container { grid-template-columns: repeat(3, 1fr); }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .roles-grid { grid-template-columns: repeat(2, 1fr); }
+  .agitate-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
   .problem-grid, .security-grid, .stats-grid, .roles-grid { grid-template-columns: 1fr; }
   .stepper-container { grid-template-columns: 1fr; }
   .mid-cta-strip, .agitate-callout { flex-direction: column; text-align: center; }
