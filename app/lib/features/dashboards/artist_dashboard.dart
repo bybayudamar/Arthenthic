@@ -15,7 +15,7 @@ class ArtistDashboardScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "Artist Studio Dashboard",
-          style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
+          style: GoogleFonts.plusJakartaSans(fontSize: 16, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
         ),
         backgroundColor: Colors.white,
         elevation: 0,
@@ -28,9 +28,9 @@ class ArtistDashboardScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("L-07: Artist Atelier", style: GoogleFonts.inter(fontSize: 22, fontWeight: FontWeight.w800, color: AppTheme.textPrimary)),
+                Text("L-07: Artist Atelier", style: GoogleFonts.plusJakartaSans(fontSize: 22, fontWeight: FontWeight.w800, color: AppTheme.textPrimary)),
                 const SizedBox(height: 6),
-                Text("Real-time on-chain ERC-2981 5.0% royalty settlements from Base L2.", style: GoogleFonts.inter(fontSize: 13, color: AppTheme.textSecondary)),
+                Text("Real-time on-chain ERC-2981 5.0% royalty settlements from Base L2.", style: GoogleFonts.plusJakartaSans(fontSize: 13, color: AppTheme.textSecondary)),
                 const SizedBox(height: 20),
 
                 // Royalty Metric Cards
@@ -71,7 +71,7 @@ class ArtistDashboardScreen extends StatelessWidget {
                       );
                     },
                     icon: const Icon(Icons.savings_outlined, size: 20),
-                    label: Text("Claim Accumulated Royalties", style: GoogleFonts.inter(fontWeight: FontWeight.w700)),
+                    label: Text("Claim Accumulated Royalties", style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w700)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF059669),
                       foregroundColor: Colors.white,
@@ -81,7 +81,7 @@ class ArtistDashboardScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
 
-                Text("Genesis Artworks Catalog", style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w700, color: AppTheme.textPrimary)),
+                Text("Genesis Artworks Catalog", style: GoogleFonts.plusJakartaSans(fontSize: 16, fontWeight: FontWeight.w700, color: AppTheme.textPrimary)),
                 const SizedBox(height: 12),
                 _buildArtworkCatalogItem("Untitled #42 (Blue Period)", "Token #1 · Sold · 625 USDC Royalty Paid"),
                 _buildArtworkCatalogItem("Chromatic Relief VII", "Token #2 · Active Escrow · 0.21 ETH Expected"),
@@ -105,11 +105,11 @@ class ArtistDashboardScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: GoogleFonts.inter(fontSize: 12, color: AppTheme.textSecondary)),
+          Text(title, style: GoogleFonts.plusJakartaSans(fontSize: 12, color: AppTheme.textSecondary)),
           const SizedBox(height: 8),
-          Text(value, style: GoogleFonts.inter(fontSize: 17, fontWeight: FontWeight.w800, color: color)),
+          Text(value, style: GoogleFonts.plusJakartaSans(fontSize: 17, fontWeight: FontWeight.w800, color: color)),
           const SizedBox(height: 4),
-          Text(subtitle, style: GoogleFonts.inter(fontSize: 11, color: AppTheme.textMuted)),
+          Text(subtitle, style: GoogleFonts.plusJakartaSans(fontSize: 11, color: AppTheme.textMuted)),
         ],
       ),
     );
@@ -132,8 +132,8 @@ class ArtistDashboardScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w700)),
-                Text(status, style: GoogleFonts.inter(fontSize: 12, color: AppTheme.textSecondary)),
+                Text(title, style: GoogleFonts.plusJakartaSans(fontSize: 14, fontWeight: FontWeight.w700)),
+                Text(status, style: GoogleFonts.plusJakartaSans(fontSize: 12, color: AppTheme.textSecondary)),
               ],
             ),
           ),

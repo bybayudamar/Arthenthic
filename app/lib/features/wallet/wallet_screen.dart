@@ -5,6 +5,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 import '../../core/theme.dart';
 import '../../services/wallet_service.dart';
 import '../shared/artistic_background.dart';
+import '../shared/feature_help_dialog.dart';
 
 class WalletScreen extends StatefulWidget {
   const WalletScreen({super.key});
@@ -47,7 +48,7 @@ class _WalletScreenState extends State<WalletScreen> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         title: Text(
           "WalletConnect / MetaMask QR",
-          style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.w700),
+          style: GoogleFonts.plusJakartaSans(fontSize: 18, fontWeight: FontWeight.w700),
           textAlign: TextAlign.center,
         ),
         content: Column(
@@ -66,7 +67,7 @@ class _WalletScreenState extends State<WalletScreen> {
             Text(
               walletService.address,
               textAlign: TextAlign.center,
-              style: GoogleFonts.sourceCodePro(
+              style: GoogleFonts.plusJakartaSans(
                 fontSize: 12,
                 color: AppTheme.textSecondary,
               ),
@@ -128,7 +129,7 @@ class _WalletScreenState extends State<WalletScreen> {
                           const SizedBox(width: 12),
                           Text(
                             "Connect MetaMask Wallet",
-                            style: GoogleFonts.inter(
+                            style: GoogleFonts.plusJakartaSans(
                               fontSize: 17,
                               fontWeight: FontWeight.w700,
                               color: AppTheme.textPrimary,
@@ -145,7 +146,7 @@ class _WalletScreenState extends State<WalletScreen> {
                   const SizedBox(height: 10),
                   Text(
                     "Connect via WalletConnect v2 (metamask://wc) on Base Sepolia (Chain ID: 84532) and sign SIWE (EIP-4361) verification.",
-                    style: GoogleFonts.inter(
+                    style: GoogleFonts.plusJakartaSans(
                       fontSize: 13,
                       color: AppTheme.textSecondary,
                     ),
@@ -153,7 +154,7 @@ class _WalletScreenState extends State<WalletScreen> {
                   const SizedBox(height: 16),
                   Text(
                     "MetaMask EOA Address",
-                    style: GoogleFonts.inter(
+                    style: GoogleFonts.plusJakartaSans(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
                       color: AppTheme.textSecondary,
@@ -162,7 +163,7 @@ class _WalletScreenState extends State<WalletScreen> {
                   const SizedBox(height: 6),
                   TextField(
                     controller: addrCtrl,
-                    style: GoogleFonts.sourceCodePro(fontSize: 13),
+                    style: GoogleFonts.plusJakartaSans(fontSize: 13),
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: AppTheme.bgLight,
@@ -209,7 +210,7 @@ class _WalletScreenState extends State<WalletScreen> {
                       icon: const Icon(Icons.bolt_rounded, size: 18),
                       label: Text(
                         isLinking ? "Signing SIWE in MetaMask..." : "Sign & Link MetaMask (EIP-4361)",
-                        style: GoogleFonts.inter(fontWeight: FontWeight.w600),
+                        style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w600),
                       ),
                     ),
                   ),
@@ -250,7 +251,7 @@ class _WalletScreenState extends State<WalletScreen> {
                         ),
                         child: Text(
                           "MetaMask · ${item.code} · ${item.role}",
-                          style: GoogleFonts.inter(
+                          style: GoogleFonts.plusJakartaSans(
                             fontSize: 12,
                             fontWeight: FontWeight.w700,
                             color: const Color(0xFFE65100),
@@ -266,7 +267,7 @@ class _WalletScreenState extends State<WalletScreen> {
                   const SizedBox(height: 8),
                   Text(
                     item.title,
-                    style: GoogleFonts.inter(
+                    style: GoogleFonts.plusJakartaSans(
                       fontSize: 18,
                       fontWeight: FontWeight.w700,
                       color: AppTheme.textPrimary,
@@ -275,7 +276,7 @@ class _WalletScreenState extends State<WalletScreen> {
                   const SizedBox(height: 6),
                   Text(
                     item.description,
-                    style: GoogleFonts.inter(
+                    style: GoogleFonts.plusJakartaSans(
                       fontSize: 13,
                       color: AppTheme.textSecondary,
                     ),
@@ -294,7 +295,7 @@ class _WalletScreenState extends State<WalletScreen> {
                       children: [
                         Text(
                           "Target Contract / EIP-712 Domain:",
-                          style: GoogleFonts.inter(
+                          style: GoogleFonts.plusJakartaSans(
                             fontSize: 11,
                             fontWeight: FontWeight.w600,
                             color: AppTheme.textMuted,
@@ -303,7 +304,7 @@ class _WalletScreenState extends State<WalletScreen> {
                         const SizedBox(height: 4),
                         Text(
                           item.contractCall,
-                          style: GoogleFonts.sourceCodePro(
+                          style: GoogleFonts.plusJakartaSans(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
                             color: AppTheme.textPrimary,
@@ -312,7 +313,7 @@ class _WalletScreenState extends State<WalletScreen> {
                         const SizedBox(height: 10),
                         Text(
                           "RPC Method: ${item.signingMethod}",
-                          style: GoogleFonts.sourceCodePro(
+                          style: GoogleFonts.plusJakartaSans(
                             fontSize: 11,
                             color: AppTheme.textSecondary,
                           ),
@@ -320,7 +321,7 @@ class _WalletScreenState extends State<WalletScreen> {
                         const SizedBox(height: 4),
                         Text(
                           "Gas Policy: ${item.gasModel}",
-                          style: GoogleFonts.inter(
+                          style: GoogleFonts.plusJakartaSans(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
                             color: AppTheme.brandBlue,
@@ -369,7 +370,7 @@ class _WalletScreenState extends State<WalletScreen> {
                       icon: const Icon(Icons.verified_user_rounded, size: 18),
                       label: Text(
                         _isSigning ? "Awaiting MetaMask Signature..." : "Confirm Signature in MetaMask",
-                        style: GoogleFonts.inter(fontWeight: FontWeight.w600),
+                        style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w600),
                       ),
                     ),
                   ),
@@ -381,6 +382,23 @@ class _WalletScreenState extends State<WalletScreen> {
       },
     );
   }
+
+  static const FeatureHelpData _walletHelp = FeatureHelpData(
+    title: "Web3 Smart Wallet & Paymaster",
+    subtitle: "Non-custodial custody & gasless transaction management",
+    icon: Icons.account_balance_wallet_rounded,
+    howToUse: [
+      "Select your wallet provider: MetaMask EOA, Passkey Smart Wallet, or Gnosis Safe Multisig.",
+      "Filter role flows (Collector, Artist, Verifier, Conservator) to execute role-specific on-chain transactions.",
+      "Sign EIP-712 structured messages for artwork transfers, minting, or escrow claims with zero gas fees.",
+    ],
+    benefits: [
+      "ERC-4337 Account Abstraction: Gas fees are sponsored by the protocol paymaster.",
+      "Biometric Passkey login: Secure cryptographic signing using iPhone FaceID / TouchID.",
+      "Gnosis Safe integration: Multi-sig security for high-value artwork custody.",
+    ],
+    securityGuarantee: "Non-custodial keys: Private keys never touch any centralized server.",
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -399,14 +417,20 @@ class _WalletScreenState extends State<WalletScreen> {
                   children: [
                     const SizedBox(height: 16),
                     // Headline
-                    Text(
-                      "Your wallet.",
-                      style: GoogleFonts.newsreader(
-                        fontSize: 42,
-                        fontWeight: FontWeight.w600,
-                        fontStyle: FontStyle.italic,
-                        color: AppTheme.textPrimary,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Your wallet.",
+                          style: GoogleFonts.plusJakartaSans(
+                            fontSize: 28,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: -0.8,
+                            color: AppTheme.textPrimary,
+                          ),
+                        ),
+                        const FeatureHelpButton(helpData: _walletHelp),
+                      ],
                     ),
                     const SizedBox(height: 16),
 
@@ -434,7 +458,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                   const SizedBox(width: 8),
                                   Text(
                                     walletService.walletProvider,
-                                    style: GoogleFonts.inter(
+                                    style: GoogleFonts.plusJakartaSans(
                                       fontSize: 13,
                                       fontWeight: FontWeight.w700,
                                       color: AppTheme.textPrimary,
@@ -451,7 +475,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                 ),
                                 child: Text(
                                   "Link MetaMask",
-                                  style: GoogleFonts.inter(
+                                  style: GoogleFonts.plusJakartaSans(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w700,
                                     color: const Color(0xFFE65100),
@@ -475,7 +499,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                   child: ChoiceChip(
                                     label: Text(
                                       provider,
-                                      style: GoogleFonts.inter(
+                                      style: GoogleFonts.plusJakartaSans(
                                         fontSize: 12,
                                         fontWeight: FontWeight.w600,
                                         color: active ? Colors.white : AppTheme.textPrimary,
@@ -515,7 +539,7 @@ class _WalletScreenState extends State<WalletScreen> {
                         children: [
                           Text(
                             "Smart wallet address",
-                            style: GoogleFonts.inter(
+                            style: GoogleFonts.plusJakartaSans(
                               fontSize: 13,
                               color: AppTheme.textSecondary,
                             ),
@@ -523,7 +547,7 @@ class _WalletScreenState extends State<WalletScreen> {
                           const SizedBox(height: 8),
                           Text(
                             walletService.address,
-                            style: GoogleFonts.sourceCodePro(
+                            style: GoogleFonts.plusJakartaSans(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: AppTheme.textPrimary,
@@ -545,7 +569,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                   ),
                                   child: Text(
                                     "Copy",
-                                    style: GoogleFonts.inter(
+                                    style: GoogleFonts.plusJakartaSans(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
                                     ),
@@ -566,7 +590,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                   ),
                                   child: Text(
                                     "Show QR",
-                                    style: GoogleFonts.inter(
+                                    style: GoogleFonts.plusJakartaSans(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
                                     ),
@@ -628,7 +652,7 @@ class _WalletScreenState extends State<WalletScreen> {
                         children: [
                           Text(
                             "On-chain roles",
-                            style: GoogleFonts.inter(
+                            style: GoogleFonts.plusJakartaSans(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: AppTheme.textPrimary,
@@ -648,7 +672,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                 ),
                                 child: Text(
                                   "Collector",
-                                  style: GoogleFonts.inter(
+                                  style: GoogleFonts.plusJakartaSans(
                                     fontSize: 13,
                                     fontWeight: FontWeight.w700,
                                     color: AppTheme.goldBadgeText,
@@ -664,7 +688,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                 ),
                                 child: Text(
                                   "Verifier · none",
-                                  style: GoogleFonts.inter(
+                                  style: GoogleFonts.plusJakartaSans(
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600,
                                     color: const Color(0xFF4B5563),
@@ -699,7 +723,7 @@ class _WalletScreenState extends State<WalletScreen> {
                         children: [
                           Text(
                             "MetaMask Flows by Role (EIP-712 & Escrow)",
-                            style: GoogleFonts.inter(
+                            style: GoogleFonts.plusJakartaSans(
                               fontSize: 14,
                               fontWeight: FontWeight.w700,
                               color: AppTheme.textPrimary,
@@ -708,7 +732,7 @@ class _WalletScreenState extends State<WalletScreen> {
                           const SizedBox(height: 6),
                           Text(
                             "Select a role to inspect and test its MetaMask signing flow:",
-                            style: GoogleFonts.inter(
+                            style: GoogleFonts.plusJakartaSans(
                               fontSize: 12,
                               color: AppTheme.textSecondary,
                             ),
@@ -724,7 +748,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                   child: ChoiceChip(
                                     label: Text(
                                       role,
-                                      style: GoogleFonts.inter(
+                                      style: GoogleFonts.plusJakartaSans(
                                         fontSize: 12,
                                         fontWeight: FontWeight.w600,
                                         color: isSelected ? Colors.white : AppTheme.textPrimary,
@@ -758,7 +782,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                       Expanded(
                                         child: Text(
                                           "${item.code} · ${item.title}",
-                                          style: GoogleFonts.inter(
+                                          style: GoogleFonts.plusJakartaSans(
                                             fontSize: 13,
                                             fontWeight: FontWeight.w700,
                                             color: AppTheme.textPrimary,
@@ -778,7 +802,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                         ),
                                         child: Text(
                                           "Sign via MetaMask",
-                                          style: GoogleFonts.inter(
+                                          style: GoogleFonts.plusJakartaSans(
                                             fontSize: 11,
                                             fontWeight: FontWeight.w700,
                                             color: const Color(0xFFE65100),
@@ -790,7 +814,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                   const SizedBox(height: 4),
                                   Text(
                                     item.contractCall,
-                                    style: GoogleFonts.sourceCodePro(
+                                    style: GoogleFonts.plusJakartaSans(
                                       fontSize: 11,
                                       color: AppTheme.brandBlue,
                                       fontWeight: FontWeight.w600,
@@ -799,7 +823,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                   const SizedBox(height: 4),
                                   Text(
                                     item.description,
-                                    style: GoogleFonts.inter(
+                                    style: GoogleFonts.plusJakartaSans(
                                       fontSize: 12,
                                       color: AppTheme.textSecondary,
                                     ),
@@ -834,7 +858,7 @@ class _WalletScreenState extends State<WalletScreen> {
                         children: [
                           Text(
                             "Recent signatures",
-                            style: GoogleFonts.inter(
+                            style: GoogleFonts.plusJakartaSans(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: AppTheme.textPrimary,
@@ -855,7 +879,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                       Expanded(
                                         child: Text(
                                           record.action,
-                                          style: GoogleFonts.sourceCodePro(
+                                          style: GoogleFonts.plusJakartaSans(
                                             fontSize: 13,
                                             fontWeight: FontWeight.w600,
                                             color: AppTheme.textPrimary,
@@ -864,7 +888,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                       ),
                                       Text(
                                         record.timestamp,
-                                        style: GoogleFonts.inter(
+                                        style: GoogleFonts.plusJakartaSans(
                                           fontSize: 13,
                                           color: AppTheme.textMuted,
                                         ),
@@ -897,7 +921,7 @@ class _WalletScreenState extends State<WalletScreen> {
         children: [
           Text(
             label,
-            style: GoogleFonts.inter(
+            style: GoogleFonts.plusJakartaSans(
               fontSize: 15,
               color: AppTheme.textPrimary,
             ),
@@ -906,7 +930,7 @@ class _WalletScreenState extends State<WalletScreen> {
             child: Text(
               value,
               textAlign: TextAlign.right,
-              style: GoogleFonts.inter(
+              style: GoogleFonts.plusJakartaSans(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
                 color: AppTheme.textPrimary,

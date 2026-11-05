@@ -17,7 +17,7 @@ class CollectorDashboardScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "Collector Portfolio",
-          style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
+          style: GoogleFonts.plusJakartaSans(fontSize: 16, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
         ),
         backgroundColor: Colors.white,
         elevation: 0,
@@ -30,9 +30,9 @@ class CollectorDashboardScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("L-09: Collector Vault", style: GoogleFonts.inter(fontSize: 22, fontWeight: FontWeight.w800, color: AppTheme.textPrimary)),
+                Text("L-09: Collector Vault", style: GoogleFonts.plusJakartaSans(fontSize: 22, fontWeight: FontWeight.w800, color: AppTheme.textPrimary)),
                 const SizedBox(height: 6),
-                Text("Authenticated physical collection, active escrows & condition records.", style: GoogleFonts.inter(fontSize: 13, color: AppTheme.textSecondary)),
+                Text("Authenticated physical collection, active escrows & condition records.", style: GoogleFonts.plusJakartaSans(fontSize: 13, color: AppTheme.textSecondary)),
                 const SizedBox(height: 20),
 
                 // Portfolio Summary
@@ -56,15 +56,15 @@ class CollectorDashboardScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Total Portfolio Valuation", style: GoogleFonts.inter(fontSize: 12, color: const Color(0xFF94A3B8))),
+                      Text("Total Portfolio Valuation", style: GoogleFonts.plusJakartaSans(fontSize: 12, color: const Color(0xFF94A3B8))),
                       const SizedBox(height: 8),
-                      Text("\$54,200 USD", style: GoogleFonts.inter(fontSize: 28, fontWeight: FontWeight.w800, color: Colors.white)),
+                      Text("\$54,200 USD", style: GoogleFonts.plusJakartaSans(fontSize: 28, fontWeight: FontWeight.w800, color: Colors.white)),
                       const SizedBox(height: 12),
                       Row(
                         children: [
                           const Icon(Icons.verified, color: AppTheme.bubbleYellow, size: 16),
                           const SizedBox(width: 6),
-                          Text("3 Works 100% Cryptographically Verified", style: GoogleFonts.inter(fontSize: 12, color: const Color(0xFFCBD5E1))),
+                          Text("3 Works 100% Cryptographically Verified", style: GoogleFonts.plusJakartaSans(fontSize: 12, color: const Color(0xFFCBD5E1))),
                         ],
                       ),
                     ],
@@ -72,7 +72,7 @@ class CollectorDashboardScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
 
-                Text("In-Transit Escrow Deliveries", style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w700, color: AppTheme.textPrimary)),
+                Text("In-Transit Escrow Deliveries", style: GoogleFonts.plusJakartaSans(fontSize: 16, fontWeight: FontWeight.w700, color: AppTheme.textPrimary)),
                 const SizedBox(height: 12),
 
                 // In-Transit Escrow Card with Countdown
@@ -89,12 +89,12 @@ class CollectorDashboardScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Untitled #42 (Blue Period)", style: GoogleFonts.inter(fontSize: 15, fontWeight: FontWeight.w700)),
+                          Text("Untitled #42 (Blue Period)", style: GoogleFonts.plusJakartaSans(fontSize: 15, fontWeight: FontWeight.w700)),
                           const StatusBadgeWidget(status: "CLEAR", compact: true),
                         ],
                       ),
                       const SizedBox(height: 6),
-                      Text("Escrow ID: esc_042 · 12,500 USDC locked", style: GoogleFonts.inter(fontSize: 12, color: AppTheme.textSecondary)),
+                      Text("Escrow ID: esc_042 · 12,500 USDC locked", style: GoogleFonts.plusJakartaSans(fontSize: 12, color: AppTheme.textSecondary)),
                       const SizedBox(height: 14),
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -106,7 +106,7 @@ class CollectorDashboardScreen extends StatelessWidget {
                           children: [
                             const Icon(Icons.timer_outlined, color: Color(0xFFB45309), size: 16),
                             const SizedBox(width: 8),
-                            Text("11 Days Remaining until Auto-Refund (C-12)", style: GoogleFonts.inter(fontSize: 12, color: const Color(0xFF92400E), fontWeight: FontWeight.w600)),
+                            Text("11 Days Remaining until Auto-Refund (C-12)", style: GoogleFonts.plusJakartaSans(fontSize: 12, color: const Color(0xFF92400E), fontWeight: FontWeight.w600)),
                           ],
                         ),
                       ),

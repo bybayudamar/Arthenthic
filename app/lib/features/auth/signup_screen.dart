@@ -110,17 +110,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const SizedBox(height: 12),
                 Text(
                   'Create Account.',
-                  style: GoogleFonts.newsreader(
+                  style: GoogleFonts.plusJakartaSans(
                     fontSize: 36,
                     fontWeight: FontWeight.w600,
-                    fontStyle: FontStyle.italic,
                     color: AppTheme.textPrimary,
                   ),
                 ),
                 const SizedBox(height: 8),
                 Text(
                   'Join Arthentic to register new artworks, verify provenance, and access accredited roles.',
-                  style: GoogleFonts.inter(
+                  style: GoogleFonts.plusJakartaSans(
                     fontSize: 14,
                     color: AppTheme.textSecondary,
                     height: 1.4,
@@ -145,7 +144,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         Expanded(
                           child: Text(
                             _errorMessage!,
-                            style: GoogleFonts.inter(
+                            style: GoogleFonts.plusJakartaSans(
                               fontSize: 13,
                               color: const Color(0xFFB91C1C),
                               fontWeight: FontWeight.w500,
@@ -160,7 +159,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 // Full Name
                 Text(
                   'Full Name',
-                  style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600, color: AppTheme.textPrimary),
+                  style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w600, color: AppTheme.textPrimary),
                 ),
                 const SizedBox(height: 6),
                 TextField(
@@ -168,7 +167,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   controller: _nameController,
                   decoration: InputDecoration(
                     hintText: 'Elena Rostova',
-                    hintStyle: GoogleFonts.inter(color: AppTheme.textMuted, fontSize: 14),
+                    hintStyle: GoogleFonts.plusJakartaSans(color: AppTheme.textMuted, fontSize: 14),
                     filled: true,
                     fillColor: Colors.white,
                     contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
@@ -191,7 +190,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 // Email Field
                 Text(
                   'Email',
-                  style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600, color: AppTheme.textPrimary),
+                  style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w600, color: AppTheme.textPrimary),
                 ),
                 const SizedBox(height: 6),
                 TextField(
@@ -201,7 +200,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   autocorrect: false,
                   decoration: InputDecoration(
                     hintText: 'artist@arthentic.io',
-                    hintStyle: GoogleFonts.inter(color: AppTheme.textMuted, fontSize: 14),
+                    hintStyle: GoogleFonts.plusJakartaSans(color: AppTheme.textMuted, fontSize: 14),
                     filled: true,
                     fillColor: Colors.white,
                     contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
@@ -224,7 +223,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 // Password Field
                 Text(
                   'Password',
-                  style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600, color: AppTheme.textPrimary),
+                  style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w600, color: AppTheme.textPrimary),
                 ),
                 const SizedBox(height: 6),
                 TextField(
@@ -234,7 +233,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   onChanged: (_) => setState(() {}),
                   decoration: InputDecoration(
                     hintText: 'At least 8 characters',
-                    hintStyle: GoogleFonts.inter(color: AppTheme.textMuted, fontSize: 14),
+                    hintStyle: GoogleFonts.plusJakartaSans(color: AppTheme.textMuted, fontSize: 14),
                     filled: true,
                     fillColor: Colors.white,
                     contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
@@ -300,7 +299,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           )
                         : Text(
                             'Create Account',
-                            style: GoogleFonts.inter(
+                            style: GoogleFonts.plusJakartaSans(
                               fontSize: 15,
                               fontWeight: FontWeight.w600,
                             ),
@@ -315,7 +314,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   children: [
                     Text(
                       'Already have an account? ',
-                      style: GoogleFonts.inter(fontSize: 13, color: AppTheme.textSecondary),
+                      style: GoogleFonts.plusJakartaSans(fontSize: 13, color: AppTheme.textSecondary),
                     ),
                     GestureDetector(
                       onTap: () {
@@ -326,7 +325,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       },
                       child: Text(
                         'Sign in',
-                        style: GoogleFonts.inter(
+                        style: GoogleFonts.plusJakartaSans(
                           fontSize: 13,
                           fontWeight: FontWeight.w700,
                           color: AppTheme.brandBlue,
@@ -356,7 +355,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         const SizedBox(width: 4),
         Text(
           text,
-          style: GoogleFonts.inter(
+          style: GoogleFonts.plusJakartaSans(
             fontSize: 12,
             color: met ? const Color(0xFF065F46) : AppTheme.textMuted,
             fontWeight: met ? FontWeight.w600 : FontWeight.w400,

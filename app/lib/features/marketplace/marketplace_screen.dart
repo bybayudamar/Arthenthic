@@ -8,6 +8,7 @@ import '../../capture/capture_channel.dart';
 import '../../services/api_client.dart';
 import '../../services/wallet_service.dart';
 import '../shared/artistic_background.dart';
+import '../shared/feature_help_dialog.dart';
 
 class MarketplaceScreen extends StatefulWidget {
   const MarketplaceScreen({super.key});
@@ -113,7 +114,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                             const SizedBox(width: 10),
                             Text(
                               "Base L2 DEX Swap",
-                              style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.w700),
+                              style: GoogleFonts.plusJakartaSans(fontSize: 18, fontWeight: FontWeight.w700),
                             ),
                           ],
                         ),
@@ -126,7 +127,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                     const SizedBox(height: 4),
                     Text(
                       "Instant liquidity via Aerodrome / Uniswap v3 Pool on Base Sepolia. Zero bridge latency.",
-                      style: GoogleFonts.inter(fontSize: 12.5, color: AppTheme.textSecondary),
+                      style: GoogleFonts.plusJakartaSans(fontSize: 12.5, color: AppTheme.textSecondary),
                     ),
                     const SizedBox(height: 18),
 
@@ -144,8 +145,8 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("You Pay", style: GoogleFonts.inter(fontSize: 12, color: AppTheme.textSecondary)),
-                              Text("Balance: 12.45 $fromAsset", style: GoogleFonts.sourceCodePro(fontSize: 11, color: AppTheme.textMuted)),
+                              Text("You Pay", style: GoogleFonts.plusJakartaSans(fontSize: 12, color: AppTheme.textSecondary)),
+                              Text("Balance: 12.45 $fromAsset", style: GoogleFonts.plusJakartaSans(fontSize: 11, color: AppTheme.textMuted)),
                             ],
                           ),
                           const SizedBox(height: 6),
@@ -155,7 +156,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                                 child: TextField(
                                   controller: amountCtrl,
                                   keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                                  style: GoogleFonts.sourceCodePro(fontSize: 20, fontWeight: FontWeight.w700),
+                                  style: GoogleFonts.plusJakartaSans(fontSize: 20, fontWeight: FontWeight.w700),
                                   onChanged: (_) => setModalState(() {}),
                                   decoration: const InputDecoration(
                                     isDense: true,
@@ -174,7 +175,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                                 ),
                                 child: Text(
                                   fromAsset,
-                                  style: GoogleFonts.inter(fontWeight: FontWeight.w700, fontSize: 13),
+                                  style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w700, fontSize: 13),
                                 ),
                               ),
                             ],
@@ -227,8 +228,8 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("You Receive (Estimated)", style: GoogleFonts.inter(fontSize: 12, color: AppTheme.textSecondary)),
-                              Text("~$outAmount $toAsset", style: GoogleFonts.sourceCodePro(fontSize: 11, color: AppTheme.brandBlue, fontWeight: FontWeight.w700)),
+                              Text("You Receive (Estimated)", style: GoogleFonts.plusJakartaSans(fontSize: 12, color: AppTheme.textSecondary)),
+                              Text("~$outAmount $toAsset", style: GoogleFonts.plusJakartaSans(fontSize: 11, color: AppTheme.brandBlue, fontWeight: FontWeight.w700)),
                             ],
                           ),
                           const SizedBox(height: 6),
@@ -237,7 +238,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                               Expanded(
                                 child: Text(
                                   toAsset == "USDC" ? outAmount.toStringAsFixed(2) : outAmount.toStringAsFixed(5),
-                                  style: GoogleFonts.sourceCodePro(fontSize: 20, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
+                                  style: GoogleFonts.plusJakartaSans(fontSize: 20, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
                                 ),
                               ),
                               Container(
@@ -249,7 +250,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                                 ),
                                 child: Text(
                                   toAsset,
-                                  style: GoogleFonts.inter(fontWeight: FontWeight.w700, fontSize: 13),
+                                  style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w700, fontSize: 13),
                                 ),
                               ),
                             ],
@@ -264,7 +265,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Slippage Tolerance", style: GoogleFonts.inter(fontSize: 12, color: AppTheme.textSecondary)),
+                        Text("Slippage Tolerance", style: GoogleFonts.plusJakartaSans(fontSize: 12, color: AppTheme.textSecondary)),
                         Row(
                           children: [10, 50, 100].map((bps) {
                             final isSel = selectedSlippageBps == bps;
@@ -279,7 +280,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                                 ),
                                 child: Text(
                                   "${bps / 100}%",
-                                  style: GoogleFonts.inter(
+                                  style: GoogleFonts.plusJakartaSans(
                                     fontSize: 11,
                                     fontWeight: isSel ? FontWeight.w700 : FontWeight.w500,
                                     color: isSel ? Colors.white : AppTheme.textSecondary,
@@ -347,7 +348,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                         icon: const Icon(Icons.currency_exchange_rounded, size: 18),
                         label: Text(
                           isSwapping ? "Executing DEX Swap on Base L2..." : "Swap $fromAsset to $toAsset",
-                          style: GoogleFonts.inter(fontWeight: FontWeight.w600),
+                          style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w600),
                         ),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppTheme.brandBlue,
@@ -415,7 +416,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                       children: [
                         Text(
                           "Curate & List Artwork (C-01)",
-                          style: GoogleFonts.newsreader(fontSize: 22, fontWeight: FontWeight.w700, fontStyle: FontStyle.italic),
+                          style: GoogleFonts.plusJakartaSans(fontSize: 22, fontWeight: FontWeight.w700, ),
                         ),
                         IconButton(
                           icon: const Icon(Icons.close, size: 20),
@@ -426,12 +427,12 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                     const SizedBox(height: 4),
                     Text(
                       "A1 Hybrid Meta-Tx Relayer: Gasless EIP-712 ListingIntent signed with ${walletService.walletProvider}.",
-                      style: GoogleFonts.inter(fontSize: 12.5, color: AppTheme.textSecondary),
+                      style: GoogleFonts.plusJakartaSans(fontSize: 12.5, color: AppTheme.textSecondary),
                     ),
                     const SizedBox(height: 16),
 
                     // Painting Photo / Camera Capture Card
-                    Text("Painting Photo & Canvas Preview", style: GoogleFonts.inter(fontSize: 12.5, fontWeight: FontWeight.w600)),
+                    Text("Painting Photo & Canvas Preview", style: GoogleFonts.plusJakartaSans(fontSize: 12.5, fontWeight: FontWeight.w600)),
                     const SizedBox(height: 6),
                     Container(
                       width: double.infinity,
@@ -487,7 +488,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                                           const SizedBox(width: 4),
                                           Text(
                                             capturedPhotoBytes != null ? "CAMERA PHOTO READY" : "GALLERY PREVIEW",
-                                            style: GoogleFonts.inter(fontSize: 9.5, fontWeight: FontWeight.w700, color: Colors.white),
+                                            style: GoogleFonts.plusJakartaSans(fontSize: 9.5, fontWeight: FontWeight.w700, color: Colors.white),
                                           ),
                                         ],
                                       ),
@@ -523,7 +524,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                                   icon: const Icon(Icons.camera_alt_rounded, size: 16),
                                   label: Text(
                                     capturedPhotoBytes != null ? "Retake Photo" : "Take Photo (Camera)",
-                                    style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600),
+                                    style: GoogleFonts.plusJakartaSans(fontSize: 12, fontWeight: FontWeight.w600),
                                   ),
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: const Color(0xFFD4AF37),
@@ -547,7 +548,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                                   });
                                 },
                                 icon: const Icon(Icons.auto_awesome_rounded, size: 15, color: Colors.white70),
-                                label: Text("Sample Art", style: GoogleFonts.inter(fontSize: 12, color: Colors.white)),
+                                label: Text("Sample Art", style: GoogleFonts.plusJakartaSans(fontSize: 12, color: Colors.white)),
                                 style: OutlinedButton.styleFrom(
                                   side: BorderSide(color: Colors.white.withValues(alpha: 0.3)),
                                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
@@ -561,7 +562,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                     ),
 
                     const SizedBox(height: 14),
-                    Text("Artwork Title", style: GoogleFonts.inter(fontSize: 12.5, fontWeight: FontWeight.w600)),
+                    Text("Artwork Title", style: GoogleFonts.plusJakartaSans(fontSize: 12.5, fontWeight: FontWeight.w600)),
                     const SizedBox(height: 6),
                     TextField(
                       controller: titleCtrl,
@@ -584,7 +585,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("Price Amount", style: GoogleFonts.inter(fontSize: 12.5, fontWeight: FontWeight.w600)),
+                              Text("Price Amount", style: GoogleFonts.plusJakartaSans(fontSize: 12.5, fontWeight: FontWeight.w600)),
                               const SizedBox(height: 6),
                               TextField(
                                 controller: priceCtrl,
@@ -609,7 +610,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("Asset (A4)", style: GoogleFonts.inter(fontSize: 12.5, fontWeight: FontWeight.w600)),
+                              Text("Asset (A4)", style: GoogleFonts.plusJakartaSans(fontSize: 12.5, fontWeight: FontWeight.w600)),
                               const SizedBox(height: 6),
                               DropdownButtonFormField<String>(
                                 initialValue: selectedAsset,
@@ -636,7 +637,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                       ],
                     ),
                     const SizedBox(height: 12),
-                    Text("Medium & Technique", style: GoogleFonts.inter(fontSize: 12.5, fontWeight: FontWeight.w600)),
+                    Text("Medium & Technique", style: GoogleFonts.plusJakartaSans(fontSize: 12.5, fontWeight: FontWeight.w600)),
                     const SizedBox(height: 6),
                     TextField(
                       controller: mediumCtrl,
@@ -651,7 +652,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                       ),
                     ),
                     const SizedBox(height: 12),
-                    Text("Dimensions (cm)", style: GoogleFonts.inter(fontSize: 12.5, fontWeight: FontWeight.w600)),
+                    Text("Dimensions (cm)", style: GoogleFonts.plusJakartaSans(fontSize: 12.5, fontWeight: FontWeight.w600)),
                     const SizedBox(height: 6),
                     TextField(
                       controller: dimCtrl,
@@ -666,14 +667,14 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                       ),
                     ),
                     const SizedBox(height: 12),
-                    Text("Or enter Painting Image URL", style: GoogleFonts.inter(fontSize: 12.5, fontWeight: FontWeight.w600)),
+                    Text("Or enter Painting Image URL", style: GoogleFonts.plusJakartaSans(fontSize: 12.5, fontWeight: FontWeight.w600)),
                     const SizedBox(height: 6),
                     TextField(
                       controller: imgCtrl,
                       onChanged: (_) => setModalState(() {}),
                       decoration: InputDecoration(
                         hintText: "https://... (or use camera / stand-in canvas above)",
-                        hintStyle: GoogleFonts.inter(fontSize: 12, color: AppTheme.textMuted),
+                        hintStyle: GoogleFonts.plusJakartaSans(fontSize: 12, color: AppTheme.textMuted),
                         filled: true,
                         fillColor: const Color(0xFFF8FAFC),
                         contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
@@ -697,7 +698,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                         children: [
                           Text(
                             "A5 On-Chain 3-Way Escrow Split Preview",
-                            style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
+                            style: GoogleFonts.plusJakartaSans(fontSize: 12, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
                           ),
                           const SizedBox(height: 6),
                           _buildSplitRow("Seller Net Payout (93.5%)", "${sellerNet.toStringAsFixed(2)} $selectedAsset", const Color(0xFF065F46)),
@@ -756,7 +757,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                         icon: const Icon(Icons.bolt_rounded, size: 18),
                         label: Text(
                           isSubmitting ? "Uploading Photo & Signing..." : "Sign & Publish to Gallery (Gasless)",
-                          style: GoogleFonts.inter(fontWeight: FontWeight.w600),
+                          style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w600),
                         ),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppTheme.brandDark,
@@ -819,7 +820,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                         ),
                         child: Text(
                           "SD-03 · C-04 ESCROW DEPOSIT",
-                          style: GoogleFonts.sourceCodePro(
+                          style: GoogleFonts.plusJakartaSans(
                             fontSize: 11,
                             fontWeight: FontWeight.w700,
                             color: const Color(0xFFC2410C),
@@ -837,12 +838,12 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                     payWithSwap
                         ? "Swap $swapInAmount $otherAsset & Lock in Escrow"
                         : "Lock $price $asset in ArthenticEscrow",
-                    style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
+                    style: GoogleFonts.plusJakartaSans(fontSize: 18, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     "Funds remain cryptographically locked in ArthenticEscrow.sol until you physically receive the canvas and pass L1 NFC + L2 Pro LiDAR verification (SD-04).",
-                    style: GoogleFonts.inter(fontSize: 12.5, color: AppTheme.textSecondary, height: 1.35),
+                    style: GoogleFonts.plusJakartaSans(fontSize: 12.5, color: AppTheme.textSecondary, height: 1.35),
                   ),
                   const SizedBox(height: 12),
 
@@ -868,7 +869,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                               child: Center(
                                 child: Text(
                                   "Pay in $asset",
-                                  style: GoogleFonts.inter(
+                                  style: GoogleFonts.plusJakartaSans(
                                     fontSize: 12,
                                     fontWeight: !payWithSwap ? FontWeight.w700 : FontWeight.w500,
                                     color: !payWithSwap ? AppTheme.textPrimary : AppTheme.textSecondary,
@@ -891,7 +892,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                               child: Center(
                                 child: Text(
                                   "Swap from $otherAsset",
-                                  style: GoogleFonts.inter(
+                                  style: GoogleFonts.plusJakartaSans(
                                     fontSize: 12,
                                     fontWeight: payWithSwap ? FontWeight.w700 : FontWeight.w500,
                                     color: payWithSwap ? AppTheme.brandBlue : AppTheme.textSecondary,
@@ -924,14 +925,14 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                               const SizedBox(width: 6),
                               Text(
                                 "Aerodrome 1-Click Swap & Deposit",
-                                style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w700, color: const Color(0xFF1E40AF)),
+                                style: GoogleFonts.plusJakartaSans(fontSize: 12, fontWeight: FontWeight.w700, color: const Color(0xFF1E40AF)),
                               ),
                             ],
                           ),
                           const SizedBox(height: 6),
                           Text(
                             "Your wallet provides $swapInAmount $otherAsset. The Base L2 router converts it into $price $asset and deposits directly into ArthenticEscrow.",
-                            style: GoogleFonts.inter(fontSize: 11.5, color: const Color(0xFF1E3A8A)),
+                            style: GoogleFonts.plusJakartaSans(fontSize: 11.5, color: const Color(0xFF1E3A8A)),
                           ),
                         ],
                       ),
@@ -991,7 +992,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                                 permitSigned
                                     ? "Step 1 Complete: EIP-2612 / Permit2 Gasless USDC Allowance Signed"
                                     : "Step 1: Tap to Sign Gasless Permit2 USDC Allowance in MetaMask",
-                                style: GoogleFonts.inter(
+                                style: GoogleFonts.plusJakartaSans(
                                   fontSize: 12.5,
                                   fontWeight: FontWeight.w600,
                                   color: permitSigned ? const Color(0xFF065F46) : const Color(0xFF92400E),
@@ -1064,7 +1065,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                             : (payWithSwap
                                 ? "Swap & Lock in Escrow"
                                 : "Sign & Lock $price $asset in Escrow"),
-                        style: GoogleFonts.inter(fontWeight: FontWeight.w600),
+                        style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w600),
                       ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFFE65100),
@@ -1089,12 +1090,12 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label, style: GoogleFonts.inter(fontSize: 12, color: AppTheme.textSecondary)),
+          Text(label, style: GoogleFonts.plusJakartaSans(fontSize: 12, color: AppTheme.textSecondary)),
           Flexible(
             child: Text(
               value,
               textAlign: TextAlign.right,
-              style: GoogleFonts.sourceCodePro(
+              style: GoogleFonts.plusJakartaSans(
                 fontSize: 12,
                 fontWeight: FontWeight.w700,
                 color: valueColor,
@@ -1207,7 +1208,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                           const SizedBox(width: 4),
                           Text(
                             "VERIFIED CANVAS",
-                            style: GoogleFonts.inter(
+                            style: GoogleFonts.plusJakartaSans(
                               fontSize: 10,
                               fontWeight: FontWeight.w700,
                               letterSpacing: 0.8,
@@ -1231,7 +1232,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                       ),
                       child: Text(
                         "#${item['token_id']}",
-                        style: GoogleFonts.sourceCodePro(
+                        style: GoogleFonts.plusJakartaSans(
                           fontSize: 11,
                           fontWeight: FontWeight.w700,
                           color: Colors.white,
@@ -1265,7 +1266,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                     children: [
                       Text(
                         artist.toUpperCase(),
-                        style: GoogleFonts.inter(
+                        style: GoogleFonts.plusJakartaSans(
                           fontSize: 10.5,
                           fontWeight: FontWeight.w700,
                           letterSpacing: 1.2,
@@ -1274,16 +1275,15 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                       ),
                       Text(
                         title,
-                        style: GoogleFonts.newsreader(
+                        style: GoogleFonts.plusJakartaSans(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
-                          fontStyle: FontStyle.italic,
                           color: Colors.white,
                         ),
                       ),
                       Text(
                         "$medium · $dimensions · $year",
-                        style: GoogleFonts.inter(
+                        style: GoogleFonts.plusJakartaSans(
                           fontSize: 10,
                           color: Colors.white.withValues(alpha: 0.65),
                         ),
@@ -1304,7 +1304,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                       const SizedBox(width: 4),
                       Text(
                         "SUN Chip",
-                        style: GoogleFonts.sourceCodePro(fontSize: 10, color: const Color(0xFFD4AF37), fontWeight: FontWeight.w600),
+                        style: GoogleFonts.plusJakartaSans(fontSize: 10, color: const Color(0xFFD4AF37), fontWeight: FontWeight.w600),
                       ),
                     ],
                   ),
@@ -1361,10 +1361,9 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                   Text(
                     title,
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.newsreader(
+                    style: GoogleFonts.plusJakartaSans(
                       fontSize: 18,
                       fontWeight: FontWeight.w700,
-                      fontStyle: FontStyle.italic,
                       color: Colors.white,
                       letterSpacing: -0.3,
                       shadows: [
@@ -1375,7 +1374,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                   const SizedBox(height: 4),
                   Text(
                     "by $artist",
-                    style: GoogleFonts.inter(
+                    style: GoogleFonts.plusJakartaSans(
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
                       color: Colors.white.withValues(alpha: 0.8),
@@ -1391,7 +1390,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                     ),
                     child: Text(
                       "Curated Oil on Canvas · Gallery Stand-in",
-                      style: GoogleFonts.inter(fontSize: 10, color: Colors.white.withValues(alpha: 0.85)),
+                      style: GoogleFonts.plusJakartaSans(fontSize: 10, color: Colors.white.withValues(alpha: 0.85)),
                     ),
                   ),
                 ],
@@ -1402,6 +1401,24 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
       ),
     );
   }
+
+  static const FeatureHelpData _marketHelp = FeatureHelpData(
+    title: "Curated Marketplace & Trustless Escrow",
+    subtitle: "Trading physical fine art with smart escrow protection",
+    icon: Icons.storefront_rounded,
+    howToUse: [
+      "Browse verified physical artwork listings settled in ETH or USDC on Base L2.",
+      "Initiate purchase to deposit funds into the audited Arthentic Escrow smart contract.",
+      "Upon courier delivery, scan the physical canvas using your iPhone LiDAR and NFC.",
+      "Once dual-factor verification passes (>88%), escrow automatically releases funds to the seller.",
+    ],
+    benefits: [
+      "Zero Remote Fraud Risk: Escrow funds cannot unlock without buyer-verified physical delivery.",
+      "48-Hour Dispute Timelock: If wrong artwork is delivered, buyer triggers automated refund.",
+      "Automated Artist Royalties: Secondary sales automatically deduct and remit royalty split.",
+    ],
+    securityGuarantee: "ArthenticEscrow contract enforces solvency and low-gas Base L2 settlement.",
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -1419,37 +1436,48 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                 // Header with Museum Gallery Styling
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Arthentic Gallery",
+                            style: GoogleFonts.plusJakartaSans(
+                              fontSize: 22,
+                              fontWeight: FontWeight.w800,
+                              color: AppTheme.textPrimary,
+                              letterSpacing: -0.5,
+                            ),
+                          ),
+                          Text(
+                            "Curated Art & Escrow Vault",
+                            style: GoogleFonts.plusJakartaSans(fontSize: 11.5, color: AppTheme.textSecondary),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
-                          "Arthentic Gallery.",
-                          style: GoogleFonts.newsreader(
-                            fontSize: 34,
-                            fontWeight: FontWeight.w600,
-                            fontStyle: FontStyle.italic,
-                            color: AppTheme.textPrimary,
-                            letterSpacing: -0.5,
+                        const FeatureHelpButton(helpData: _marketHelp),
+                        const SizedBox(width: 6),
+                        ElevatedButton.icon(
+                          onPressed: _showCreateListingModal,
+                          icon: const Icon(Icons.add_rounded, size: 14),
+                          label: Text("List Art", style: GoogleFonts.plusJakartaSans(fontSize: 11.5, fontWeight: FontWeight.w700)),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppTheme.goldenGateOrange,
+                            foregroundColor: Colors.white,
+                            elevation: 0,
+                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                           ),
                         ),
-                        Text(
-                          "Curated Fine Art Marketplace & Escrow Vault",
-                          style: GoogleFonts.inter(fontSize: 12, color: AppTheme.textSecondary),
-                        ),
                       ],
-                    ),
-                    ElevatedButton.icon(
-                      onPressed: _showCreateListingModal,
-                      icon: const Icon(Icons.add_rounded, size: 16),
-                      label: Text("List Art", style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600)),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppTheme.brandDark,
-                        foregroundColor: Colors.white,
-                        elevation: 0,
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                      ),
                     ),
                   ],
                 ),
@@ -1486,18 +1514,20 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                           ),
                           child: const Icon(Icons.currency_exchange_rounded, color: Color(0xFF60A5FA), size: 22),
                         ),
-                        const SizedBox(width: 14),
+                        const SizedBox(width: 12),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Row(
+                              Wrap(
+                                spacing: 6,
+                                runSpacing: 4,
+                                crossAxisAlignment: WrapCrossAlignment.center,
                                 children: [
                                   Text(
                                     "Base L2 DEX Swap (ETH ⇄ USDC)",
-                                    style: GoogleFonts.inter(fontSize: 13.5, fontWeight: FontWeight.w700, color: Colors.white),
+                                    style: GoogleFonts.plusJakartaSans(fontSize: 12.5, fontWeight: FontWeight.w700, color: Colors.white),
                                   ),
-                                  const SizedBox(width: 6),
                                   Container(
                                     padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                                     decoration: BoxDecoration(
@@ -1506,15 +1536,15 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                                     ),
                                     child: Text(
                                       "Aerodrome AMM",
-                                      style: GoogleFonts.inter(fontSize: 9.5, fontWeight: FontWeight.w700, color: const Color(0xFF34D399)),
+                                      style: GoogleFonts.plusJakartaSans(fontSize: 9.5, fontWeight: FontWeight.w700, color: const Color(0xFF34D399)),
                                     ),
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 2),
+                              const SizedBox(height: 4),
                               Text(
-                                r"1 ETH = 3,000 USDC · 0.5% slippage · ~$0.01 gas · Instant liquidity",
-                                style: GoogleFonts.sourceCodePro(fontSize: 11, color: Colors.white.withValues(alpha: 0.75)),
+                                r"1 ETH = 3,000 USDC · 0.5% slip · ~$0.01 gas",
+                                style: GoogleFonts.plusJakartaSans(fontSize: 11, color: Colors.white.withValues(alpha: 0.75)),
                               ),
                             ],
                           ),
@@ -1553,7 +1583,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                               _hasProLidarHardware
                                   ? "A6 Hardware Tier: iPhone Pro LiDAR Active"
                                   : "A6 Hardware Tier: Standard NFC Phone (No LiDAR)",
-                              style: GoogleFonts.inter(
+                              style: GoogleFonts.plusJakartaSans(
                                 fontSize: 12.5,
                                 fontWeight: FontWeight.w700,
                                 color: _hasProLidarHardware ? const Color(0xFF065F46) : const Color(0xFF92400E),
@@ -1563,7 +1593,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                               _hasProLidarHardware
                                   ? "Full L1 NFC + L2 8-Point Depth Scan unlocked for C-06 Escrow Release."
                                   : "L1 NFC Provenance allowed; C-06 Escrow Release gated until Pro LiDAR scan.",
-                              style: GoogleFonts.inter(
+                              style: GoogleFonts.plusJakartaSans(
                                 fontSize: 11.5,
                                 color: _hasProLidarHardware ? const Color(0xFF047857) : const Color(0xFFB45309),
                               ),
@@ -1628,7 +1658,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
         ),
         child: Text(
           label,
-          style: GoogleFonts.inter(
+          style: GoogleFonts.plusJakartaSans(
             fontSize: 12.5,
             fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
             color: isSelected ? Colors.white : AppTheme.textSecondary,
@@ -1697,7 +1727,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                 ),
                 child: Text(
                   status,
-                  style: GoogleFonts.sourceCodePro(
+                  style: GoogleFonts.plusJakartaSans(
                     fontSize: 11,
                     fontWeight: FontWeight.w700,
                     color: statusFg,
@@ -1713,7 +1743,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                 ),
                 child: Text(
                   "$price $asset",
-                  style: GoogleFonts.sourceCodePro(
+                  style: GoogleFonts.plusJakartaSans(
                     fontSize: 14,
                     fontWeight: FontWeight.w800,
                     color: AppTheme.textPrimary,
@@ -1727,12 +1757,11 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
             const SizedBox(height: 10),
             Text(
               curationNotes,
-              style: GoogleFonts.inter(
+              style: GoogleFonts.plusJakartaSans(
                 fontSize: 12,
                 color: AppTheme.textSecondary,
                 height: 1.35,
-                fontStyle: FontStyle.italic,
-              ),
+                ),
             ),
           ],
 
@@ -1751,7 +1780,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
               children: [
                 Text(
                   "On-Chain 3-Way Payout Split (A5: ArthenticEscrow.sol)",
-                  style: GoogleFonts.inter(fontSize: 11.5, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
+                  style: GoogleFonts.plusJakartaSans(fontSize: 11.5, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
                 ),
                 const SizedBox(height: 6),
                 _buildSplitRow("93.5% Seller Payout", "${split['seller_payout_amount']} $asset", const Color(0xFF065F46)),
@@ -1773,7 +1802,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                     icon: const Icon(Icons.account_balance_wallet_outlined, size: 18),
                     label: Text(
                       "Buy via Escrow ($price $asset)",
-                      style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 13),
+                      style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w600, fontSize: 13),
                     ),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppTheme.brandDark,
@@ -1825,29 +1854,29 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
             children: [
               Text(
                 "Physical-Delivery Escrow Vault (SD-04)",
-                style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w700, color: const Color(0xFF92400E)),
+                style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w700, color: const Color(0xFF92400E)),
               ),
               Text(
                 escStatus,
-                style: GoogleFonts.sourceCodePro(fontSize: 11, fontWeight: FontWeight.w700, color: const Color(0xFFB45309)),
+                style: GoogleFonts.plusJakartaSans(fontSize: 11, fontWeight: FontWeight.w700, color: const Color(0xFFB45309)),
               ),
             ],
           ),
           const SizedBox(height: 6),
           Text(
             "Escrow Contract (${ArthenticContractConfig.baseSepoliaNetworkName}): ${ArthenticContractConfig.shortAddress(ArthenticContractConfig.arthenticEscrowAddress)}",
-            style: GoogleFonts.sourceCodePro(fontSize: 10.5, fontWeight: FontWeight.w600, color: const Color(0xFF92400E)),
+            style: GoogleFonts.plusJakartaSans(fontSize: 10.5, fontWeight: FontWeight.w600, color: const Color(0xFF92400E)),
           ),
           const SizedBox(height: 2),
           Text(
             "Deposit Tx: ${(escrow['deposit_tx_hash'] ?? '').toString().substring(0, 18)}...",
-            style: GoogleFonts.sourceCodePro(fontSize: 11, color: AppTheme.textSecondary),
+            style: GoogleFonts.plusJakartaSans(fontSize: 11, color: AppTheme.textSecondary),
           ),
           if (escrow["permit2_signature"] != null) ...[
             const SizedBox(height: 2),
             Text(
               "USDC Permit2 Sig: ${(escrow['permit2_signature']).toString().substring(0, 22)}...",
-              style: GoogleFonts.sourceCodePro(fontSize: 11, color: AppTheme.brandBlue),
+              style: GoogleFonts.plusJakartaSans(fontSize: 11, color: AppTheme.brandBlue),
             ),
           ],
           const SizedBox(height: 10),
@@ -1875,7 +1904,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                     ),
                     label: Text(
                       l1Done ? "1. L1 NFC Valid" : "1. Tap L1 NFC",
-                      style: GoogleFonts.inter(fontSize: 11.5, fontWeight: FontWeight.w600),
+                      style: GoogleFonts.plusJakartaSans(fontSize: 11.5, fontWeight: FontWeight.w600),
                     ),
                     style: OutlinedButton.styleFrom(
                       foregroundColor: l1Done ? const Color(0xFF065F46) : AppTheme.brandBlue,
@@ -1915,7 +1944,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                     ),
                     label: Text(
                       l2Done ? "2. L2 94.2% OK" : "2. Scan L2 LiDAR",
-                      style: GoogleFonts.inter(fontSize: 11.5, fontWeight: FontWeight.w600),
+                      style: GoogleFonts.plusJakartaSans(fontSize: 11.5, fontWeight: FontWeight.w600),
                     ),
                     style: OutlinedButton.styleFrom(
                       foregroundColor: l2Done ? const Color(0xFF065F46) : const Color(0xFF7C3AED),
@@ -1966,7 +1995,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                     icon: const Icon(Icons.verified_user_rounded, size: 16),
                     label: Text(
                       "Confirm & Release (C-06)",
-                      style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w700),
+                      style: GoogleFonts.plusJakartaSans(fontSize: 12, fontWeight: FontWeight.w700),
                     ),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF059669),
@@ -2002,7 +2031,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                       side: BorderSide(color: Colors.red.shade300),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     ),
-                    child: Text("Dispute (C-10)", style: GoogleFonts.inter(fontSize: 11.5, fontWeight: FontWeight.w600)),
+                    child: Text("Dispute (C-10)", style: GoogleFonts.plusJakartaSans(fontSize: 11.5, fontWeight: FontWeight.w600)),
                   ),
                 ),
               ],
@@ -2010,7 +2039,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
           ] else if (escStatus == "DISPUTED") ...[
             Text(
               "Dispute Reason: ${escrow['dispute_reason'] ?? 'L2 Surface mismatch'}",
-              style: GoogleFonts.inter(fontSize: 12, color: const Color(0xFF991B1B), fontWeight: FontWeight.w600),
+              style: GoogleFonts.plusJakartaSans(fontSize: 12, color: const Color(0xFF991B1B), fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 8),
             Row(
@@ -2027,7 +2056,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                       elevation: 0,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     ),
-                    child: Text("Arbitrator: Refund Buyer (C-11)", style: GoogleFonts.inter(fontSize: 11.5, fontWeight: FontWeight.w600)),
+                    child: Text("Arbitrator: Refund Buyer (C-11)", style: GoogleFonts.plusJakartaSans(fontSize: 11.5, fontWeight: FontWeight.w600)),
                   ),
                 ),
               ],
@@ -2046,7 +2075,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                   Expanded(
                     child: Text(
                       "Settled Atomic 3-Way Split: ${escrow['seller_payout_amount']} ${escrow['asset']} Seller · ${escrow['artist_royalty_amount']} ${escrow['asset']} Artist · ${escrow['platform_fee_amount']} ${escrow['asset']} Treasury",
-                      style: GoogleFonts.inter(fontSize: 11.5, fontWeight: FontWeight.w600, color: const Color(0xFF065F46)),
+                      style: GoogleFonts.plusJakartaSans(fontSize: 11.5, fontWeight: FontWeight.w600, color: const Color(0xFF065F46)),
                     ),
                   ),
                 ],

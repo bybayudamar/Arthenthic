@@ -210,10 +210,9 @@ class _LockScreenState extends State<LockScreen> {
                 // Title
                 Text(
                   'Arthentic is Locked.',
-                  style: GoogleFonts.newsreader(
+                  style: GoogleFonts.plusJakartaSans(
                     fontSize: 34,
                     fontWeight: FontWeight.w600,
-                    fontStyle: FontStyle.italic,
                     color: AppTheme.textPrimary,
                   ),
                 ),
@@ -221,7 +220,7 @@ class _LockScreenState extends State<LockScreen> {
                 Text(
                   _biometricSubtitle,
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.inter(
+                  style: GoogleFonts.plusJakartaSans(
                     fontSize: 14,
                     color: AppTheme.textSecondary,
                     height: 1.4,
@@ -246,7 +245,7 @@ class _LockScreenState extends State<LockScreen> {
                         Flexible(
                           child: Text(
                             _statusMessage!,
-                            style: GoogleFonts.inter(
+                            style: GoogleFonts.plusJakartaSans(
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
                               color: AppTheme.goldBadgeText,
@@ -293,7 +292,7 @@ class _LockScreenState extends State<LockScreen> {
                               const SizedBox(width: 8),
                               Text(
                                 _biometricTitle,
-                                style: GoogleFonts.inter(
+                                style: GoogleFonts.plusJakartaSans(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -322,7 +321,7 @@ class _LockScreenState extends State<LockScreen> {
                     ),
                     child: Text(
                       'Use device passcode',
-                      style: GoogleFonts.inter(
+                      style: GoogleFonts.plusJakartaSans(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                       ),
@@ -342,7 +341,7 @@ class _LockScreenState extends State<LockScreen> {
                     icon: const Icon(Icons.developer_mode, size: 16, color: AppTheme.brandBlue),
                     label: Text(
                       'Simulate Biometric Unlock (Dev)',
-                      style: GoogleFonts.inter(
+                      style: GoogleFonts.plusJakartaSans(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
                         color: AppTheme.brandBlue,
@@ -358,7 +357,7 @@ class _LockScreenState extends State<LockScreen> {
                   onPressed: _handleSignOut,
                   child: Text(
                     'Sign out',
-                    style: GoogleFonts.inter(
+                    style: GoogleFonts.plusJakartaSans(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
                       color: const Color(0xFFDC2626),

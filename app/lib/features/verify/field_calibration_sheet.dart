@@ -58,7 +58,7 @@ class _FieldCalibrationSheetState extends State<FieldCalibrationSheet> {
               const SizedBox(width: 10),
               Text(
                 'Field Sensor Calibration',
-                style: GoogleFonts.cinzel(
+                style: GoogleFonts.plusJakartaSans(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
@@ -69,7 +69,7 @@ class _FieldCalibrationSheetState extends State<FieldCalibrationSheet> {
           const SizedBox(height: 6),
           Text(
             'Calibrate iPhone 15/16 Pro LiDAR 256x192 mesh and substrate tolerance.',
-            style: GoogleFonts.inter(fontSize: 12, color: Colors.white60),
+            style: GoogleFonts.plusJakartaSans(fontSize: 12, color: Colors.white60),
           ),
           const SizedBox(height: 16),
           // Sensor Telemetry Cards
@@ -97,7 +97,7 @@ class _FieldCalibrationSheetState extends State<FieldCalibrationSheet> {
           const SizedBox(height: 18),
           Text(
             'Artwork Substrate',
-            style: GoogleFonts.inter(
+            style: GoogleFonts.plusJakartaSans(
               fontSize: 13,
               fontWeight: FontWeight.w600,
               color: const Color(0xFFD4AF37),
@@ -119,7 +119,7 @@ class _FieldCalibrationSheetState extends State<FieldCalibrationSheet> {
                 selected: isSelected,
                 selectedColor: const Color(0xFFD4AF37).withOpacity(0.25),
                 backgroundColor: const Color(0xFF242426),
-                labelStyle: GoogleFonts.inter(
+                labelStyle: GoogleFonts.plusJakartaSans(
                   fontSize: 12,
                   fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
                   color: isSelected ? const Color(0xFFD4AF37) : Colors.white70,
@@ -155,11 +155,11 @@ class _FieldCalibrationSheetState extends State<FieldCalibrationSheet> {
                   children: [
                     Text(
                       'Adaptive Gate Threshold:',
-                      style: GoogleFonts.inter(fontSize: 12, color: Colors.white70),
+                      style: GoogleFonts.plusJakartaSans(fontSize: 12, color: Colors.white70),
                     ),
                     Text(
                       '$thresholdBps bps (${(thresholdBps / 100).toStringAsFixed(1)}%)',
-                      style: GoogleFonts.inter(
+                      style: GoogleFonts.plusJakartaSans(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
                         color: const Color(0xFFD4AF37),
@@ -170,7 +170,7 @@ class _FieldCalibrationSheetState extends State<FieldCalibrationSheet> {
                 const SizedBox(height: 6),
                 Text(
                   description,
-                  style: GoogleFonts.inter(fontSize: 11, color: Colors.white54),
+                  style: GoogleFonts.plusJakartaSans(fontSize: 11, color: Colors.white54),
                 ),
               ],
             ),
@@ -202,14 +202,14 @@ class _FieldCalibrationSheetState extends State<FieldCalibrationSheet> {
               const SizedBox(width: 4),
               Text(
                 title,
-                style: GoogleFonts.inter(fontSize: 11, color: Colors.white60),
+                style: GoogleFonts.plusJakartaSans(fontSize: 11, color: Colors.white60),
               ),
             ],
           ),
           const SizedBox(height: 4),
           Text(
             value,
-            style: GoogleFonts.inter(
+            style: GoogleFonts.plusJakartaSans(
               fontSize: 16,
               fontWeight: FontWeight.bold,
               color: isGood ? const Color(0xFF10B981) : Colors.white,

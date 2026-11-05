@@ -425,7 +425,7 @@ class _ScanScreenState extends State<ScanScreen> with SingleTickerProviderStateM
                             onTap: () => Navigator.of(context).pop(),
                             child: Text(
                               "Cancel",
-                              style: GoogleFonts.inter(
+                              style: GoogleFonts.plusJakartaSans(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.white,
@@ -434,7 +434,7 @@ class _ScanScreenState extends State<ScanScreen> with SingleTickerProviderStateM
                           ),
                           Text(
                             "Point $currentPoint of $totalPoints",
-                            style: GoogleFonts.inter(
+                            style: GoogleFonts.plusJakartaSans(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
                               color: Colors.white.withOpacity(0.9),
@@ -458,7 +458,7 @@ class _ScanScreenState extends State<ScanScreen> with SingleTickerProviderStateM
                                     const SizedBox(width: 4),
                                     Text(
                                       "Retake Pt ${currentPoint - 1}",
-                                      style: GoogleFonts.inter(
+                                      style: GoogleFonts.plusJakartaSans(
                                         fontSize: 11,
                                         fontWeight: FontWeight.w600,
                                         color: Colors.white,
@@ -533,7 +533,7 @@ class _ScanScreenState extends State<ScanScreen> with SingleTickerProviderStateM
                                 const SizedBox(width: 7),
                                 Text(
                                   isLiDAROn ? "LiDAR depth ON" : "Camera Surface ON",
-                                  style: GoogleFonts.inter(
+                                  style: GoogleFonts.plusJakartaSans(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w700,
                                     color: AppTheme.bubbleYellow,
@@ -566,7 +566,7 @@ class _ScanScreenState extends State<ScanScreen> with SingleTickerProviderStateM
                                 const SizedBox(width: 4),
                                 Text(
                                   spatialPointNames[currentPoint] ?? "Target",
-                                  style: GoogleFonts.inter(
+                                  style: GoogleFonts.plusJakartaSans(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,
                                     color: Colors.white,
@@ -695,7 +695,7 @@ class _ScanScreenState extends State<ScanScreen> with SingleTickerProviderStateM
                             Expanded(
                               child: Text(
                                 uploadErrorMsg!,
-                                style: GoogleFonts.inter(
+                                style: GoogleFonts.plusJakartaSans(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w600,
                                   color: Colors.white,
@@ -716,7 +716,7 @@ class _ScanScreenState extends State<ScanScreen> with SingleTickerProviderStateM
                                 ),
                                 child: Text(
                                   "Retry",
-                                  style: GoogleFonts.inter(
+                                  style: GoogleFonts.plusJakartaSans(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w700,
                                     color: const Color(0xFFEF4444),
@@ -742,7 +742,7 @@ class _ScanScreenState extends State<ScanScreen> with SingleTickerProviderStateM
                                             : (steadinessStatus != "Good"
                                                 ? "Hold steady on ${spatialPointNames[currentPoint]}..."
                                                 : "Steady on ${spatialPointNames[currentPoint]}. Ready to capture."))))),
-                        style: GoogleFonts.inter(
+                        style: GoogleFonts.plusJakartaSans(
                           fontSize: 13,
                           fontWeight: FontWeight.w500,
                           color: isSweetSpot
@@ -793,7 +793,7 @@ class _ScanScreenState extends State<ScanScreen> with SingleTickerProviderStateM
                                     ? Center(
                                         child: Text(
                                           "${(countdownProgress * 100).toInt()}%",
-                                          style: GoogleFonts.inter(
+                                          style: GoogleFonts.plusJakartaSans(
                                             fontSize: 11,
                                             fontWeight: FontWeight.w800,
                                             color: const Color(0xFF131427),
@@ -836,7 +836,7 @@ class _ScanScreenState extends State<ScanScreen> with SingleTickerProviderStateM
         children: [
           Text(
             label,
-            style: GoogleFonts.inter(
+            style: GoogleFonts.plusJakartaSans(
               fontSize: 12,
               color: Colors.white.withOpacity(0.55),
             ),
@@ -844,7 +844,7 @@ class _ScanScreenState extends State<ScanScreen> with SingleTickerProviderStateM
           const SizedBox(height: 4),
           Text(
             value,
-            style: GoogleFonts.inter(
+            style: GoogleFonts.plusJakartaSans(
               fontSize: 15,
               fontWeight: FontWeight.w700,
               color: valueColor,

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../core/theme.dart';
 
+/// macOS Golden Gate Ambient Background
+/// Subtle warm ambient gradients inspired by San Francisco Bay sunrise,
+/// International Orange glow, warm champagne mist, and clean Apple frosted surfaces.
 class ArtisticBackground extends StatelessWidget {
   final Widget child;
   final bool isDark;
@@ -15,101 +18,83 @@ class ArtisticBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        if (!isDark) ...[
-          // Large Yellow Circle (Top Right)
-          Positioned(
-            top: -60,
-            right: -50,
-            child: Container(
-              width: 220,
-              height: 220,
-              decoration: const BoxDecoration(
-                color: AppTheme.bubbleYellow,
-                shape: BoxShape.circle,
+        // Base subtle background
+        Container(
+          color: isDark ? const Color(0xFF0F172A) : AppTheme.bgLight,
+        ),
+
+        // Golden Gate International Orange Ambient Glow (Top Right)
+        Positioned(
+          top: -120,
+          right: -80,
+          child: Container(
+            width: 320,
+            height: 320,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: RadialGradient(
+                colors: isDark
+                    ? [
+                        AppTheme.goldenGateOrange.withValues(alpha: 0.15),
+                        Colors.transparent,
+                      ]
+                    : [
+                        AppTheme.goldenGateOrange.withValues(alpha: 0.08),
+                        AppTheme.champagneGold.withValues(alpha: 0.04),
+                        Colors.transparent,
+                      ],
               ),
             ),
           ),
-          // Deep Blue Circle (Top Right offset)
-          Positioned(
-            top: 100,
-            right: -40,
-            child: Container(
-              width: 140,
-              height: 140,
-              decoration: const BoxDecoration(
-                color: AppTheme.bubbleBlue,
-                shape: BoxShape.circle,
+        ),
+
+        // Warm Champagne Sunlit Mist (Bottom Left)
+        Positioned(
+          bottom: -100,
+          left: -80,
+          child: Container(
+            width: 280,
+            height: 280,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: RadialGradient(
+                colors: isDark
+                    ? [
+                        AppTheme.sunsetAmber.withValues(alpha: 0.1),
+                        Colors.transparent,
+                      ]
+                    : [
+                        AppTheme.sunsetAmber.withValues(alpha: 0.06),
+                        AppTheme.champagneGold.withValues(alpha: 0.03),
+                        Colors.transparent,
+                      ],
               ),
             ),
           ),
-          // Small Blue Floating Dot
-          Positioned(
-            top: 155,
-            right: 105,
-            child: Container(
-              width: 44,
-              height: 44,
-              decoration: const BoxDecoration(
-                color: AppTheme.bubbleBlue,
-                shape: BoxShape.circle,
+        ),
+
+        // Pacific Slate subtle breeze (Center)
+        Positioned(
+          top: 250,
+          right: 30,
+          child: Container(
+            width: 160,
+            height: 160,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: RadialGradient(
+                colors: [
+                  AppTheme.infoBlue.withValues(alpha: 0.03),
+                  Colors.transparent,
+                ],
               ),
             ),
           ),
-          // Coral Circle (Left edge accent)
-          Positioned(
-            top: -100,
-            left: -80,
-            child: Container(
-              width: 200,
-              height: 200,
-              decoration: const BoxDecoration(
-                color: AppTheme.bubbleCoral,
-                shape: BoxShape.circle,
-              ),
-            ),
-          ),
-        ] else ...[
-          // Dark Mode Bubbles (Bottom of Scan screen)
-          Positioned(
-            bottom: -90,
-            left: -50,
-            child: Container(
-              width: 220,
-              height: 220,
-              decoration: const BoxDecoration(
-                color: AppTheme.bubbleCoral,
-                shape: BoxShape.circle,
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: -80,
-            right: -60,
-            child: Container(
-              width: 200,
-              height: 200,
-              decoration: const BoxDecoration(
-                color: AppTheme.bubbleBlue,
-                shape: BoxShape.circle,
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: 40,
-            right: 30,
-            child: Container(
-              width: 36,
-              height: 36,
-              decoration: const BoxDecoration(
-                color: AppTheme.bubbleYellow,
-                shape: BoxShape.circle,
-              ),
-            ),
-          ),
-        ],
+        ),
+
+        // Foreground Content
         child,
       ],
     );
   }
 }
-

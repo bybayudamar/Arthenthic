@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arthentic: Otentikasi & Provenance Karya Seni Fisik di Blockchain</title>
+  <meta name="description" content="Arthentic mengikat lukisan fisik ke identitas digital sulit dipalsukan lewat chip NFC anti-kloning, sidik jari optik AI, dan blockchain Base L2. Daftar gratis.">
+  <meta name="theme-color" content="#F8F9FA">
+  
+  <!-- Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Pure SVG Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23E11D2E'/><path d='M16 6 L26 16 L16 26 L6 16 Z' fill='%23FFFFFF'/></svg>">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Background Ambient Particles (HTML5 Canvas) -->
+  <canvas id="ambient-canvas"></canvas>
+
+  <!-- ==========================================================================
+       2. NAVBAR
+       ========================================================================== -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="#" class="nav-brand" aria-label="Arthentic Beranda">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2L2 12l10 10 10-10L12 2zm0 4.5l6.5 6.5-6.5 6.5L5.5 13 12 6.5z"/>
+          </svg>
+        </div>
+        <span>ARTHENTIC</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#masalah" class="nav-link">Masalah</a></li>
+          <li><a href="#solusi" class="nav-link">Solusi</a></li>
+          <li><a href="#cara-kerja" class="nav-link">Cara Kerja</a></li>
+          <li><a href="#demo" class="nav-link">Simulasi</a></li>
+          <li><a href="#biaya" class="nav-link">Biaya</a></li>
+          <li><a href="#keamanan" class="nav-link">Keamanan</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Theme Toggle (Light / Dark) -->
+        <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Ganti Tema">
+          <svg width="20" height="20" viewBox="0 0 24 24" id="theme-toggle-icon">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </button>
+
+        <button class="btn-ghost btn-sm" data-action="open-login">Masuk</button>
+        <button class="btn-primary btn-sm" data-action="open-signup">Daftar Gratis →</button>
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Buka Navigasi Mobile">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-drawer" class="mobile-drawer" style="display: none;">
+      <a href="#masalah" class="nav-link">Masalah</a>
+      <a href="#solusi" class="nav-link">Solusi</a>
+      <a href="#cara-kerja" class="nav-link">Cara Kerja</a>
+      <a href="#demo" class="nav-link">Simulasi</a>
+      <a href="#biaya" class="nav-link">Biaya</a>
+      <a href="#keamanan" class="nav-link">Keamanan</a>
+      <a href="#faq" class="nav-link">FAQ</a>
+      <div style="display: flex; gap: 12px; margin-top: 8px;">
+        <button class="btn-ghost" style="flex:1" data-action="open-login">Masuk</button>
+        <button class="btn-primary" style="flex:1" data-action="open-signup">Daftar Gratis →</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       3. HERO SECTION
+       ========================================================================== -->
+  <section class="hero-section" id="hero">
+    <div class="container hero-grid">
+      <!-- Left Copy -->
+      <div class="hero-copy">
+        <div class="eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span>PROTOKOL OTENTIKASI PHYGITAL · BASE L2</span>
+        </div>
+
+        <h1 class="hero-title">
+          Lukisan Anda Asli.<br>
+          <span class="glow-text">Sekarang Terbukti.</span>
+        </h1>
+
+        <p class="hero-desc">
+          Arthentic mengikat karya seni fisik ke identitas digital yang sulit dipalsukan: chip kriptografi anti-kloning, sidik jari serat mikro berbasis AI, dan catatan provenance permanen di blockchain.
+        </p>
+
+        <div class="hero-cta-group">
+          <button class="btn-primary" data-action="open-signup">Daftar Gratis →</button>
+          <button class="btn-ghost" data-action="open-login">Masuk</button>
+          <a href="#demo" class="demo-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="5 3 19 12 5 21 5 3"/>
+            </svg>
+            <span>Lihat simulasi verifikasi</span>
+          </a>
+        </div>
+
+        <div class="hero-microcopy">
+          ✓ Tanpa seed phrase · Login dengan Face ID / Touch ID · Biaya gas ditanggung protokol
+        </div>
+
+        <div class="hero-trust-strip">
+          <span class="trust-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>
+            ERC-721
+          </span>
+          <span class="trust-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            EIP-712
+          </span>
+          <span class="trust-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+            NTAG 424 DNA
+          </span>
+          <span class="trust-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            Base L2
+          </span>
+          <span class="trust-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 12l10 10 10-10L12 2z"/></svg>
+            Ethereum Anchor
+          </span>
+        </div>
+      </div>
+
+      <!-- Right Verification Console Visual with SVG Masterpiece + Lottie -->
+      <div class="hero-console" aria-hidden="true">
+        <div class="console-header">
+          <div class="console-title">
+            <span class="live-indicator"></span>
+            <span>VERIFICATION ENGINE · PROTOCOL NODE #01</span>
+          </div>
+          <span style="font-size: 0.6875rem; color: var(--text-2); font-family: var(--font-mono);">AES-128 / BASE_L2</span>
+        </div>
+
+        <div class="console-stage">
+          <!-- Stylized Museum Artwork Canvas (Raden Saleh Tribute Vector) -->
+          <div class="hero-artwork-frame">
+            <svg viewBox="0 0 360 220" width="100%" height="100%">
+              <defs>
+                <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#C29B7F"/>
+                  <stop offset="60%" stop-color="#8C6E54"/>
+                  <stop offset="100%" stop-color="#3D2E24"/>
+                </linearGradient>
+                <pattern id="canvasWeave" width="8" height="8" patternUnits="userSpaceOnUse">
+                  <path d="M0 0h8v8H0z" fill="none"/>
+                  <path d="M0 4h8M4 0v8" stroke="rgba(0,0,0,0.06)" stroke-width="1"/>
+                </pattern>
+              </defs>
+              <rect width="360" height="220" fill="url(#skyGrad)"/>
+              <rect width="360" height="220" fill="url(#canvasWeave)"/>
+              <!-- Colonial Architecture & Diponegoro Silhouette Vector -->
+              <path d="M0 160 L40 140 L90 140 L110 155 L220 155 L250 135 L300 135 L360 165 L360 220 L0 220 Z" fill="#241B15"/>
+              <path d="M60 140 L60 90 L85 75 L110 90 L110 140 Z" fill="#3A2B20"/>
+              <!-- Figures -->
+              <circle cx="170" cy="138" r="6" fill="#F4E8D6"/>
+              <path d="M165 144 L175 144 L178 175 L162 175 Z" fill="#8C1D24"/>
+              <circle cx="185" cy="140" r="5" fill="#E8D5C0"/>
+              <path d="M180 145 L190 145 L192 175 L178 175 Z" fill="#1F3A52"/>
+            </svg>
+          </div>
+
+          <!-- Looping Lottie Hi-Tech Radar Scanner -->
+          <div id="hero-lottie" class="hero-lottie-container"></div>
+
+          <!-- Laser Scan Line -->
+          <div class="canvas-scan-line"></div>
+
+          <!-- 5 Blinking Micro-Dots -->
+          <div class="micro-dot md-1" title="Canvas Fiber Weave"></div>
+          <div class="micro-dot md-2" title="Impasto Density"></div>
+          <div class="micro-dot md-3" title="Micro-Cracks Pattern"></div>
+          <div class="micro-dot md-4" title="Varnish Specular Layer"></div>
+          <div class="micro-dot md-5" title="Artist Signature Stroke"></div>
+
+          <!-- Floating Companion Spec Card -->
+          <div class="floating-spec-card">
+            <div class="spec-header">
+              <span>[ON-CHAIN VERIFIED]</span>
+              <span class="spec-val-ok">BASE_L2</span>
+            </div>
+            <div class="spec-title">"Penangkapan Diponegoro"</div>
+            <div class="spec-row"><span>Token ID</span><span class="spec-val-red">#8421</span></div>
+            <div class="spec-row"><span>SUN Token</span><span class="spec-val-ok">Valid (Nonce #8421)</span></div>
+            <div class="spec-row"><span>Cosine Score</span><span class="spec-val-ok">94.8% ≥ 88% PASS</span></div>
+            <div class="spec-row"><span>Tamper Seal</span><span class="spec-val-ok">Intact</span></div>
+            <div class="spec-row"><span>Provenance</span><span>4 catatan → log</span></div>
+          </div>
+        </div>
+
+        <!-- Telemetry Typewriter Loop Output -->
+        <div class="console-telemetry" id="hero-telemetry">
+          <div>> inisialisasi node arthentic: chain_id 8453 (Base L2)</div>
+        </div>
+
+        <div class="verdict-badge" id="hero-verdict">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+            <path d="M20 6L9 17l-5-5"/>
+          </svg>
+          <span>VERIFIED · 94,8% ≥ 88% PASS</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       4. MARQUEE TEKNOLOGI
+       ========================================================================== -->
+  <section class="marquee-section" aria-label="Teknologi Pendukung">
+    <div class="marquee-track">
+      <div class="marquee-content">
+        <span>BASE L2 (OP STACK)</span><span class="marquee-dot">·</span>
+        <span>ERC-721 + EIP-712 ESCROW</span><span class="marquee-dot">·</span>
+        <span>ARWEAVE + IPFS PERMANENT STORAGE</span><span class="marquee-dot">·</span>
+        <span>COINBASE SMART WALLET (PASSKEY)</span><span class="marquee-dot">·</span>
+        <span>SAFE MULTISIG TREASURY</span><span class="marquee-dot">·</span>
+        <span>TAMPER-EVIDENT SUBSTRATE</span><span class="marquee-dot">·</span>
+        <span>NXP NTAG 424 DNA (SUN TOKEN)</span><span class="marquee-dot">·</span>
+        <span>EIP-4337 GASLESS PAYMASTER</span><span class="marquee-dot">·</span>
+        <span>AI COSINE SIMILARITY ENGINE</span><span class="marquee-dot">·</span>
+      </div>
+      <div class="marquee-content" aria-hidden="true">
+        <span>BASE L2 (OP STACK)</span><span class="marquee-dot">·</span>
+        <span>ERC-721 + EIP-712 ESCROW</span><span class="marquee-dot">·</span>
+        <span>ARWEAVE + IPFS PERMANENT STORAGE</span><span class="marquee-dot">·</span>
+        <span>COINBASE SMART WALLET (PASSKEY)</span><span class="marquee-dot">·</span>
+        <span>SAFE MULTISIG TREASURY</span><span class="marquee-dot">·</span>
+        <span>TAMPER-EVIDENT SUBSTRATE</span><span class="marquee-dot">·</span>
+        <span>NXP NTAG 424 DNA (SUN TOKEN)</span><span class="marquee-dot">·</span>
+        <span>EIP-4337 GASLESS PAYMASTER</span><span class="marquee-dot">·</span>
+        <span>AI COSINE SIMILARITY ENGINE</span><span class="marquee-dot">·</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       5. [P] PROBLEM SECTION
+       ========================================================================== -->
+  <section class="section" id="masalah">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <span>MASALAH VERIFIKASI KONVENSIONAL</span>
+        </div>
+        <h2>Pasar seni bernilai miliaran dolar.<br>Pondasi verifikasinya rapuh.</h2>
+        <p class="section-sub">
+          Keaslian karya seni masih dibuktikan dengan selembar kertas, tanda tangan basah, dan catatan galeri. Semuanya berada <em>di luar</em> karya itu sendiri.
+        </p>
+      </div>
+
+      <div class="problem-grid">
+        <!-- ERR_01 -->
+        <div class="card-rich">
+          <div class="card-icon-wrap">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="9" y1="15" x2="15" y2="15"/>
+            </svg>
+          </div>
+          <div class="card-err-tag">// ERR_01 · SERTIFIKAT KERTAS</div>
+          <h3 class="card-title">Sertifikat kertas mudah dipalsukan</h3>
+          <p class="card-desc">
+            Dokumen tidak terikat secara kriptografis pada objek fisiknya. Bisa dicetak ulang oleh pihak tak berwenang, rusak karena usia, hilang, atau dimanipulasi saat perpindahan tangan di pasar gelap.
+          </p>
+        </div>
+
+        <!-- ERR_02 -->
+        <div class="card-rich">
+          <div class="card-icon-wrap">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </div>
+          <div class="card-err-tag">// ERR_02 · NFC STATIS</div>
+          <h3 class="card-title">Tag NFC biasa bisa dikloning</h3>
+          <p class="card-desc">
+            Tag konvensional murah hanya mengirim teks/URL statis yang identik di setiap pemindaian ponsel. Sekali disalin ke chip kosong lain seharga ribuan rupiah, salinannya dianggap valid selamanya.
+          </p>
+        </div>
+
+        <!-- ERR_03 -->
+        <div class="card-rich">
+          <div class="card-icon-wrap">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+            </svg>
+          </div>
+          <div class="card-err-tag">// ERR_03 · PROVENANCE TERPUTUS</div>
+          <h3 class="card-title">Riwayat kepemilikan terputus</h3>
+          <p class="card-desc">
+            Penjualan luring berpindah tangan secara privat tanpa jejak audit publik. Saat lukisan muncul 10 tahun kemudian, riwayat kurasi dan restorasi masa lalunya mustahil dibuktikan secara objektif.
+          </p>
+        </div>
+
+        <!-- ERR_04 -->
+        <div class="card-rich">
+          <div class="card-icon-wrap">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21 15 16 10 5 21"/>
+            </svg>
+          </div>
+          <div class="card-err-tag">// ERR_04 · TOKEN TERPISAH</div>
+          <h3 class="card-title">NFT terpisah dari lukisannya</h3>
+          <p class="card-desc">
+            Token digital di masa lalu hanya menunjuk URI gambar web, bukan ke struktur fisik kanvas. Akibatnya, token bisa diperdagangkan sementara lukisan aslinya tertinggal, tertukar, atau dicuri.
+          </p>
+        </div>
+      </div>
+
+      <div class="problem-punchline">
+        "Dan yang paling mahal bukan pemalsuannya. Yang paling mahal adalah <strong>tidak bisa membuktikan sebaliknya.</strong>"
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       6. [A] AGITATE SECTION
+       ========================================================================== -->
+  <section class="section" id="agitate">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+            <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+          <span>DAMPAK NYATA EKOSISTEM</span>
+        </div>
+        <h2>Satu karya palsu cukup untuk merusak segalanya.</h2>
+        <p class="section-sub">
+          Ketidakpastian otentisitas memicu kerugian finansial, reputasi hancur, dan sengketa berkepanjangan bagi seluruh pihak.
+        </p>
+      </div>
+
+      <div class="agitate-grid">
+        <!-- Kolektor -->
+        <div class="agitate-card">
+          <div class="agitate-top">
+            <span class="agitate-role">Kolektor Seni</span>
+            <span class="agitate-tag">Resiko Finansial</span>
+          </div>
+          <p class="card-desc">
+            Anda membayar miliaran rupiah di pasar sekunder. Tiga tahun kemudian, keaslian sertifikat diragukan oleh kurator independen, dan tidak ada cara objektif untuk membuktikan lukisan itu asli. Nilai investasi menguap seketika.
+          </p>
+        </div>
+
+        <!-- Seniman -->
+        <div class="agitate-card">
+          <div class="agitate-top">
+            <span class="agitate-role">Seniman (Creator)</span>
+            <span class="agitate-tag">Hak Cipta & Reputasi</span>
+          </div>
+          <p class="card-desc">
+            Karya Anda dipalsukan dan diperjualbelikan atas nama Anda. Anda tidak menerima royalti sepeser pun dari penjualan sekunder, sementara reputasi dan dedikasi bertahun-tahun ikut dipertaruhkan.
+          </p>
+        </div>
+
+        <!-- Galeri / Balai Lelang -->
+        <div class="agitate-card">
+          <div class="agitate-top">
+            <span class="agitate-role">Galeri & Lelang</span>
+            <span class="agitate-tag">Kepercayaan Klien</span>
+          </div>
+          <p class="card-desc">
+            Satu insiden pemalsuan lolos kurasi mampu meruntuhkan reputasi galeri selama puluhan tahun. Anda menanggung beban risiko hukum perantara tanpa instrumen audit kriptografis yang dapat diverifikasi publik.
+          </p>
+        </div>
+      </div>
+
+      <div class="agitate-callout">
+        <div style="font-family: var(--font-head); font-size: 1.125rem; font-weight: 700;">
+          Selama bukti keaslian bisa dicetak ulang, dikloning, atau dihilangkan, setiap transaksi seni adalah pertaruhan kepercayaan.
+        </div>
+        <a href="#solusi" class="btn-primary" style="white-space: nowrap;">Ada cara yang lebih baik →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       7. [S] SOLUTION SECTION (3 LAPIS PROTEKSI)
+       ========================================================================== -->
+  <section class="section" id="solusi">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span>ARSITEKTUR PERLINDUNGAN ARTHENTIC</span>
+        </div>
+        <h2>Tiga lapis proteksi.<br>Tanpa titik kegagalan tunggal.</h2>
+        <p class="section-sub">
+          Bahkan jika satu lapisan dirusak, dua lapisan lainnya tetap mampu membuktikan keaslian lukisan secara independen.
+        </p>
+      </div>
+
+      <!-- Tab Buttons -->
+      <div class="solution-tabs-header">
+        <button class="sol-tab-btn active" data-target="pane-l01">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/></svg>
+          <span>L01 · Hardware Anti-Kloning</span>
+        </button>
+        <button class="sol-tab-btn" data-target="pane-l02">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6Z"/></svg>
+          <span>L02 · AI Biometrik Serat Mikro</span>
+        </button>
+        <button class="sol-tab-btn" data-target="pane-l03">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          <span>L03 · Blockchain Base L2</span>
+        </button>
+      </div>
+
+      <!-- Pane 1: Hardware -->
+      <div class="sol-tab-pane active" id="pane-l01">
+        <div>
+          <div class="card-err-tag">// LAPIS PERTAMA: FISIK KRIPTOGRAFIS</div>
+          <h3 style="margin-bottom: 14px;">NTAG 424 DNA + Substrat Tamper-Evident</h3>
+          <p style="margin-bottom: 16px;">
+            Setiap kali chip didekatkan dengan ponsel (tap), chip menghitung token kriptografi dinamis sekali pakai (AES-128, Secure Unique NFC Message / SUN).
+          </p>
+          <ul class="sol-feature-list">
+            <li class="sol-feature-item">
+              <svg class="sol-feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>Anti-Kloning:</strong> URL yang disalin langsung ditolak pada pemindaian berikutnya karena nonce kriptografis sudah hangus.</div>
+            </li>
+            <li class="sol-feature-item">
+              <svg class="sol-feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>Tamper-Evident:</strong> Ditanam dengan antena sirkuit pecah. Jika chip dicabut paksa untuk dipindahkan ke lukisan tiruan, sirkuit putus permanen.</div>
+            </li>
+            <li class="sol-feature-item">
+              <svg class="sol-feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>Standar Terbuka:</strong> Dapat dipindai langsung oleh iPhone & Android melalui CoreNFC tanpa memerlukan alat pembaca khusus.</div>
+            </li>
+          </ul>
+          <div class="sol-badge-group">
+            <span class="sol-spec-badge">NXP NTAG 424 DNA</span>
+            <span class="sol-spec-badge">AES-128 CMAC</span>
+            <span class="sol-spec-badge">ISO/IEC 14443-A</span>
+            <span class="sol-spec-badge">Tamper-Loop Detect</span>
+          </div>
+        </div>
+        <div class="sol-visual-stage">
+          <div id="lottie-sol-nfc" class="lottie-box"></div>
+        </div>
+      </div>
+
+      <!-- Pane 2: AI Optical -->
+      <div class="sol-tab-pane" id="pane-l02">
+        <div>
+          <div class="card-err-tag">// LAPIS KEDUA: BIOMETRIK SERAT MIKRO</div>
+          <h3 style="margin-bottom: 14px;">Sidik Jari Optik Mikro: AI Vector & Cosine Similarity</h3>
+          <p style="margin-bottom: 16px;">
+            Karya seni fisik memiliki topografi serat mikro yang unik seperti sidik jari manusia. Sensor LiDAR dan lensa makro memindai 5–10 koordinat mikroskopis kanvas.
+          </p>
+          <ul class="sol-feature-list">
+            <li class="sol-feature-item">
+              <svg class="sol-feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>Genesis Feature Vector:</strong> Pola tenun katun/linen, relief ketebalan cat (impasto), dan retakan mikro diubah menjadi vektor 128-dimensi.</div>
+            </li>
+            <li class="sol-feature-item">
+              <svg class="sol-feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>Ambang Kritis ≥ 88%:</strong> Algoritma kemiripan kosinus mencocokkan kondisi fisik saat ini dengan data genesis, toleran terhadap penuaan pigmen wajar.</div>
+            </li>
+            <li class="sol-feature-item">
+              <svg class="sol-feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>Tolak Tiruan 2D:</strong> Cetakan foto resolusi tinggi tidak memiliki kedalaman serat 3D dan ketebalan relief cat minyak asli.</div>
+            </li>
+          </ul>
+          <div class="sol-badge-group">
+            <span class="sol-spec-badge">Depth Map LiDAR</span>
+            <span class="sol-spec-badge">128-D Embedding</span>
+            <span class="sol-spec-badge">Cosine Similarity ≥ 88%</span>
+            <span class="sol-spec-badge">Micro-Weave Analysis</span>
+          </div>
+        </div>
+        <div class="sol-visual-stage">
+          <div id="lottie-sol-ai" class="lottie-box"></div>
+        </div>
+      </div>
+
+      <!-- Pane 3: Blockchain -->
+      <div class="sol-tab-pane" id="pane-l03">
+        <div>
+          <div class="card-err-tag">// LAPIS KETIGA: PROVENANCE TERDESENTRALISASI</div>
+          <h3 style="margin-bottom: 14px;">Base L2 + ERC-721 + Penyimpanan Abadi Arweave</h3>
+          <p style="margin-bottom: 16px;">
+            Identitas karya seni dicetak sebagai sertifikat NFT standar ERC-721 di jaringan Base L2 Ethereum. Seluruh riwayat verifikasi tersimpan abadi dan tahan sensor.
+          </p>
+          <ul class="sol-feature-list">
+            <li class="sol-feature-item">
+              <svg class="sol-feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>Append-Only Provenance:</strong> Transaksi jual-beli, audit kondisi, dan log restorasi konservator dicatat permanen tanpa bisa dihapus.</div>
+            </li>
+            <li class="sol-feature-item">
+              <svg class="sol-feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>Storage Permanen:</strong> Vektor fitur lengkap dan dokumen kurasi disimpan di Arweave dan IPFS terdesentralisasi.</div>
+            </li>
+            <li class="sol-feature-item">
+              <svg class="sol-feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <div><strong>Anchor Ethereum:</strong> Merkle root seluruh verifikasi di-anchor secara berkala ke Ethereum Mainnet untuk kepastian konsensus global.</div>
+            </li>
+          </ul>
+          <div class="sol-badge-group">
+            <span class="sol-spec-badge">Base L2 (OP Stack)</span>
+            <span class="sol-spec-badge">ERC-721 Genesis NFT</span>
+            <span class="sol-spec-badge">Arweave Permanent Web</span>
+            <span class="sol-spec-badge">Ethereum Anchor</span>
+          </div>
+        </div>
+        <div class="sol-visual-stage">
+          <div id="lottie-sol-bc" class="lottie-box"></div>
+        </div>
+      </div>
+
+      <!-- Callout: Kenapa aman? -->
+      <div class="sol-callout">
+        <strong style="color: var(--red-500);">Kenapa arsitektur ini aman?</strong> Smart contract kami tidak menjalankan model AI secara langsung dan tidak menyimpan kunci rahasia pada blockchain publik. Kontrak hanya menerima <strong>attestation kriptografis EIP-712</strong> dari Protocol Node berizin HSM, memvalidasi tanda tangan digital, batas waktu (deadline), nonce sekali pakai, dan memastikan ambang kemiripan minimal 88% terpenuhi.
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       8. CARA KERJA (END-TO-END LIFECYCLE)
+       ========================================================================== -->
+  <section class="section" id="cara-kerja">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+          <span>ALUR KERJA END-TO-END</span>
+        </div>
+        <h2>Dari kanvas seniman hingga kolektor berikutnya.</h2>
+        <p class="section-sub">
+          Proses verifikasi phygital tanpa friksi yang mengamankan setiap tahap siklus hidup karya seni fisik.
+        </p>
+      </div>
+
+      <div class="stepper-container">
+        <!-- 01 Registrasi -->
+        <div class="step-card">
+          <div class="step-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+            </svg>
+          </div>
+          <div class="step-num">01</div>
+          <h4 class="step-title">Registrasi</h4>
+          <p class="step-desc">
+            Galeri/Verifier memindai serat kanvas, menempelkan chip tamper-evident, lalu mencetak Genesis NFT ke wallet seniman.
+          </p>
+        </div>
+
+        <!-- 02 Pembelian -->
+        <div class="step-card">
+          <div class="step-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+          </div>
+          <div class="step-num">02</div>
+          <h4 class="step-title">Pembelian</h4>
+          <p class="step-desc">
+            Pembeli menyetor dana ke smart contract escrow terdesentralisasi. Dana dan NFT terkunci tanpa bisa dicurangi perantara.
+          </p>
+        </div>
+
+        <!-- 03 Pengiriman -->
+        <div class="step-card">
+          <div class="step-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/>
+            </svg>
+          </div>
+          <div class="step-num">03</div>
+          <h4 class="step-title">Pengiriman</h4>
+          <p class="step-desc">
+            Lukisan fisik dikirimkan secara aman ke pembeli dengan kemasan khusus bersegel tamper loop dan asuransi transit.
+          </p>
+        </div>
+
+        <!-- 04 Tap Claim -->
+        <div class="step-card">
+          <div class="step-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+            </svg>
+          </div>
+          <div class="step-num">04</div>
+          <h4 class="step-title">Tap Claim</h4>
+          <p class="step-desc">
+            Pembeli menempelkan smartphone ke chip karya. Token valid langsung memindahkan hak milik NFT dan mencairkan dana escrow.
+          </p>
+        </div>
+
+        <!-- 05 Restorasi -->
+        <div class="step-card">
+          <div class="step-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/>
+            </svg>
+          </div>
+          <div class="step-num">05</div>
+          <h4 class="step-title">Restorasi</h4>
+          <p class="step-desc">
+            Konservator menambahkan catatan teknis perbaikan kondisi fisik lukisan ke log provenance tanpa merusak data genesis awal.
+          </p>
+        </div>
+
+        <!-- 06 Resale -->
+        <div class="step-card">
+          <div class="step-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+          </div>
+          <div class="step-num">06</div>
+          <h4 class="step-title">Resale</h4>
+          <p class="step-desc">
+            Kolektor atau pembeli sekunder mengaudit seluruh rekam jejak secara terbuka, dengan 5% royalti otomatis kembali ke seniman.
+          </p>
+        </div>
+      </div>
+
+      <!-- Mid-page CTA Strip -->
+      <div class="mid-cta-strip">
+        <div style="font-family: var(--font-head); font-weight: 700; font-size: 1.125rem;">
+          Siap membuktikan keaslian karya seni Anda?
+        </div>
+        <div style="display: flex; gap: 14px; align-items: center;">
+          <button class="btn-primary" data-action="open-signup">Daftar Gratis →</button>
+          <button class="btn-ghost" data-action="open-login">Masuk</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       9. ANGKA BESAR (BIG NUMBER STATS)
+       ========================================================================== -->
+  <section class="section" id="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-num" data-target="3" data-suffix=" Lapis">3 Lapis</span>
+          <div class="stat-label">Hardware + AI Serat Optik + Base L2 Blockchain</div>
+        </div>
+
+        <div class="stat-item">
+          <span class="stat-num" data-target="88" data-prefix="≥ " data-suffix="%">≥ 88%</span>
+          <div class="stat-label">Ambang Kemiripan Kosinus Serat Mikro Kanvas</div>
+        </div>
+
+        <div class="stat-item">
+          <span class="stat-num" data-target="0.02" data-prefix="~$" data-decimal="true">~$0,02</span>
+          <div class="stat-label">Estimasi Biaya Gas Audit di Base L2 (Disponsori)</div>
+        </div>
+
+        <div class="stat-item">
+          <span class="stat-num" data-target="100" data-suffix="%">100%</span>
+          <div class="stat-label">Catatan Provenance Permanen Append-Only</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       10. UNTUK SIAPA? (6 PERAN)
+       ========================================================================== -->
+  <section class="section" id="peran">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+          <span>EKOSISTEM TERHUBUNG</span>
+        </div>
+        <h2>Enam peran.<br>Satu kebenaran yang terdesentralisasi.</h2>
+        <p class="section-sub">
+          Setiap pihak memegang kunci kriptografis dan tanggung jawab masing-masing dalam jaringan.
+        </p>
+      </div>
+
+      <div class="roles-grid">
+        <!-- Seniman -->
+        <div class="role-card">
+          <div class="role-card-top">
+            <div class="role-icon-title">
+              <svg class="role-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              <h4 class="role-name">Seniman</h4>
+            </div>
+            <span class="role-access-pill">Passkey Wallet</span>
+          </div>
+          <div class="role-tagline">Pembuat Karya Asli</div>
+          <p class="role-desc">Menandatangani keaslian awal secara gasless dan menerima royalti otomatis 5% (ERC-2981) di setiap penjualan kembali di pasar sekunder.</p>
+        </div>
+
+        <!-- Galeri Tersertifikasi -->
+        <div class="role-card">
+          <div class="role-card-top">
+            <div class="role-icon-title">
+              <svg class="role-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+              <h4 class="role-name">Galeri Verifier</h4>
+            </div>
+            <span class="role-access-pill">Safe Multisig</span>
+          </div>
+          <div class="role-tagline">Kurator Independen</div>
+          <p class="role-desc">Memindai mikro kanvas, menempelkan chip tamper-evident, mengunggah sertifikat provenance, dan mencetak Genesis NFT resmi.</p>
+        </div>
+
+        <!-- Kolektor -->
+        <div class="role-card">
+          <div class="role-card-top">
+            <div class="role-icon-title">
+              <svg class="role-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <h4 class="role-name">Kolektor Seni</h4>
+            </div>
+            <span class="role-access-pill">Smart Wallet</span>
+          </div>
+          <div class="role-tagline">Pemilik Sah Fisik & NFT</div>
+          <p class="role-desc">Membayar lewat escrow aman, memverifikasi keaslian dengan satu tap ponsel, menyimpan karya dalam brankas digital, atau menjual kembali.</p>
+        </div>
+
+        <!-- Konservator -->
+        <div class="role-card">
+          <div class="role-card-top">
+            <div class="role-icon-title">
+              <svg class="role-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/></svg>
+              <h4 class="role-name">Konservator</h4>
+            </div>
+            <span class="role-access-pill">updateCondition()</span>
+          </div>
+          <div class="role-tagline">Restorer Terakreditasi</div>
+          <p class="role-desc">Memperbarui status log kondisi fisik karya pasca restorasi atau pembersihan pigmen tanpa merusak data genesis awal.</p>
+        </div>
+
+        <!-- Pembeli Sekunder -->
+        <div class="role-card">
+          <div class="role-card-top">
+            <div class="role-icon-title">
+              <svg class="role-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <h4 class="role-name">Pembeli Sekunder</h4>
+            </div>
+            <span class="role-access-pill">Audit Publik</span>
+          </div>
+          <div class="role-tagline">Auditor Pasar Terbuka</div>
+          <p class="role-desc">Mengaudit rekam jejak kepemilikan dan validitas tanda tangan kriptografis secara publik sebelum melakukan transaksi bernilai tinggi.</p>
+        </div>
+
+        <!-- Arthentic Node -->
+        <div class="role-card">
+          <div class="role-card-top">
+            <div class="role-icon-title">
+              <svg class="role-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+              <h4 class="role-name">Arthentic Node</h4>
+            </div>
+            <span class="role-access-pill">Signer EIP-712</span>
+          </div>
+          <div class="role-tagline">Infrastruktur Protokol</div>
+          <p class="role-desc">Memvalidasi integritas token NFC dan komputasi kemiripan optik secara off-chain sebelum menerbitkan attestation resmi ke smart contract.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       11. HIGHLY INTERACTIVE VERIFICATION SIMULATION LAB (#demo)
+       ========================================================================== -->
+  <section class="section" id="demo">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6Z"/>
+          </svg>
+          <span>LAB TELEMETRI & INSPEKTUR INTERAKTIF</span>
+        </div>
+        <h2>Simulasi audit keaslian phygital.</h2>
+        <p class="section-sub">
+          Uji coba langsung bagaimana sistem mendeteksi karya asli dan menggagalkan upaya pemalsuan secara real-time.
+        </p>
+      </div>
+
+      <div class="demo-lab-container">
+        <!-- Mode Switcher -->
+        <div class="sim-mode-switcher">
+          <div style="font-size: 0.875rem; font-weight: 700;">
+            Skenario Uji:
+          </div>
+          <div class="sim-mode-pills">
+            <button class="sim-mode-btn active" id="btn-mode-authentic">
+              <span>🎯 1. Uji Karya Asli (Original Phygital)</span>
+            </button>
+            <button class="sim-mode-btn" id="btn-mode-tamper">
+              <span>⚠️ 2. Uji Serangan Palsu (Tamper & Copy Attack)</span>
+            </button>
+          </div>
+          <button class="btn-ghost btn-sm" id="sim-btn-reset">↺ Reset Simulasi</button>
+        </div>
+
+        <div class="sim-layout">
+          <!-- Left: Interactive Artwork Canvas Viewport -->
+          <div class="sim-canvas-viewport">
+            <!-- Masterpiece Artwork SVG -->
+            <svg class="sim-canvas-art" viewBox="0 0 600 420" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="artBg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#4A3423"/>
+                  <stop offset="50%" stop-color="#7B5B3E"/>
+                  <stop offset="100%" stop-color="#2D1F17"/>
+                </linearGradient>
+                <pattern id="canvasGrid" width="12" height="12" patternUnits="userSpaceOnUse">
+                  <rect width="12" height="12" fill="none"/>
+                  <path d="M0 6h12M6 0v12" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#artBg)"/>
+              <rect width="100%" height="100%" fill="url(#canvasGrid)"/>
+              <!-- Diponegoro Historic Scene Silhouette -->
+              <path d="M40 320 Q180 260 300 290 T560 310 L600 420 L0 420 Z" fill="#1C140F"/>
+              <circle cx="280" cy="220" r="14" fill="#F8E7D1"/>
+              <path d="M265 234 L295 234 L305 320 L255 320 Z" fill="#991B1E"/>
+              <circle cx="330" cy="225" r="12" fill="#E6D3BC"/>
+              <path d="M315 237 L345 237 L352 320 L310 320 Z" fill="#24384D"/>
+            </svg>
+
+            <!-- Corner NFC Tag Hotspot (Clickable!) -->
+            <div class="sim-nfc-tag-zone" id="sim-nfc-tag" title="Klik untuk menempelkan smartphone (NFC Tap)">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E11D2E" stroke-width="2">
+                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+              </svg>
+              <span class="nfc-tag-label">TAP NFC</span>
+            </div>
+
+            <!-- 5 Interactive Microscope Hotspots directly on Canvas (Clickable!) -->
+            <div class="sim-hotspot hs-1" data-index="1" title="Titik 1: Serat Kanvas Katun 1857">1</div>
+            <div class="sim-hotspot hs-2" data-index="2" title="Titik 2: Pigmen Biru Ultramarine">2</div>
+            <div class="sim-hotspot hs-3" data-index="3" title="Titik 3: Retakan Mikro Craquelure">3</div>
+            <div class="sim-hotspot hs-4" data-index="4" title="Titik 4: Varnish Linseed Oil">4</div>
+            <div class="sim-hotspot hs-5" data-index="5" title="Titik 5: Sapuan Tanda Tangan Raden Saleh">5</div>
+
+            <!-- Canvas Bottom HUD Overlay -->
+            <div class="sim-hud-overlay">
+              <span>LUKISAN: PENANGKAPAN PANGERAN DIPONEGORO (1857)</span>
+              <span>TAP TAG NFC ATAU KLIK 5 TITIK MIKRO</span>
+            </div>
+          </div>
+
+          <!-- Right: Controls, Similarity Gauge & Real-time Console Log -->
+          <div class="sim-control-panel">
+            <!-- Stepper Progress Card -->
+            <div class="sim-steps-card">
+              <div class="sim-step-item active" id="sim-step-item-1">
+                <div class="sim-step-badge">1</div>
+                <div class="sim-step-content" style="flex:1;">
+                  <h5>Langkah 1: Handshake Kriptografi NFC</h5>
+                  <p>Dekripsi AES-128 SUN Message dan cek sirkuit tamper loop.</p>
+                  <button class="btn-ghost btn-sm" id="sim-btn-trigger-nfc" style="margin-top: 8px;">
+                    1. Tempelkan Ponsel ke Chip NFC
+                  </button>
+                </div>
+              </div>
+
+              <div class="sim-step-item" id="sim-step-item-2">
+                <div class="sim-step-badge">2</div>
+                <div class="sim-step-content" style="flex:1;">
+                  <h5>Langkah 2: AI Optical Micro-Scan</h5>
+                  <p>Pindai 5 titik serat mikro atau klik tombol otomatis.</p>
+                  <button class="btn-ghost btn-sm" id="sim-btn-scan-all" style="margin-top: 8px;" disabled>
+                    2. Pindai Otomatis 5 Titik Serat
+                  </button>
+                </div>
+              </div>
+
+              <div class="sim-step-item" id="sim-step-item-3">
+                <div class="sim-step-badge">3</div>
+                <div class="sim-step-content" style="flex:1;">
+                  <h5>Langkah 3: Konsensus Smart Contract Base L2</h5>
+                  <p>Attestation EIP-712 dicatat on-chain secara permanen.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Live Cosine Similarity Gauge Meter -->
+            <div class="sim-gauge-wrap">
+              <div>
+                <div style="font-size: 0.75rem; color: var(--text-2); font-weight: 700; text-transform: uppercase;">
+                  COSINE SIMILARITY SCORE
+                </div>
+                <div class="gauge-score-large" id="sim-gauge-val">0.0%</div>
+                <div style="font-size: 0.75rem; color: var(--text-2);">Ambang Batas Valid: ≥ 88.0%</div>
+              </div>
+              <div style="width: 80px; height: 50px; position: relative;">
+                <svg viewBox="0 0 100 60" width="100%" height="100%">
+                  <path d="M10 50 A 40 40 0 0 1 90 50" fill="none" stroke="var(--line)" stroke-width="12" stroke-linecap="round"/>
+                  <path d="M10 50 A 40 40 0 0 1 90 50" fill="none" stroke="var(--ok)" stroke-width="12" stroke-dasharray="125" stroke-dashoffset="30" stroke-linecap="round"/>
+                  <line id="sim-gauge-needle" x1="50" y1="50" x2="50" y2="15" stroke="var(--red-500)" stroke-width="4" stroke-linecap="round" style="transform-origin: 50px 50px; transform: rotate(-90deg); transition: transform 0.5s ease;"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Live Terminal Log -->
+            <div class="sim-terminal-log" id="sim-terminal-log">
+              <div style="color: #64748B;">// Terminal Siap. Tempelkan ponsel pada chip NFC di pojok kanvas.</div>
+            </div>
+
+            <!-- Final Result Banner (Dynamic) -->
+            <div class="sim-verdict-banner" id="sim-verdict-banner">
+              <div id="demo-lottie-badge" style="width: 50px; height: 50px; flex-shrink: 0;"></div>
+              <div class="sim-verdict-text" style="flex:1;">
+                <h4 id="sim-verdict-title">KARYA TERVERIFIKASI ASLI</h4>
+                <p id="sim-verdict-sub">Token ID #8421 valid. EIP-712 Signed on Base L2.</p>
+                <button class="btn-view-cert" data-action="open-cert">
+                  <span>📜 Lihat Sertifikat Phygital Resmi</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       12. BIAYA TRANSPARAN
+       ========================================================================== -->
+  <section class="section" id="biaya">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+          <span>EFISIENSI BIAYA</span>
+        </div>
+        <h2>Verifikasi berulang yang masuk akal secara ekonomi.</h2>
+        <p class="section-sub">
+          Dibangun di Base L2, bukan Ethereum L1, sehingga biaya transaksi tidak menghalangi pemeriksaan berkala bagi kurator dan kolektor.
+        </p>
+      </div>
+
+      <div class="pricing-table-wrap">
+        <table class="pricing-table">
+          <thead>
+            <tr>
+              <th>Aksi Ekosistem</th>
+              <th>Estimasi Gas (Base L2)</th>
+              <th>Catatan Pengguna</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Mint Karya Baru (Genesis NFT)</strong></td>
+              <td class="pricing-cost">~$0,04 – $0,05</td>
+              <td>Diterbitkan oleh Galeri Tersertifikasi bersama Seniman</td>
+            </tr>
+            <tr>
+              <td><strong>Verifikasi Level 1 (NFC Tap)</strong></td>
+              <td class="pricing-cost">~$0,01 – $0,02</td>
+              <td>Gas disponsori via paymaster (Gratis bagi pengguna)</td>
+            </tr>
+            <tr>
+              <td><strong>Verifikasi Level 2 (Optik Mikro AI)</strong></td>
+              <td class="pricing-cost">~$0,02 – $0,03</td>
+              <td>Ekstraksi fitur mikroskopis & attestation EIP-712</td>
+            </tr>
+            <tr>
+              <td><strong>Pembaruan Restorasi Kondisi</strong></td>
+              <td class="pricing-cost">~$0,02 – $0,03</td>
+              <td>Append-only log kondisi oleh Konservator resmi</td>
+            </tr>
+            <tr>
+              <td><strong>Transfer Kepemilikan (Escrow)</strong></td>
+              <td class="pricing-cost">~$0,02 – $0,03</td>
+              <td>Pelepasan dana otomatis + distribusi royalti seniman</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pricing-highlight">
+        💡 <strong>Perbandingan Efisiensi:</strong> 100 kali pemeriksaan keaslian di Arthentic hanya memakan biaya <strong>~$2,20</strong>. Di Ethereum L1 tradisional, biaya yang sama dapat menelan ratusan dolar. Seluruh verifikasi dasar kolektor akhir disponsori paymaster protokol (gasless).
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       13. KEPERCAYAAN & KEAMANAN
+       ========================================================================== -->
+  <section class="section" id="keamanan">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <span>MODEL KEAMANAN PROAKTIF</span>
+        </div>
+        <h2>Dirancang dengan asumsi bahwa penyerang itu ada.</h2>
+        <p class="section-sub">
+          Setiap celah eksploitasi telah diantisipasi dengan arsitektur kriptografi berlapis dan audit kode ketat.
+        </p>
+      </div>
+
+      <div class="security-grid">
+        <div class="security-card">
+          <div class="security-threat">// POTENSI ANCAMAN: REPLAY ATTACK</div>
+          <h4 style="font-size: 1.125rem; margin-bottom: 8px;">Nonce Dinamis & Deadline Pendek</h4>
+          <p class="card-desc">Tiap payload SUN NFC dan tanda tangan EIP-712 menyertakan nonce unik satu kali pakai serta domain separator Base L2 yang kadaluarsa dalam 120 detik.</p>
+        </div>
+
+        <div class="security-card">
+          <div class="security-threat">// POTENSI ANCAMAN: REENTRANCY ESCROW</div>
+          <h4 style="font-size: 1.125rem; margin-bottom: 8px;">Checks-Effects-Interactions Pattern</h4>
+          <p class="card-desc">Smart contract escrow menerapkan guard OpenZeppelin `nonReentrant` dan memperbarui saldo internal sebelum memicu pelepasan transfer ETH/USDC.</p>
+        </div>
+
+        <div class="security-card">
+          <div class="security-threat">// POTENSI ANCAMAN: KEBOCORAN KUNCI NODE</div>
+          <h4 style="font-size: 1.125rem; margin-bottom: 8px;">HSM Signer & Emergency Pause</h4>
+          <p class="card-desc">Kunci penandatangan attestation disimpan dalam Hardware Security Module (HSM) dengan rotasi otomatis dan sakelar darurat pause multi-role.</p>
+        </div>
+
+        <div class="security-card">
+          <div class="security-threat">// POTENSI ANCAMAN: SALAH KONFIGURASI ROLE</div>
+          <h4 style="font-size: 1.125rem; margin-bottom: 8px;">Safe Multisig + Timelock Governance</h4>
+          <p class="card-desc">Perubahan hak istimewa admin atau verifier mewajibkan persetujuan multi-tanda tangan (3-dari-5) dengan jeda waktu eksekusi (timelock).</p>
+        </div>
+
+        <div class="security-card">
+          <div class="security-threat">// POTENSI ANCAMAN: PEMALSUAN FISIK / FOTO CETAK</div>
+          <h4 style="font-size: 1.125rem; margin-bottom: 8px;">Biometrik 3D Serat & Substrat Pecah</h4>
+          <p class="card-desc">Foto cetakan 2D ditolak karena ketiadaan topografi impasto 3D kanvas, dan chip fisik yang dicabut mengalami putus sirkuit antena permanen.</p>
+        </div>
+
+        <div class="security-card">
+          <div class="security-threat">// POTENSI ANCAMAN: PENGGUNA AWAM LUPA KUNCI</div>
+          <h4 style="font-size: 1.125rem; margin-bottom: 8px;">Passkey & Smart Wallet (ERC-4337)</h4>
+          <p class="card-desc">Tanpa seed phrase 12-kata yang membingungkan. Pemulihan akun aman berbasis biometric Face ID dan Apple iCloud / Google Cloud Keychain.</p>
+        </div>
+      </div>
+
+      <div class="credibility-strip">
+        Berbasis OpenZeppelin Contracts · Uji Unit & Fuzzing (Foundry) · Analisis Statis Slither · Rilis Teruji di Base Sepolia
+        <br>
+        <span class="status-badge">Status: Tahap Pengembangan / Testnet Pre-Audit</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       14. FAQ ACCORDION
+       ========================================================================== -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+          <span>PERTANYAAN UMUM</span>
+        </div>
+        <h2>Pertanyaan yang Sering Diajukan</h2>
+        <p class="section-sub">Segala hal yang perlu Anda ketahui tentang protokol otentikasi seni Arthentic.</p>
+      </div>
+
+      <div class="faq-list">
+        <!-- Q1 -->
+        <div class="faq-item active">
+          <button class="faq-question">
+            <span>Apakah saya harus paham crypto untuk menggunakan Arthentic?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            Sama sekali tidak. Anda masuk dengan teknologi Passkey (Face ID / Touch ID / Windows Hello) layaknya aplikasi perbankan modern. Tidak ada seed phrase 12 kata yang perlu dihafal, dan seluruh biaya gas verifikasi ditanggung secara otomatis oleh protokol.
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Bagaimana jika chip NFC pada lukisan rusak atau dicongkel?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            Keaslian karya tetap dapat dibuktikan melalui Lapis 2 (sidik jari optik mikro serat kanvas). Penggantian chip pengganti hanya dapat diterbitkan kembali apabila verifikasi optik menghasilkan skor ≥ 88% dan disetujui bersama oleh Kolektor, Verifier, dan Seniman.
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Apakah isi chip NFC bisa disalin dengan alat kloning?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            Tidak. Chip NTAG 424 DNA tidak memakai tag statis biasa. Chip ini memiliki coprocessor kriptografis AES-128 yang menghasilkan token unik dinamis (SUN) dengan counter internal pada setiap kali dipindai. URL yang disalin akan ditolak pada pemindaian berikutnya.
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Bagaimana jika lukisan dipulas ulang atau mengalami restorasi?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            Konservator terakreditasi dapat memanggil fungsi `updateCondition()` untuk mencatatkan laporan teknis restorasi ke blockchain. Data genesis awal tidak pernah dihapus, melainkan membentuk riwayat audit kesehatan karya yang berkesinambungan.
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Bagaimana jika karya seni fisik hancur terbakar atau hilang?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            Pemilik mengajukan bukti berita acara resmi atau klaim asuransi. Status karya kemudian ditandai sebagai `DESTROYED` pada smart contract, sehingga sertifikat NFT tersebut terkunci dan tidak dapat lagi diperdagangkan di pasar sekunder.
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Apakah royalti bagi seniman didistribusikan secara otomatis?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            Ya. Smart contract escrow kami mengimplementasikan standar royalti internasional ERC-2981. Setiap kali terjadi penyelesaian transaksi penjualan kembali melalui escrow, 5% nilai penjualan otomatis ditransfer langsung ke dompet seniman.
+          </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Di jaringan blockchain apa Arthentic beroperasi?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            Arthentic beroperasi di atas Base L2 (Ethereum Layer 2 berbasis OP Stack) untuk menjamin kecepatan transaksi sub-detik dan biaya gas di bawah $0,05, dengan ringkasan status berkala yang di-anchor ke Ethereum Mainnet untuk kepastian konsensus abadi.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       15. CTA FINAL
+       ========================================================================== -->
+  <section class="cta-final-section">
+    <div class="container cta-final-box">
+      <div class="eyebrow">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+        <span>MULAI HARI INI</span>
+      </div>
+      <h2 class="cta-final-title">
+        Keaslian bukan lagi soal percaya.<br>
+        <span class="glow-text">Ini soal bukti.</span>
+      </h2>
+      <p class="cta-final-sub">
+        Bergabunglah sebagai seniman, galeri, kolektor, atau konservator, dan mulai membangun riwayat karya seni yang tidak bisa ditulis ulang.
+      </p>
+
+      <div class="cta-final-btns">
+        <button class="btn-primary" data-action="open-signup" style="font-size: 1.0625rem; padding: 16px 36px;">
+          Daftar Gratis Sekarang →
+        </button>
+        <button class="btn-ghost" data-action="open-login" style="font-size: 1.0625rem; padding: 16px 36px;">
+          Masuk ke Akun Saya
+        </button>
+      </div>
+
+      <div class="hero-microcopy">
+        ✓ Tanpa seed phrase · Login dengan Passkey · Biaya gas disponsori penuh untuk verifikasi
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       16. FOOTER
+       ========================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <div class="nav-brand" style="margin-bottom: 16px;">
+            <div class="brand-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 2L2 12l10 10 10-10L12 2zm0 4.5l6.5 6.5-6.5 6.5L5.5 13 12 6.5z"/>
+              </svg>
+            </div>
+            <span>ARTHENTIC</span>
+          </div>
+          <p style="color: var(--text-2); font-size: 0.8125rem; max-width: 280px; line-height: 1.6;">
+            Protokol otentikasi phygital terdesentralisasi untuk karya seni fisik dan warisan budaya bernilai tinggi.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Produk</h5>
+          <ul>
+            <li><a href="#solusi">3 Lapis Proteksi</a></li>
+            <li><a href="#cara-kerja">Cara Kerja</a></li>
+            <li><a href="#demo">Simulasi Audit</a></li>
+            <li><a href="#biaya">Biaya Transparan</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Pelajari</h5>
+          <ul>
+            <li><a href="#keamanan">Model Keamanan</a></li>
+            <li><a href="#peran">Ekosistem Peran</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="https://docs.arthentic.xyz" target="_blank" rel="noopener">Dokumentasi API</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="#privacy">Kebijakan Privasi</a></li>
+            <li><a href="#terms">Syarat Layanan</a></li>
+            <li><a href="#escrow-policy">Kebijakan Escrow</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Akun</h5>
+          <ul>
+            <li><a href="#login" data-action="open-login">Masuk</a></li>
+            <li><a href="#signup" data-action="open-signup">Daftar Gratis</a></li>
+            <li><a href="#verifier-apply">Daftar Verifier</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Arthentic Protocol. Hak Cipta Dilindungi. Dibangun di atas Base L2.</div>
+        <div>
+          <span class="status-badge" style="margin-top: 0;">Status: Base Sepolia Testnet</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       17. MODALS: CERTIFICATE, SIGN UP & LOGIN
+       ========================================================================== -->
+  <!-- Certificate Modal -->
+  <div class="modal-backdrop" id="cert-modal" role="dialog" aria-modal="true" aria-labelledby="modal-cert-title">
+    <div class="modal-card" style="max-width: 540px;">
+      <button class="modal-close-btn" aria-label="Tutup Modal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6 6 18M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <div class="cert-card">
+        <div class="cert-header">
+          <div>
+            <div class="cert-watermark">// SERTIFIKAT KEASLIAN PHYGITAL</div>
+            <h3 style="font-size: 1.25rem; margin-top: 4px;" id="modal-cert-title">Penangkapan Pangeran Diponegoro</h3>
+            <div style="font-size: 0.8125rem; color: var(--text-2);">Raden Saleh (1857) · Cat Minyak di atas Kanvas</div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-size: 0.75rem; font-weight: 700; color: var(--ok);">VERIFIED ON-CHAIN</div>
+            <div style="font-size: 0.6875rem; color: var(--text-2);">BASE L2 #84532</div>
+          </div>
+        </div>
+
+        <div class="cert-grid">
+          <div>
+            <div style="font-size: 0.75rem; margin-bottom: 6px;">
+              <strong>ERC-721 Token ID:</strong> #8421
+            </div>
+            <div style="font-size: 0.75rem; margin-bottom: 6px;">
+              <strong>SUN Chip NFC:</strong> NTAG 424 DNA (Valid Nonce)
+            </div>
+            <div style="font-size: 0.75rem; margin-bottom: 6px;">
+              <strong>AI Cosine Similarity:</strong> 94.8% (≥ 88% PASS)
+            </div>
+            <div style="font-size: 0.75rem; margin-bottom: 6px;">
+              <strong>Genesis Hash (Arweave):</strong> ar://7x9b...k32f
+            </div>
+            <div style="font-size: 0.75rem;">
+              <strong>Status Tamper Seal:</strong> Intact (Antena Utuh)
+            </div>
+          </div>
+
+          <!-- Dynamic SVG QR Code -->
+          <div style="text-align: center;">
+            <svg width="80" height="80" viewBox="0 0 100 100">
+              <rect width="100" height="100" fill="#FFF"/>
+              <!-- Stylized QR blocks -->
+              <rect x="10" y="10" width="30" height="30" fill="#0F172A"/>
+              <rect x="18" y="18" width="14" height="14" fill="#FFF"/>
+              <rect x="60" y="10" width="30" height="30" fill="#0F172A"/>
+              <rect x="68" y="18" width="14" height="14" fill="#FFF"/>
+              <rect x="10" y="60" width="30" height="30" fill="#0F172A"/>
+              <rect x="18" y="68" width="14" height="14" fill="#FFF"/>
+              <rect x="46" y="10" width="8" height="8" fill="#0F172A"/>
+              <rect x="46" y="24" width="8" height="8" fill="#0F172A"/>
+              <rect x="46" y="38" width="8" height="8" fill="#0F172A"/>
+              <rect x="10" y="46" width="8" height="8" fill="#0F172A"/>
+              <rect x="24" y="46" width="8" height="8" fill="#0F172A"/>
+              <rect x="60" y="46" width="14" height="14" fill="#E11D2E"/>
+              <rect x="80" y="46" width="10" height="10" fill="#0F172A"/>
+              <rect x="46" y="60" width="14" height="14" fill="#0F172A"/>
+              <rect x="66" y="66" width="24" height="24" fill="#0F172A"/>
+            </svg>
+            <div style="font-size: 0.5625rem; color: var(--text-2); margin-top: 4px;">SCAN FOR AUDIT</div>
+          </div>
+        </div>
+
+        <div style="margin-top: 18px; padding-top: 12px; border-top: 1px solid #E2E8F0; font-size: 0.6875rem; color: var(--text-2); display: flex; justify-content: space-between;">
+          <span>Attestation: EIP-712 Signed by Arthentic Protocol HSM</span>
+          <span>Base Sepolia Block #1984210</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign Up Modal -->
+  <div class="modal-backdrop" id="signup-modal" role="dialog" aria-modal="true" aria-labelledby="modal-signup-title">
+    <div class="modal-card">
+      <button class="modal-close-btn" aria-label="Tutup Modal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6 6 18M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <h3 style="font-size: 1.5rem; margin-bottom: 8px;" id="modal-signup-title">Buat akun Arthentic</h3>
+      <p style="color: var(--text-2); font-size: 0.875rem; margin-bottom: 24px;">Mulai dalam kurang dari satu menit. Tanpa seed phrase.</p>
+
+      <div class="form-group">
+        <label class="form-label" for="signup-role">Pilih Peran Anda</label>
+        <select class="form-select" id="signup-role">
+          <option value="collector">Kolektor Seni (Collector)</option>
+          <option value="artist">Seniman (Artist / Creator)</option>
+          <option value="gallery">Galeri / Verifier Terakreditasi</option>
+          <option value="conservator">Konservator / Restorer</option>
+          <option value="secondary">Pembeli Pasar Sekunder</option>
+        </select>
+        <span style="font-size: 0.6875rem; color: var(--text-2); margin-top: 4px; display: block;">
+          *Peran Galeri dan Konservator memerlukan validasi akreditasi oleh tim Arthentic.
+        </span>
+      </div>
+
+      <button class="passkey-btn" id="btn-passkey-signup">
+        <span>🔑 Daftar dengan Passkey (Face ID / Touch ID)</span>
+      </button>
+
+      <div class="auth-divider">ATAU LANJUTKAN DENGAN</div>
+
+      <div class="oauth-group">
+        <button class="oauth-btn" onclick="alert('Autentikasi Google Passkey disiapkan.')">Google</button>
+        <button class="oauth-btn" onclick="alert('Tautan pendaftaran email dikirimkan.')">Email</button>
+      </div>
+
+      <p style="font-size: 0.75rem; color: var(--text-2); text-align: center;">
+        Kami membuat smart wallet aman (ERC-4337) otomatis untuk Anda di Base L2. Tidak ada kata sandi 12 kata yang perlu dihafal.
+      </p>
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+  <div class="modal-backdrop" id="login-modal" role="dialog" aria-modal="true" aria-labelledby="modal-login-title">
+    <div class="modal-card">
+      <button class="modal-close-btn" aria-label="Tutup Modal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6 6 18M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <h3 style="font-size: 1.5rem; margin-bottom: 8px;" id="modal-login-title">Selamat datang kembali</h3>
+      <p style="color: var(--text-2); font-size: 0.875rem; margin-bottom: 24px;">Masuk untuk memverifikasi, menjual, atau mengelola karya Anda.</p>
+
+      <button class="passkey-btn" id="btn-passkey-login">
+        <span>🔑 Masuk dengan Passkey</span>
+      </button>
+
+      <div class="auth-divider">ATAU MASUK DENGAN</div>
+
+      <div class="oauth-group">
+        <button class="oauth-btn" onclick="alert('Autentikasi Google diproses.')">Google</button>
+        <button class="oauth-btn" onclick="alert('Sambungan MetaMask disiapkan.')">MetaMask</button>
+      </div>
+
+      <p style="font-size: 0.75rem; color: var(--text-2); text-align: center;">
+        Kehilangan perangkat? Pulihkan kunci akses melalui Apple iCloud Keychain atau Google Password Manager.
+      </p>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-notice" id="toast-notice">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M20 6 9 17l-5-5"/>
+    </svg>
+    <span id="toast-text">Notifikasi</span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/lottie.min.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

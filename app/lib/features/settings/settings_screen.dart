@@ -102,7 +102,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     children: [
                       Text(
                         "Change Password",
-                        style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.w700),
+                        style: GoogleFonts.plusJakartaSans(fontSize: 18, fontWeight: FontWeight.w700),
                       ),
                       IconButton(
                         icon: const Icon(Icons.close, size: 20),
@@ -114,11 +114,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     const SizedBox(height: 8),
                     Text(
                       errorText!,
-                      style: GoogleFonts.inter(color: Colors.red.shade700, fontSize: 13, fontWeight: FontWeight.w600),
+                      style: GoogleFonts.plusJakartaSans(color: Colors.red.shade700, fontSize: 13, fontWeight: FontWeight.w600),
                     ),
                   ],
                   const SizedBox(height: 14),
-                  Text("Current Password", style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600)),
+                  Text("Current Password", style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w600)),
                   const SizedBox(height: 6),
                   TextField(
                     controller: currentPassController,
@@ -132,7 +132,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                   ),
                   const SizedBox(height: 14),
-                  Text("New Password", style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600)),
+                  Text("New Password", style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w600)),
                   const SizedBox(height: 6),
                   TextField(
                     controller: newPassController,
@@ -146,7 +146,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                   ),
                   const SizedBox(height: 14),
-                  Text("Confirm New Password", style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600)),
+                  Text("Confirm New Password", style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w600)),
                   const SizedBox(height: 6),
                   TextField(
                     controller: confirmPassController,
@@ -193,7 +193,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         elevation: 0,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                       ),
-                      child: Text("Update Password", style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
+                      child: Text("Update Password", style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w600)),
                     ),
                   ),
                 ],
@@ -211,15 +211,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
       builder: (ctx) {
         return AlertDialog(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          title: Text("Delete Account?", style: GoogleFonts.inter(fontWeight: FontWeight.w700, color: Colors.red.shade900)),
+          title: Text("Delete Account?", style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w700, color: Colors.red.shade900)),
           content: Text(
             "This action is permanent and cannot be undone. All active sessions will be terminated and your personal information will be completely anonymized.\n\nImmutable provenance events and blockchain records cannot be deleted per protocol design.",
-            style: GoogleFonts.inter(fontSize: 13, color: AppTheme.textSecondary, height: 1.4),
+            style: GoogleFonts.plusJakartaSans(fontSize: 13, color: AppTheme.textSecondary, height: 1.4),
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(ctx),
-              child: Text("Cancel", style: GoogleFonts.inter(color: AppTheme.textPrimary, fontWeight: FontWeight.w600)),
+              child: Text("Cancel", style: GoogleFonts.plusJakartaSans(color: AppTheme.textPrimary, fontWeight: FontWeight.w600)),
             ),
             ElevatedButton(
               onPressed: () async {
@@ -291,14 +291,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Security Activity Log", style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.w700)),
+                  Text("Security Activity Log", style: GoogleFonts.plusJakartaSans(fontSize: 18, fontWeight: FontWeight.w700)),
                   IconButton(icon: const Icon(Icons.close, size: 20), onPressed: () => Navigator.pop(ctx)),
                 ],
               ),
               const SizedBox(height: 12),
               Expanded(
                 child: events.isEmpty
-                    ? Center(child: Text("No security events recorded yet.", style: GoogleFonts.inter(color: AppTheme.textMuted)))
+                    ? Center(child: Text("No security events recorded yet.", style: GoogleFonts.plusJakartaSans(color: AppTheme.textMuted)))
                     : ListView.separated(
                         itemCount: events.length,
                         separatorBuilder: (_, __) => const Divider(height: 1),
@@ -314,11 +314,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               ),
                               child: const Icon(Icons.shield_outlined, size: 18, color: AppTheme.brandBlue),
                             ),
-                            title: Text(ev["action"] ?? "EVENT", style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600)),
-                            subtitle: Text("IP: ${ev['ip'] ?? 'unknown'}", style: GoogleFonts.inter(fontSize: 12, color: AppTheme.textSecondary)),
+                            title: Text(ev["action"] ?? "EVENT", style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w600)),
+                            subtitle: Text("IP: ${ev['ip'] ?? 'unknown'}", style: GoogleFonts.plusJakartaSans(fontSize: 12, color: AppTheme.textSecondary)),
                             trailing: Text(
                               ev["created_at"] != null ? ev["created_at"].toString().split('T').first : "",
-                              style: GoogleFonts.inter(fontSize: 11, color: AppTheme.textMuted),
+                              style: GoogleFonts.plusJakartaSans(fontSize: 11, color: AppTheme.textMuted),
                             ),
                           );
                         },
@@ -364,7 +364,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       children: [
                         Text(
                           "Verify Email Address",
-                          style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.w700),
+                          style: GoogleFonts.plusJakartaSans(fontSize: 18, fontWeight: FontWeight.w700),
                         ),
                         IconButton(
                           icon: const Icon(Icons.close, size: 20),
@@ -377,7 +377,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       codeSent
                           ? "Enter the verification code sent to $_userEmail:"
                           : "We will send a verification token to $_userEmail to confirm your ownership.",
-                      style: GoogleFonts.inter(fontSize: 13, color: AppTheme.textSecondary),
+                      style: GoogleFonts.plusJakartaSans(fontSize: 13, color: AppTheme.textSecondary),
                     ),
                     if (errorText != null) ...[
                       const SizedBox(height: 12),
@@ -389,7 +389,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                         child: Text(
                           errorText!,
-                          style: GoogleFonts.inter(color: Colors.red.shade800, fontSize: 13, fontWeight: FontWeight.w500),
+                          style: GoogleFonts.plusJakartaSans(color: Colors.red.shade800, fontSize: 13, fontWeight: FontWeight.w500),
                         ),
                       ),
                     ],
@@ -428,11 +428,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ),
                           child: isSubmitting
                               ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2, valueColor: AlwaysStoppedAnimation(Colors.white)))
-                              : Text("Send Verification Link", style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
+                              : Text("Send Verification Link", style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w600)),
                         ),
                       ),
                     ] else ...[
-                      Text("Verification Token", style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600)),
+                      Text("Verification Token", style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w600)),
                       const SizedBox(height: 6),
                       TextField(
                         key: const Key('verify_token_field'),
@@ -490,7 +490,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ),
                           child: isSubmitting
                               ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2, valueColor: AlwaysStoppedAnimation(Colors.white)))
-                              : Text("Confirm Verification", style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
+                              : Text("Confirm Verification", style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w600)),
                         ),
                       ),
                     ],
@@ -522,7 +522,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Privacy & Data Retention", style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.w700)),
+                  Text("Privacy & Data Retention", style: GoogleFonts.plusJakartaSans(fontSize: 18, fontWeight: FontWeight.w700)),
                   IconButton(icon: const Icon(Icons.close, size: 20), onPressed: () => Navigator.pop(ctx)),
                 ],
               ),
@@ -532,7 +532,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Zero-PII Architecture & App Store Compliance", style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w700, color: AppTheme.brandBlue)),
+                      Text("Zero-PII Architecture & App Store Compliance", style: GoogleFonts.plusJakartaSans(fontSize: 14, fontWeight: FontWeight.w700, color: AppTheme.brandBlue)),
                       const SizedBox(height: 8),
                       Text(
                         "Arthentic Mobile is designed strictly around Apple App Store Guideline 5.1.1(v) for account deletion and user privacy:\n\n"
@@ -540,16 +540,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         "• Account Anonymization: When you request account deletion, all personal data (email, name, password hash, OAuth links) is immediately and irreversibly wiped or anonymized. Active sessions are instantly revoked.\n\n"
                         "• Provenance & Cryptographic Immutability: Cryptographic hashes of artwork physical surface fingerprints, LiDAR depth vectors, and audit log IDs are preserved without personal identifiers to maintain decentralized artwork provenance integrity.\n\n"
                         "• No PII Crash Telemetry: Telemetry reports automatically scrub email addresses, access tokens, IP addresses, and private keys before leaving your device.",
-                        style: GoogleFonts.inter(fontSize: 13, color: AppTheme.textSecondary, height: 1.5),
+                        style: GoogleFonts.plusJakartaSans(fontSize: 13, color: AppTheme.textSecondary, height: 1.5),
                       ),
                       const SizedBox(height: 24),
-                      Text("Data Retention Schedule", style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w700, color: AppTheme.textPrimary)),
+                      Text("Data Retention Schedule", style: GoogleFonts.plusJakartaSans(fontSize: 14, fontWeight: FontWeight.w700, color: AppTheme.textPrimary)),
                       const SizedBox(height: 8),
                       Text(
                         "• Refresh tokens: Automatically expired after 30 days absolute cap or revoked upon logout.\n"
                         "• Application documents: Encrypted at rest and purged following accreditation review.\n"
                         "• Audit logs: Retained for fraud detection and security investigations.",
-                        style: GoogleFonts.inter(fontSize: 13, color: AppTheme.textSecondary, height: 1.5),
+                        style: GoogleFonts.plusJakartaSans(fontSize: 13, color: AppTheme.textSecondary, height: 1.5),
                       ),
                     ],
                   ),
@@ -569,7 +569,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       appBar: AppBar(
         title: Text(
           "Settings & Security",
-          style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
+          style: GoogleFonts.plusJakartaSans(fontSize: 18, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
         ),
         backgroundColor: Colors.white,
         elevation: 0,
@@ -598,7 +598,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           backgroundColor: AppTheme.brandBlue.withOpacity(0.12),
                           child: Text(
                             _displayName.isNotEmpty ? _displayName[0].toUpperCase() : "U",
-                            style: GoogleFonts.inter(fontSize: 20, fontWeight: FontWeight.w800, color: AppTheme.brandBlue),
+                            style: GoogleFonts.plusJakartaSans(fontSize: 20, fontWeight: FontWeight.w800, color: AppTheme.brandBlue),
                           ),
                         ),
                         const SizedBox(width: 14),
@@ -608,12 +608,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             children: [
                               Text(
                                 _displayName,
-                                style: GoogleFonts.inter(fontSize: 15, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
+                                style: GoogleFonts.plusJakartaSans(fontSize: 15, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
                               ),
                               const SizedBox(height: 2),
                               Text(
                                 _userEmail,
-                                style: GoogleFonts.inter(fontSize: 13, color: AppTheme.textSecondary),
+                                style: GoogleFonts.plusJakartaSans(fontSize: 13, color: AppTheme.textSecondary),
                               ),
                             ],
                           ),
@@ -631,7 +631,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               children: [
                                 Text(
                                   _emailVerified ? "Verified" : "Unverified",
-                                  style: GoogleFonts.inter(
+                                  style: GoogleFonts.plusJakartaSans(
                                     fontSize: 11,
                                     fontWeight: FontWeight.w700,
                                     color: _emailVerified ? const Color(0xFF065F46) : const Color(0xFF92400E),
@@ -651,7 +651,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
                   // Connected Accounts (Section 3 Table)
                   const SizedBox(height: 20),
-                  Text("Connected Accounts", style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w700, color: AppTheme.textSecondary)),
+                  Text("Connected Accounts", style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w700, color: AppTheme.textSecondary)),
                   const SizedBox(height: 8),
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
@@ -666,9 +666,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           children: [
                             const Icon(Icons.apple, size: 22, color: Colors.black),
                             const SizedBox(width: 12),
-                            Text("Sign in with Apple", style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600)),
+                            Text("Sign in with Apple", style: GoogleFonts.plusJakartaSans(fontSize: 14, fontWeight: FontWeight.w600)),
                             const Spacer(),
-                            Text("Supported", style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600, color: const Color(0xFF059669))),
+                            Text("Supported", style: GoogleFonts.plusJakartaSans(fontSize: 12, fontWeight: FontWeight.w600, color: const Color(0xFF059669))),
                           ],
                         ),
                         const Divider(height: 20),
@@ -681,9 +681,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               child: const Center(child: Text("G", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12))),
                             ),
                             const SizedBox(width: 12),
-                            Text("Google Sign-In", style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600)),
+                            Text("Google Sign-In", style: GoogleFonts.plusJakartaSans(fontSize: 14, fontWeight: FontWeight.w600)),
                             const Spacer(),
-                            Text("Supported", style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600, color: const Color(0xFF059669))),
+                            Text("Supported", style: GoogleFonts.plusJakartaSans(fontSize: 12, fontWeight: FontWeight.w600, color: const Color(0xFF059669))),
                           ],
                         ),
                       ],
@@ -691,7 +691,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
 
                   const SizedBox(height: 20),
-                  Text("App Lock & Biometrics", style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w700, color: AppTheme.textSecondary)),
+                  Text("App Lock & Biometrics", style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w700, color: AppTheme.textSecondary)),
                   const SizedBox(height: 8),
 
                   // 2. Lock Timing Setting
@@ -711,7 +711,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               children: [
                                 const Icon(Icons.timer_outlined, size: 20, color: AppTheme.brandBlue),
                                 const SizedBox(width: 10),
-                                Text("Auto-lock Grace Period", style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600)),
+                                Text("Auto-lock Grace Period", style: GoogleFonts.plusJakartaSans(fontSize: 14, fontWeight: FontWeight.w600)),
                               ],
                             ),
                             DropdownButton<int>(
@@ -742,7 +742,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             children: [
                               const Icon(Icons.lock_outline, size: 20, color: AppTheme.brandDark),
                               const SizedBox(width: 10),
-                              Text("Lock Arthentic Now", style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600)),
+                              Text("Lock Arthentic Now", style: GoogleFonts.plusJakartaSans(fontSize: 14, fontWeight: FontWeight.w600)),
                               const Spacer(),
                               const Icon(Icons.chevron_right, size: 18, color: AppTheme.textMuted),
                             ],
@@ -753,7 +753,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
 
                   const SizedBox(height: 20),
-                  Text("Password & Security", style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w700, color: AppTheme.textSecondary)),
+                  Text("Password & Security", style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w700, color: AppTheme.textSecondary)),
                   const SizedBox(height: 8),
 
                   // 3. Security Actions
@@ -768,21 +768,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       children: [
                         ListTile(
                           leading: const Icon(Icons.password_rounded, color: AppTheme.brandBlue),
-                          title: Text("Change Password", style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600)),
+                          title: Text("Change Password", style: GoogleFonts.plusJakartaSans(fontSize: 14, fontWeight: FontWeight.w600)),
                           trailing: const Icon(Icons.chevron_right, size: 18, color: AppTheme.textMuted),
                           onTap: _showChangePasswordDialog,
                         ),
                         const Divider(height: 1),
                         ListTile(
                           leading: const Icon(Icons.history_rounded, color: AppTheme.brandBlue),
-                          title: Text("Security Activity Log", style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600)),
+                          title: Text("Security Activity Log", style: GoogleFonts.plusJakartaSans(fontSize: 14, fontWeight: FontWeight.w600)),
                           trailing: const Icon(Icons.chevron_right, size: 18, color: AppTheme.textMuted),
                           onTap: _showAuditLogSheet,
                         ),
                         const Divider(height: 1),
                         ListTile(
                           leading: const Icon(Icons.privacy_tip_outlined, color: AppTheme.brandBlue),
-                          title: Text("Privacy & Data Policy", style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600)),
+                          title: Text("Privacy & Data Policy", style: GoogleFonts.plusJakartaSans(fontSize: 14, fontWeight: FontWeight.w600)),
                           trailing: const Icon(Icons.chevron_right, size: 18, color: AppTheme.textMuted),
                           onTap: _showPrivacyPolicyModal,
                         ),
@@ -791,7 +791,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
 
                   const SizedBox(height: 20),
-                  Text("Active Devices & Sessions", style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w700, color: AppTheme.textSecondary)),
+                  Text("Active Devices & Sessions", style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w700, color: AppTheme.textSecondary)),
                   const SizedBox(height: 8),
 
                   // 4. Active Sessions List
@@ -803,7 +803,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         borderRadius: BorderRadius.circular(18),
                         border: Border.all(color: AppTheme.borderLight),
                       ),
-                      child: Text("No active sessions found.", style: GoogleFonts.inter(color: AppTheme.textMuted)),
+                      child: Text("No active sessions found.", style: GoogleFonts.plusJakartaSans(color: AppTheme.textMuted)),
                     )
                   else
                     ..._sessions.map((sess) {
@@ -833,7 +833,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     children: [
                                       Text(
                                         sess["device_name"] ?? "Device",
-                                        style: GoogleFonts.inter(fontSize: 13.5, fontWeight: FontWeight.w600),
+                                        style: GoogleFonts.plusJakartaSans(fontSize: 13.5, fontWeight: FontWeight.w600),
                                       ),
                                       if (isCurrent) ...[
                                         const SizedBox(width: 6),
@@ -845,7 +845,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                           ),
                                           child: Text(
                                             "This Device",
-                                            style: GoogleFonts.inter(fontSize: 10, fontWeight: FontWeight.w700, color: AppTheme.brandBlue),
+                                            style: GoogleFonts.plusJakartaSans(fontSize: 10, fontWeight: FontWeight.w700, color: AppTheme.brandBlue),
                                           ),
                                         ),
                                       ],
@@ -854,7 +854,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   const SizedBox(height: 2),
                                   Text(
                                     isActive ? "Active session" : "Revoked session",
-                                    style: GoogleFonts.inter(
+                                    style: GoogleFonts.plusJakartaSans(
                                       fontSize: 12,
                                       color: isActive ? const Color(0xFF059669) : Colors.red.shade700,
                                     ),
@@ -865,7 +865,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             if (!isCurrent && isActive)
                               TextButton(
                                 onPressed: () => _handleRevokeSession(sess["id"]),
-                                child: Text("Revoke", style: GoogleFonts.inter(color: Colors.red.shade700, fontWeight: FontWeight.w600, fontSize: 13)),
+                                child: Text("Revoke", style: GoogleFonts.plusJakartaSans(color: Colors.red.shade700, fontWeight: FontWeight.w600, fontSize: 13)),
                               ),
                           ],
                         ),
@@ -884,7 +884,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         side: const BorderSide(color: AppTheme.borderLight),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                       ),
-                      child: Text("Sign Out", style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
+                      child: Text("Sign Out", style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w600)),
                     ),
                   ),
 
@@ -897,7 +897,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       style: TextButton.styleFrom(
                         foregroundColor: Colors.red.shade700,
                       ),
-                      child: Text("Delete Account", style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
+                      child: Text("Delete Account", style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w600)),
                     ),
                   ),
                   const SizedBox(height: 24),

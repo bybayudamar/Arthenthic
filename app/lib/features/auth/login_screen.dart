@@ -200,7 +200,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         Text(
                           "Reset Password",
-                          style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.w700),
+                          style: GoogleFonts.plusJakartaSans(fontSize: 18, fontWeight: FontWeight.w700),
                         ),
                         IconButton(
                           icon: const Icon(Icons.close, size: 20),
@@ -213,7 +213,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       codeSent
                           ? "Enter the reset code sent to your email and your new password."
                           : "Enter your account email to receive a password reset link and code.",
-                      style: GoogleFonts.inter(fontSize: 13, color: AppTheme.textSecondary),
+                      style: GoogleFonts.plusJakartaSans(fontSize: 13, color: AppTheme.textSecondary),
                     ),
                     if (modalError != null) ...[
                       const SizedBox(height: 12),
@@ -225,7 +225,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         child: Text(
                           modalError!,
-                          style: GoogleFonts.inter(color: Colors.red.shade800, fontSize: 13, fontWeight: FontWeight.w500),
+                          style: GoogleFonts.plusJakartaSans(color: Colors.red.shade800, fontSize: 13, fontWeight: FontWeight.w500),
                         ),
                       ),
                     ],
@@ -239,13 +239,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         child: Text(
                           modalSuccess!,
-                          style: GoogleFonts.inter(color: const Color(0xFF065F46), fontSize: 13, fontWeight: FontWeight.w500),
+                          style: GoogleFonts.plusJakartaSans(color: const Color(0xFF065F46), fontSize: 13, fontWeight: FontWeight.w500),
                         ),
                       ),
                     ],
                     const SizedBox(height: 16),
                     if (!codeSent) ...[
-                      Text("Email Address", style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600)),
+                      Text("Email Address", style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w600)),
                       const SizedBox(height: 6),
                       TextField(
                         key: const Key('forgot_email_field'),
@@ -295,11 +295,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           child: isSubmitting
                               ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2, valueColor: AlwaysStoppedAnimation(Colors.white)))
-                              : Text("Send Reset Code", style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
+                              : Text("Send Reset Code", style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w600)),
                         ),
                       ),
                     ] else ...[
-                      Text("Reset Code", style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600)),
+                      Text("Reset Code", style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w600)),
                       const SizedBox(height: 6),
                       TextField(
                         key: const Key('reset_token_field'),
@@ -313,7 +313,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       const SizedBox(height: 12),
-                      Text("New Password", style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600)),
+                      Text("New Password", style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w600)),
                       const SizedBox(height: 6),
                       TextField(
                         key: const Key('reset_new_password_field'),
@@ -328,7 +328,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       const SizedBox(height: 12),
-                      Text("Confirm New Password", style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600)),
+                      Text("Confirm New Password", style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w600)),
                       const SizedBox(height: 6),
                       TextField(
                         key: const Key('reset_confirm_password_field'),
@@ -392,7 +392,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           child: isSubmitting
                               ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2, valueColor: AlwaysStoppedAnimation(Colors.white)))
-                              : Text("Set New Password", style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
+                              : Text("Set New Password", style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w600)),
                         ),
                       ),
                     ],
@@ -444,7 +444,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Expanded(
                           child: Text(
                             'Session expired. Please sign in again.',
-                            style: GoogleFonts.inter(
+                            style: GoogleFonts.plusJakartaSans(
                               fontSize: 13,
                               fontWeight: FontWeight.w600,
                               color: AppTheme.goldBadgeText,
@@ -457,17 +457,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
                 Text(
                   'Welcome back.',
-                  style: GoogleFonts.newsreader(
+                  style: GoogleFonts.plusJakartaSans(
                     fontSize: 36,
                     fontWeight: FontWeight.w600,
-                    fontStyle: FontStyle.italic,
                     color: AppTheme.textPrimary,
                   ),
                 ),
                 const SizedBox(height: 8),
                 Text(
                   'Sign in to access your registered artworks, verified provenance, and accreditation tools.',
-                  style: GoogleFonts.inter(
+                  style: GoogleFonts.plusJakartaSans(
                     fontSize: 14,
                     color: AppTheme.textSecondary,
                     height: 1.4,
@@ -492,7 +491,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Expanded(
                           child: Text(
                             _errorMessage!,
-                            style: GoogleFonts.inter(
+                            style: GoogleFonts.plusJakartaSans(
                               fontSize: 13,
                               color: const Color(0xFFB91C1C),
                               fontWeight: FontWeight.w500,
@@ -507,7 +506,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 // Email Field
                 Text(
                   'Email',
-                  style: GoogleFonts.inter(
+                  style: GoogleFonts.plusJakartaSans(
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
                     color: AppTheme.textPrimary,
@@ -521,7 +520,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   autocorrect: false,
                   decoration: InputDecoration(
                     hintText: 'artist@arthentic.io',
-                    hintStyle: GoogleFonts.inter(color: AppTheme.textMuted, fontSize: 14),
+                    hintStyle: GoogleFonts.plusJakartaSans(color: AppTheme.textMuted, fontSize: 14),
                     filled: true,
                     fillColor: Colors.white,
                     contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
@@ -544,7 +543,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 // Password Field
                 Text(
                   'Password',
-                  style: GoogleFonts.inter(
+                  style: GoogleFonts.plusJakartaSans(
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
                     color: AppTheme.textPrimary,
@@ -557,7 +556,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   obscureText: _obscurePassword,
                   decoration: InputDecoration(
                     hintText: 'Enter your password',
-                    hintStyle: GoogleFonts.inter(color: AppTheme.textMuted, fontSize: 14),
+                    hintStyle: GoogleFonts.plusJakartaSans(color: AppTheme.textMuted, fontSize: 14),
                     filled: true,
                     fillColor: Colors.white,
                     contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
@@ -598,7 +597,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     child: Text(
                       'Forgot password?',
-                      style: GoogleFonts.inter(
+                      style: GoogleFonts.plusJakartaSans(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
                         color: AppTheme.brandBlue,
@@ -634,7 +633,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           )
                         : Text(
                             'Sign In',
-                            style: GoogleFonts.inter(
+                            style: GoogleFonts.plusJakartaSans(
                               fontSize: 15,
                               fontWeight: FontWeight.w600,
                             ),
@@ -651,7 +650,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Text(
                         'or continue with',
-                        style: GoogleFonts.inter(
+                        style: GoogleFonts.plusJakartaSans(
                           fontSize: 12,
                           color: AppTheme.textSecondary,
                           fontWeight: FontWeight.w500,
@@ -685,7 +684,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         const SizedBox(width: 8),
                         Text(
                           'Sign in with Apple',
-                          style: GoogleFonts.inter(
+                          style: GoogleFonts.plusJakartaSans(
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
                             color: Colors.white,
@@ -737,7 +736,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         const SizedBox(width: 10),
                         Text(
                           'Continue with Google',
-                          style: GoogleFonts.inter(
+                          style: GoogleFonts.plusJakartaSans(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                             color: AppTheme.textPrimary,
@@ -776,7 +775,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         const SizedBox(width: 10),
                         Text(
                           'Continue with MetaMask (SIWE)',
-                          style: GoogleFonts.inter(
+                          style: GoogleFonts.plusJakartaSans(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                             color: const Color(0xFFE65100),
@@ -794,7 +793,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     Text(
                       "Don't have an account? ",
-                      style: GoogleFonts.inter(fontSize: 13, color: AppTheme.textSecondary),
+                      style: GoogleFonts.plusJakartaSans(fontSize: 13, color: AppTheme.textSecondary),
                     ),
                     GestureDetector(
                       onTap: () {
@@ -805,7 +804,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       child: Text(
                         'Create one',
-                        style: GoogleFonts.inter(
+                        style: GoogleFonts.plusJakartaSans(
                           fontSize: 13,
                           fontWeight: FontWeight.w700,
                           color: AppTheme.brandBlue,
@@ -830,7 +829,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                     child: Text(
                       'Continue as guest',
-                      style: GoogleFonts.inter(
+                      style: GoogleFonts.plusJakartaSans(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
                         color: AppTheme.textSecondary,

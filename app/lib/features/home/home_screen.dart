@@ -8,6 +8,7 @@ import '../../services/api_client.dart';
 import '../../services/session_store.dart';
 import '../../services/app_lock_service.dart';
 import '../shared/artistic_background.dart';
+import '../shared/feature_help_dialog.dart';
 import '../scan/scan_screen.dart';
 import '../auth/login_screen.dart';
 import '../settings/settings_screen.dart';
@@ -116,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Text(
                       "Switch Active Role",
-                      style: GoogleFonts.inter(
+                      style: GoogleFonts.plusJakartaSans(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
                         color: AppTheme.textPrimary,
@@ -131,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 8),
                 Text(
                   "Select the role profile you want to operate with on this device.",
-                  style: GoogleFonts.inter(
+                  style: GoogleFonts.plusJakartaSans(
                     fontSize: 13,
                     color: AppTheme.textSecondary,
                   ),
@@ -170,7 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 Text(
                                   role,
-                                  style: GoogleFonts.inter(
+                                  style: GoogleFonts.plusJakartaSans(
                                     fontSize: 15,
                                     fontWeight: isSelected ? FontWeight.w700 : FontWeight.w600,
                                     color: isSelected ? AppTheme.brandBlue : AppTheme.textPrimary,
@@ -178,7 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 Text(
                                   _getRoleDescription(role),
-                                  style: GoogleFonts.inter(
+                                  style: GoogleFonts.plusJakartaSans(
                                     fontSize: 12,
                                     color: AppTheme.textSecondary,
                                   ),
@@ -267,7 +268,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         Text(
                           "Apply for Accreditation",
-                          style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.w700),
+                          style: GoogleFonts.plusJakartaSans(fontSize: 18, fontWeight: FontWeight.w700),
                         ),
                         IconButton(
                           icon: const Icon(Icons.close, size: 20),
@@ -278,10 +279,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(height: 6),
                     Text(
                       "Submit credentials for manual Admin review. In v1, approval grants role access upon token refresh.",
-                      style: GoogleFonts.inter(fontSize: 13, color: AppTheme.textSecondary),
+                      style: GoogleFonts.plusJakartaSans(fontSize: 13, color: AppTheme.textSecondary),
                     ),
                     const SizedBox(height: 18),
-                    Text("Requested Role", style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600)),
+                    Text("Requested Role", style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w600)),
                     const SizedBox(height: 6),
                     DropdownButtonFormField<String>(
                       value: selectedRoleToApply,
@@ -304,13 +305,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                     ),
                     const SizedBox(height: 14),
-                    Text("Portfolio / Website URL", style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600)),
+                    Text("Portfolio / Website URL", style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w600)),
                     const SizedBox(height: 6),
                     TextField(
                       controller: urlController,
                       decoration: InputDecoration(
                         hintText: "https://artist.com or org website",
-                        hintStyle: GoogleFonts.inter(color: AppTheme.textMuted, fontSize: 13),
+                        hintStyle: GoogleFonts.plusJakartaSans(color: AppTheme.textMuted, fontSize: 13),
                         filled: true,
                         fillColor: const Color(0xFFF8FAFC),
                         contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
@@ -321,13 +322,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     const SizedBox(height: 14),
-                    Text("Bio / Organization Affiliation", style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600)),
+                    Text("Bio / Organization Affiliation", style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w600)),
                     const SizedBox(height: 6),
                     TextField(
                       controller: bioController,
                       decoration: InputDecoration(
                         hintText: "Studio name, museum affiliation, or institution",
-                        hintStyle: GoogleFonts.inter(color: AppTheme.textMuted, fontSize: 13),
+                        hintStyle: GoogleFonts.plusJakartaSans(color: AppTheme.textMuted, fontSize: 13),
                         filled: true,
                         fillColor: const Color(0xFFF8FAFC),
                         contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
@@ -338,14 +339,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     const SizedBox(height: 14),
-                    Text("Verification Notes & Credentials", style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600)),
+                    Text("Verification Notes & Credentials", style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w600)),
                     const SizedBox(height: 6),
                     TextField(
                       controller: notesController,
                       maxLines: 2,
                       decoration: InputDecoration(
                         hintText: "Brief summary of credentials or gallery association...",
-                        hintStyle: GoogleFonts.inter(color: AppTheme.textMuted, fontSize: 13),
+                        hintStyle: GoogleFonts.plusJakartaSans(color: AppTheme.textMuted, fontSize: 13),
                         filled: true,
                         fillColor: const Color(0xFFF8FAFC),
                         contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
@@ -383,7 +384,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 hasAttachedDoc
                                     ? "credentials_document.pdf attached"
                                     : "Attach proof of identity or diploma (PDF)",
-                                style: GoogleFonts.inter(
+                                style: GoogleFonts.plusJakartaSans(
                                   fontSize: 13,
                                   color: hasAttachedDoc ? AppTheme.brandBlue : AppTheme.textSecondary,
                                   fontWeight: hasAttachedDoc ? FontWeight.w600 : FontWeight.w500,
@@ -439,7 +440,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           elevation: 0,
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                         ),
-                        child: Text("Submit Application", style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
+                        child: Text("Submit Application", style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w600)),
                       ),
                     ),
                   ],
@@ -477,7 +478,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Review Application", style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.w700)),
+                  Text("Review Application", style: GoogleFonts.plusJakartaSans(fontSize: 18, fontWeight: FontWeight.w700)),
                   IconButton(icon: const Icon(Icons.close, size: 20), onPressed: () => Navigator.pop(ctx)),
                 ],
               ),
@@ -492,24 +493,24 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Applicant: ${app['applicant_email'] ?? app['email']}", style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
+                    Text("Applicant: ${app['applicant_email'] ?? app['email']}", style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w600)),
                     const SizedBox(height: 4),
-                    Text("Requested Role: ${app['requested_role']}", style: GoogleFonts.inter(color: AppTheme.brandBlue, fontWeight: FontWeight.w700)),
+                    Text("Requested Role: ${app['requested_role']}", style: GoogleFonts.plusJakartaSans(color: AppTheme.brandBlue, fontWeight: FontWeight.w700)),
                     if (app['payload']?['notes'] != null) ...[
                       const SizedBox(height: 4),
-                      Text("Notes: ${app['payload']['notes']}", style: GoogleFonts.inter(fontSize: 12, color: AppTheme.textSecondary)),
+                      Text("Notes: ${app['payload']['notes']}", style: GoogleFonts.plusJakartaSans(fontSize: 12, color: AppTheme.textSecondary)),
                     ],
                   ],
                 ),
               ),
               const SizedBox(height: 14),
-              Text("Review Note / Feedback", style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600)),
+              Text("Review Note / Feedback", style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w600)),
               const SizedBox(height: 6),
               TextField(
                 controller: noteController,
                 decoration: InputDecoration(
                   hintText: "Optional feedback for applicant...",
-                  hintStyle: GoogleFonts.inter(color: AppTheme.textMuted, fontSize: 13),
+                  hintStyle: GoogleFonts.plusJakartaSans(color: AppTheme.textMuted, fontSize: 13),
                   filled: true,
                   fillColor: const Color(0xFFF8FAFC),
                   contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
@@ -617,12 +618,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Record Condition Report", style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.w700)),
+                      Text("Record Condition Report", style: GoogleFonts.plusJakartaSans(fontSize: 18, fontWeight: FontWeight.w700)),
                       IconButton(icon: const Icon(Icons.close, size: 20), onPressed: () => Navigator.pop(ctx)),
                     ],
                   ),
                   const SizedBox(height: 14),
-                  Text("Condition Grade", style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600)),
+                  Text("Condition Grade", style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w600)),
                   const SizedBox(height: 6),
                   DropdownButtonFormField<String>(
                     value: grade,
@@ -643,27 +644,27 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   ),
                   const SizedBox(height: 14),
-                  Text("Condition Notes", style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600)),
+                  Text("Condition Notes", style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w600)),
                   const SizedBox(height: 6),
                   TextField(
                     controller: notesController,
                     maxLines: 2,
                     decoration: InputDecoration(
                       hintText: "Surface relief and pigment stability...",
-                      hintStyle: GoogleFonts.inter(color: AppTheme.textMuted, fontSize: 13),
+                      hintStyle: GoogleFonts.plusJakartaSans(color: AppTheme.textMuted, fontSize: 13),
                       filled: true,
                       fillColor: const Color(0xFFF8FAFC),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: AppTheme.borderLight)),
                     ),
                   ),
                   const SizedBox(height: 14),
-                  Text("Treatment Performed", style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600)),
+                  Text("Treatment Performed", style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w600)),
                   const SizedBox(height: 6),
                   TextField(
                     controller: treatmentController,
                     decoration: InputDecoration(
                       hintText: "e.g. Dust removal with micro-suction",
-                      hintStyle: GoogleFonts.inter(color: AppTheme.textMuted, fontSize: 13),
+                      hintStyle: GoogleFonts.plusJakartaSans(color: AppTheme.textMuted, fontSize: 13),
                       filled: true,
                       fillColor: const Color(0xFFF8FAFC),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: AppTheme.borderLight)),
@@ -752,189 +753,214 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  static const FeatureHelpData _homeVerifyHelp = FeatureHelpData(
+    title: "Dual-Layer Artwork Verification",
+    subtitle: "Authenticating physical fine art with LiDAR and NFC tags",
+    icon: Icons.verified_user_rounded,
+    howToUse: [
+      "Tap 'Tap NXP DNA NFC Tag' to inspect the physical hardware security chip embedded in the stretcher frame.",
+      "Tap 'Inspect Surface Micro-Structure' to launch iPhone LiDAR depth scanning.",
+      "Hold the camera 8-15cm away from the canvas impasto and align with the guide frame until locked.",
+      "Review the instant 0.2mm surface relief matching score and Base L2 cryptographic attestation.",
+    ],
+    benefits: [
+      "Guarantees that the physical painting is the exact original created by the artist.",
+      "LiDAR 3D point cloud detects flat paper-print replicas and high-resolution counterfeits.",
+      "NXP SUN CMAC dynamic code changes on every tap, preventing tag cloning.",
+    ],
+    securityGuarantee: "Level 1 SUN CMAC token authentication + Level 2 LiDAR micro-topological surface match.",
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.bgLight,
+      backgroundColor: Colors.white,
       body: ArtisticBackground(
         child: SafeArea(
           bottom: false,
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 12),
-                // Header Row: Brand + Role Pill / Wallet Pill
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 640),
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Arthentic",
-                      style: GoogleFonts.inter(
-                        fontSize: 28,
-                        fontWeight: FontWeight.w800,
-                        letterSpacing: -0.8,
-                        color: AppTheme.textPrimary,
-                      ),
-                    ),
+                    const SizedBox(height: 12),
+                    // Header Row: Brand + Role Pill / Wallet Pill (Airbnb Style)
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        // Multi-role switcher icon
-                        if (!_isGuest && _availableRoles.length > 1) ...[
-                          GestureDetector(
-                            onTap: _showRoleSwitcher,
-                            child: Container(
-                              margin: const EdgeInsets.only(right: 8),
-                              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                              decoration: BoxDecoration(
-                                color: AppTheme.brandBlue.withOpacity(0.1),
-                                borderRadius: BorderRadius.circular(20),
-                                border: Border.all(color: AppTheme.brandBlue.withOpacity(0.3)),
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(_getRoleIcon(_selectedRole), size: 14, color: AppTheme.brandBlue),
-                                  const SizedBox(width: 4),
-                                  const Icon(Icons.unfold_more_rounded, size: 14, color: AppTheme.brandBlue),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                        // Wallet Pill
-                        GestureDetector(
-                          onTap: () => widget.onTabSelected(2),
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(24),
-                              border: Border.all(color: AppTheme.borderLight),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.04),
-                                  blurRadius: 8,
-                                  offset: const Offset(0, 2),
-                                ),
-                              ],
-                            ),
-                            child: Text(
-                              _isGuest ? "Guest" : walletService.shortAddress,
-                              style: GoogleFonts.sourceCodePro(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w600,
-                                color: AppTheme.textPrimary,
-                              ),
-                            ),
+                        Text(
+                          "Arthentic",
+                          style: GoogleFonts.plusJakartaSans(
+                            fontSize: 28,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: -0.8,
+                            color: AppTheme.textPrimary,
                           ),
                         ),
-                        if (!_isGuest) ...[
-                          const SizedBox(width: 8),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (_) => const SettingsScreen()),
-                              );
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                shape: BoxShape.circle,
-                                border: Border.all(color: AppTheme.borderLight),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.04),
-                                    blurRadius: 8,
-                                    offset: const Offset(0, 2),
+                        Row(
+                          children: [
+                            const FeatureHelpButton(
+                              helpData: _homeVerifyHelp,
+                              color: Color(0xFFFF385C), // Airbnb Coral
+                            ),
+                            const SizedBox(width: 8),
+                            // Multi-role switcher icon
+                            if (!_isGuest && _availableRoles.length > 1) ...[
+                              GestureDetector(
+                                onTap: _showRoleSwitcher,
+                                child: Container(
+                                  margin: const EdgeInsets.only(right: 8),
+                                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFFFF385C).withOpacity(0.08),
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(color: const Color(0xFFFF385C).withOpacity(0.2)),
                                   ),
-                                ],
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(_getRoleIcon(_selectedRole), size: 14, color: const Color(0xFFFF385C)),
+                                      const SizedBox(width: 4),
+                                      const Icon(Icons.unfold_more_rounded, size: 14, color: Color(0xFFFF385C)),
+                                    ],
+                                  ),
+                                ),
                               ),
-                              child: const Icon(Icons.settings_outlined, size: 18, color: AppTheme.textPrimary),
+                            ],
+                            // Wallet / Guest Pill (Airbnb Style)
+                            GestureDetector(
+                              onTap: () => widget.onTabSelected(2),
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(24),
+                                  border: Border.all(color: const Color(0xFFE5E7EB)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.04),
+                                      blurRadius: 8,
+                                      offset: const Offset(0, 2),
+                                    ),
+                                  ],
+                                ),
+                                child: Text(
+                                  _isGuest ? "Guest" : walletService.shortAddress,
+                                  style: GoogleFonts.plusJakartaSans(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppTheme.textPrimary,
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                        ],
+                            if (!_isGuest) ...[
+                              const SizedBox(width: 8),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (_) => const SettingsScreen()),
+                                  );
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    shape: BoxShape.circle,
+                                    border: Border.all(color: const Color(0xFFE5E7EB)),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.04),
+                                        blurRadius: 8,
+                                        offset: const Offset(0, 2),
+                                      ),
+                                    ],
+                                  ),
+                                  child: const Icon(Icons.settings_outlined, size: 18, color: AppTheme.textPrimary),
+                                ),
+                              ),
+                            ],
+                          ],
+                        ),
                       ],
                     ),
-                  ],
-                ),
 
-                // Guest Banner
-                if (_isGuest) ...[
-                  const SizedBox(height: 16),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFFEF3C7),
-                      borderRadius: BorderRadius.circular(14),
-                      border: Border.all(color: const Color(0xFFF59E0B).withOpacity(0.4)),
-                    ),
-                    child: Row(
-                      children: [
-                        const Icon(Icons.info_outline, size: 20, color: Color(0xFFB45309)),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Text(
-                            "Sign in to save results and access accredited tools.",
-                            style: GoogleFonts.inter(
-                              fontSize: 12.5,
-                              fontWeight: FontWeight.w600,
-                              color: const Color(0xFF92400E),
-                            ),
-                          ),
+                    // Guest Banner (Airbnb Alert Style)
+                    if (_isGuest) ...[
+                      const SizedBox(height: 16),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFFFFBEB),
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(color: const Color(0xFFFDE68A)),
                         ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (_) => const LoginScreen()),
-                            );
-                          },
-                          style: TextButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                            minimumSize: Size.zero,
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                          ),
-                          child: Text(
-                            "Sign In",
-                            style: GoogleFonts.inter(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w700,
-                              color: AppTheme.brandBlue,
+                        child: Row(
+                          children: [
+                            const Icon(Icons.info_outline_rounded, size: 20, color: Color(0xFFB45309)),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: Text(
+                                "Sign in to save results and access accredited tools.",
+                                style: GoogleFonts.plusJakartaSans(
+                                  fontSize: 12.5,
+                                  fontWeight: FontWeight.w600,
+                                  color: const Color(0xFF92400E),
+                                ),
+                              ),
                             ),
-                          ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (_) => const LoginScreen()),
+                                );
+                              },
+                              style: TextButton.styleFrom(
+                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                minimumSize: Size.zero,
+                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                              ),
+                              child: Text(
+                                "Sign In",
+                                style: GoogleFonts.plusJakartaSans(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w700,
+                                  color: const Color(0xFFFF385C), // Airbnb Coral
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-                ],
+                      ),
+                    ],
 
                 const SizedBox(height: 24),
 
-                // Hero Tagline
+                // Hero Tagline (Airbnb Bold Style)
                 Text(
                   "Every canvas\nhas a fingerprint.",
-                  style: GoogleFonts.newsreader(
-                    fontSize: 40,
+                  style: GoogleFonts.plusJakartaSans(
+                    fontSize: 38,
                     height: 1.1,
-                    fontWeight: FontWeight.w600,
-                    fontStyle: FontStyle.italic,
+                    fontWeight: FontWeight.w700,
                     color: AppTheme.textPrimary,
-                    letterSpacing: -0.5,
+                    letterSpacing: -0.6,
                   ),
                 ),
                 const SizedBox(height: 18),
 
-                // Role Selector Segment (if multiple roles available)
+                // Role Selector Segment (Airbnb Category Pill Style)
                 if (_availableRoles.length > 1) ...[
                   Container(
                     padding: const EdgeInsets.all(4),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFE5E7F0).withOpacity(0.7),
-                      borderRadius: BorderRadius.circular(16),
+                      color: const Color(0xFFF2F4F8),
+                      borderRadius: BorderRadius.circular(30),
                     ),
                     child: Row(
                       children: _availableRoles.map((role) {
@@ -947,12 +973,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               padding: const EdgeInsets.symmetric(vertical: 9),
                               decoration: BoxDecoration(
                                 color: isSelected ? Colors.white : Colors.transparent,
-                                borderRadius: BorderRadius.circular(12),
+                                borderRadius: BorderRadius.circular(24),
                                 boxShadow: isSelected
                                     ? [
                                         BoxShadow(
                                           color: Colors.black.withOpacity(0.06),
-                                          blurRadius: 6,
+                                          blurRadius: 8,
                                           offset: const Offset(0, 2),
                                         ),
                                       ]
@@ -961,10 +987,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Center(
                                 child: Text(
                                   role,
-                                  style: GoogleFonts.inter(
+                                  style: GoogleFonts.plusJakartaSans(
                                     fontSize: 13,
                                     fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
-                                    color: isSelected ? AppTheme.textPrimary : AppTheme.textSecondary,
+                                    color: isSelected ? AppTheme.textPrimary : const Color(0xFF717171),
                                   ),
                                 ),
                               ),
@@ -981,19 +1007,23 @@ class _HomeScreenState extends State<HomeScreen> {
                 _buildArtworkCard(),
                 const SizedBox(height: 16),
 
-                // Primary Action 1: Tap NFC Chip (Available across all roles & guest)
+                // Primary Action 1: Tap NFC Chip (Airbnb Signature Coral Gradient CTA)
                 InkWell(
                   onTap: _isNfcLoading ? null : () => _handleNfcTap(isDebug: false),
                   borderRadius: BorderRadius.circular(20),
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 22),
                     decoration: BoxDecoration(
-                      color: AppTheme.brandBlue,
+                      gradient: const LinearGradient(
+                        colors: [Color(0xFFFF385C), Color(0xFFE00B41)],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
-                          color: AppTheme.brandBlue.withOpacity(0.28),
-                          blurRadius: 16,
+                          color: const Color(0xFFFF385C).withOpacity(0.28),
+                          blurRadius: 18,
                           offset: const Offset(0, 6),
                         ),
                       ],
@@ -1012,7 +1042,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               Text(
                                 "Tap NFC chip",
-                                style: GoogleFonts.inter(
+                                style: GoogleFonts.plusJakartaSans(
                                   fontSize: 17,
                                   fontWeight: FontWeight.w700,
                                   color: Colors.white,
@@ -1021,9 +1051,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               const SizedBox(height: 2),
                               Text(
                                 "Level 1 · chip authenticity",
-                                style: GoogleFonts.inter(
+                                style: GoogleFonts.plusJakartaSans(
                                   fontSize: 13,
-                                  color: Colors.white.withOpacity(0.85),
+                                  color: Colors.white.withOpacity(0.88),
                                 ),
                               ),
                             ],
@@ -1038,7 +1068,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         else
                           Icon(
                             Icons.arrow_forward_ios_rounded,
-                            color: Colors.white.withOpacity(0.7),
+                            color: Colors.white.withOpacity(0.8),
                             size: 16,
                           ),
                       ],
@@ -1088,7 +1118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               Text(
                                 "Scan surface",
-                                style: GoogleFonts.inter(
+                                style: GoogleFonts.plusJakartaSans(
                                   fontSize: 17,
                                   fontWeight: FontWeight.w700,
                                   color: AppTheme.textPrimary,
@@ -1097,7 +1127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               const SizedBox(height: 2),
                               Text(
                                 "Level 2 · camera + LiDAR fingerprint",
-                                style: GoogleFonts.inter(
+                                style: GoogleFonts.plusJakartaSans(
                                   fontSize: 13,
                                   color: AppTheme.textSecondary,
                                 ),
@@ -1157,7 +1187,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               Text(
                                 "Escrow Marketplace (UC-C)",
-                                style: GoogleFonts.inter(
+                                style: GoogleFonts.plusJakartaSans(
                                   fontSize: 14.5,
                                   fontWeight: FontWeight.w700,
                                   color: AppTheme.textPrimary,
@@ -1166,7 +1196,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               const SizedBox(height: 2),
                               Text(
                                 "USDC Permit2 & ETH Escrow · L1+L2 Physical Release · 93.5% / 5% / 1.5% Split",
-                                style: GoogleFonts.inter(
+                                style: GoogleFonts.plusJakartaSans(
                                   fontSize: 12,
                                   color: AppTheme.textSecondary,
                                 ),
@@ -1199,7 +1229,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       child: Text(
                         "Debug: simulate NFC tap",
-                        style: GoogleFonts.inter(
+                        style: GoogleFonts.plusJakartaSans(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
                           color: const Color(0xFF475569),
@@ -1214,7 +1244,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-    );
+    ),
+  ),
+);
   }
 
   /// Builds role-specific home widget tree
@@ -1277,12 +1309,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Text(
                         "${app['requested_role']} Application",
-                        style: GoogleFonts.inter(fontWeight: FontWeight.w700, fontSize: 13),
+                        style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w700, fontSize: 13),
                       ),
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                         decoration: BoxDecoration(color: badgeBg, borderRadius: BorderRadius.circular(10)),
-                        child: Text(label, style: GoogleFonts.inter(fontSize: 11, fontWeight: FontWeight.w700, color: badgeText)),
+                        child: Text(label, style: GoogleFonts.plusJakartaSans(fontSize: 11, fontWeight: FontWeight.w700, color: badgeText)),
                       ),
                     ],
                   ),
@@ -1290,7 +1322,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(height: 6),
                     Text(
                       "Reviewer note: ${app['review_note']}",
-                      style: GoogleFonts.inter(fontSize: 12, color: AppTheme.textSecondary),
+                      style: GoogleFonts.plusJakartaSans(fontSize: 12, color: AppTheme.textSecondary),
                     ),
                   ],
                 ],
@@ -1333,7 +1365,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Text(
                         "Apply for Accreditation",
-                        style: GoogleFonts.inter(
+                        style: GoogleFonts.plusJakartaSans(
                           fontSize: 14,
                           fontWeight: FontWeight.w700,
                           color: AppTheme.textPrimary,
@@ -1342,7 +1374,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       const SizedBox(height: 2),
                       Text(
                         "Unlock Artist, Gallery, or Conservator privileges.",
-                        style: GoogleFonts.inter(
+                        style: GoogleFonts.plusJakartaSans(
                           fontSize: 12,
                           color: AppTheme.textSecondary,
                         ),
@@ -1361,7 +1393,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                   ),
-                  child: Text("Apply", style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600)),
+                  child: Text("Apply", style: GoogleFonts.plusJakartaSans(fontSize: 12, fontWeight: FontWeight.w600)),
                 ),
               ],
             ),
@@ -1407,7 +1439,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     child: Text(
                       "Artist Studio · Accredited",
-                      style: GoogleFonts.inter(
+                      style: GoogleFonts.plusJakartaSans(
                         fontSize: 11,
                         fontWeight: FontWeight.w700,
                         color: AppTheme.bubbleYellow,
@@ -1420,7 +1452,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 12),
               Text(
                 "Register New Artwork",
-                style: GoogleFonts.inter(
+                style: GoogleFonts.plusJakartaSans(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                   color: Colors.white,
@@ -1429,7 +1461,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 4),
               Text(
                 "Enroll physical micro-texture baseline and bind SUN cryptographic NFC chip.",
-                style: GoogleFonts.inter(
+                style: GoogleFonts.plusJakartaSans(
                   fontSize: 13,
                   color: Colors.white.withOpacity(0.8),
                   height: 1.35,
@@ -1450,7 +1482,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   },
                   icon: const Icon(Icons.add_photo_alternate_outlined, size: 18),
-                  label: Text("Start Genesis Capture", style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
+                  label: Text("Start Genesis Capture", style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w600)),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
                     foregroundColor: AppTheme.textPrimary,
@@ -1490,7 +1522,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Text(
                       "Read-Only Verification Queue",
-                      style: GoogleFonts.inter(
+                      style: GoogleFonts.plusJakartaSans(
                         fontSize: 14,
                         fontWeight: FontWeight.w700,
                         color: const Color(0xFF1E40AF),
@@ -1499,7 +1531,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(height: 4),
                     Text(
                       "Mobile is read-only. Multisig on-chain attestations must be signed on the Arthentic Web portal.",
-                      style: GoogleFonts.inter(
+                      style: GoogleFonts.plusJakartaSans(
                         fontSize: 12.5,
                         color: const Color(0xFF1E3A8A),
                         height: 1.35,
@@ -1537,12 +1569,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Text(
                       "Conservation Lab Ready",
-                      style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w700, color: const Color(0xFF065F46)),
+                      style: GoogleFonts.plusJakartaSans(fontSize: 14, fontWeight: FontWeight.w700, color: const Color(0xFF065F46)),
                     ),
                     const SizedBox(height: 2),
                     Text(
                       "Record condition reports & update baselines post-restoration.",
-                      style: GoogleFonts.inter(fontSize: 12.5, color: const Color(0xFF047857)),
+                      style: GoogleFonts.plusJakartaSans(fontSize: 12.5, color: const Color(0xFF047857)),
                     ),
                   ],
                 ),
@@ -1558,7 +1590,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 ),
-                child: Text("Add Report", style: GoogleFonts.inter(fontSize: 11.5, fontWeight: FontWeight.w600)),
+                child: Text("Add Report", style: GoogleFonts.plusJakartaSans(fontSize: 11.5, fontWeight: FontWeight.w600)),
               ),
             ],
           ),
@@ -1589,12 +1621,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Text(
                       "Admin Accreditation Review",
-                      style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w700, color: const Color(0xFF991B1B)),
+                      style: GoogleFonts.plusJakartaSans(fontSize: 14, fontWeight: FontWeight.w700, color: const Color(0xFF991B1B)),
                     ),
                     const SizedBox(height: 2),
                     Text(
                       "Pending applications: ${_adminApplications.length}",
-                      style: GoogleFonts.inter(fontSize: 12.5, color: const Color(0xFFB91C1C)),
+                      style: GoogleFonts.plusJakartaSans(fontSize: 12.5, color: const Color(0xFFB91C1C)),
                     ),
                   ],
                 ),
@@ -1606,7 +1638,7 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(height: 12),
           Text(
             "Review Queue",
-            style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
+            style: GoogleFonts.plusJakartaSans(fontSize: 14, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
           ),
           const SizedBox(height: 8),
           ..._adminApplications.take(4).map((app) {
@@ -1631,7 +1663,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       child: Text(
                         app['requested_role'] ?? 'Role',
-                        style: GoogleFonts.inter(fontSize: 11, fontWeight: FontWeight.w700, color: AppTheme.brandBlue),
+                        style: GoogleFonts.plusJakartaSans(fontSize: 11, fontWeight: FontWeight.w700, color: AppTheme.brandBlue),
                       ),
                     ),
                     const SizedBox(width: 12),
@@ -1641,11 +1673,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Text(
                             app['applicant_email'] ?? 'User',
-                            style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600),
+                            style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w600),
                           ),
                           Text(
                             "Status: ${app['status']}",
-                            style: GoogleFonts.inter(fontSize: 11.5, color: AppTheme.textSecondary),
+                            style: GoogleFonts.plusJakartaSans(fontSize: 11.5, color: AppTheme.textSecondary),
                           ),
                         ],
                       ),
@@ -1667,11 +1699,11 @@ class _HomeScreenState extends State<HomeScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppTheme.borderLight),
+        border: Border.all(color: const Color(0xFFEBEBEB)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.03),
-            blurRadius: 10,
+            color: Colors.black.withOpacity(0.04),
+            blurRadius: 12,
             offset: const Offset(0, 4),
           ),
         ],
@@ -1682,12 +1714,12 @@ class _HomeScreenState extends State<HomeScreen> {
             width: 64,
             height: 64,
             decoration: BoxDecoration(
-              color: const Color(0xFFDDE3F5),
-              borderRadius: BorderRadius.circular(14),
+              color: const Color(0xFFEEF2FF),
+              borderRadius: BorderRadius.circular(16),
             ),
             child: const Icon(
               Icons.palette_outlined,
-              color: AppTheme.brandBlue,
+              color: Color(0xFF4F46E5),
               size: 28,
             ),
           ),
@@ -1696,28 +1728,43 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  _artwork.title,
-                  style: GoogleFonts.inter(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                    color: AppTheme.textPrimary,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        _artwork.title,
+                        style: GoogleFonts.plusJakartaSans(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: AppTheme.textPrimary,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    const Icon(
+                      Icons.favorite_border_rounded,
+                      color: Color(0xFF717171),
+                      size: 20,
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 4),
                 Text(
                   "${_artwork.artist} · Token #${_artwork.tokenId}",
-                  style: GoogleFonts.inter(
+                  style: GoogleFonts.plusJakartaSans(
                     fontSize: 13,
-                    color: AppTheme.textSecondary,
+                    color: const Color(0xFF717171),
                   ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   "Last verified ${_artwork.lastVerified}",
-                  style: GoogleFonts.inter(
+                  style: GoogleFonts.plusJakartaSans(
                     fontSize: 12,
-                    color: AppTheme.textMuted,
+                    fontWeight: FontWeight.w500,
+                    color: const Color(0xFF94A3B8),
                   ),
                 ),
               ],

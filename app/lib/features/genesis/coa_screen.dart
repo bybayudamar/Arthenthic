@@ -76,7 +76,7 @@ class _CertificateOfAuthenticityScreenState extends State<CertificateOfAuthentic
       appBar: AppBar(
         title: Text(
           "Certificate of Authenticity",
-          style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
+          style: GoogleFonts.plusJakartaSans(fontSize: 16, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
         ),
         backgroundColor: Colors.white,
         elevation: 0,
@@ -126,7 +126,7 @@ class _CertificateOfAuthenticityScreenState extends State<CertificateOfAuthentic
                             const SizedBox(height: 14),
                             Text(
                               "ARTHENTIC PROTOCOL",
-                              style: GoogleFonts.inter(
+                              style: GoogleFonts.plusJakartaSans(
                                 fontSize: 11,
                                 fontWeight: FontWeight.w800,
                                 letterSpacing: 2.2,
@@ -136,10 +136,9 @@ class _CertificateOfAuthenticityScreenState extends State<CertificateOfAuthentic
                             const SizedBox(height: 6),
                             Text(
                               "Certificate of Authenticity",
-                              style: GoogleFonts.newsreader(
+                              style: GoogleFonts.plusJakartaSans(
                                 fontSize: 26,
                                 fontWeight: FontWeight.w600,
-                                fontStyle: FontStyle.italic,
                                 color: AppTheme.textPrimary,
                               ),
                             ),
@@ -166,7 +165,7 @@ class _CertificateOfAuthenticityScreenState extends State<CertificateOfAuthentic
                               alignment: Alignment.centerLeft,
                               child: Text(
                                 "Cryptographic Integrity",
-                                style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
+                                style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
                               ),
                             ),
                             const SizedBox(height: 12),
@@ -203,7 +202,7 @@ class _CertificateOfAuthenticityScreenState extends State<CertificateOfAuthentic
                                   Expanded(
                                     child: Text(
                                       _coaData?["verificationStatement"] ?? "Surface profile verified authentic.",
-                                      style: GoogleFonts.inter(fontSize: 11, color: const Color(0xFF065F46), fontWeight: FontWeight.w600),
+                                      style: GoogleFonts.plusJakartaSans(fontSize: 11, color: const Color(0xFF065F46), fontWeight: FontWeight.w600),
                                     ),
                                   ),
                                 ],
@@ -225,7 +224,7 @@ class _CertificateOfAuthenticityScreenState extends State<CertificateOfAuthentic
                             );
                           },
                           icon: const Icon(Icons.open_in_new_rounded, size: 18),
-                          label: Text("View on Basescan Explorer", style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
+                          label: Text("View on Basescan Explorer", style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w600)),
                           style: OutlinedButton.styleFrom(
                             foregroundColor: AppTheme.brandBlue,
                             side: const BorderSide(color: AppTheme.brandBlue),
@@ -248,13 +247,13 @@ class _CertificateOfAuthenticityScreenState extends State<CertificateOfAuthentic
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label, style: GoogleFonts.inter(fontSize: 13, color: AppTheme.textSecondary)),
+          Text(label, style: GoogleFonts.plusJakartaSans(fontSize: 13, color: AppTheme.textSecondary)),
           const SizedBox(width: 12),
           Flexible(
             child: Text(
               value,
               textAlign: TextAlign.right,
-              style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
+              style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
             ),
           ),
         ],
@@ -277,9 +276,9 @@ class _CertificateOfAuthenticityScreenState extends State<CertificateOfAuthentic
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(label, style: GoogleFonts.inter(fontSize: 11, color: AppTheme.textSecondary)),
+                Text(label, style: GoogleFonts.plusJakartaSans(fontSize: 11, color: AppTheme.textSecondary)),
                 const SizedBox(height: 2),
-                Text(displayHash, style: GoogleFonts.sourceCodePro(fontSize: 11, fontWeight: FontWeight.w600, color: AppTheme.textPrimary)),
+                Text(displayHash, style: GoogleFonts.plusJakartaSans(fontSize: 11, fontWeight: FontWeight.w600, color: AppTheme.textPrimary)),
               ],
             ),
           ),

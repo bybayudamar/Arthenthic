@@ -71,11 +71,11 @@ class PaymasterFallbackModal extends StatelessWidget {
                     children: [
                       Text(
                         "Gas Sponsorship Fallback",
-                        style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
+                        style: GoogleFonts.plusJakartaSans(fontSize: 16, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
                       ),
                       Text(
                         "K-04 Self-Pay Modal",
-                        style: GoogleFonts.inter(fontSize: 12, color: AppTheme.textSecondary),
+                        style: GoogleFonts.plusJakartaSans(fontSize: 12, color: AppTheme.textSecondary),
                       ),
                     ],
                   ),
@@ -92,17 +92,17 @@ class PaymasterFallbackModal extends StatelessWidget {
               ),
               child: Text(
                 reason,
-                style: GoogleFonts.inter(fontSize: 12, color: AppTheme.textSecondary, height: 1.4),
+                style: GoogleFonts.plusJakartaSans(fontSize: 12, color: AppTheme.textSecondary, height: 1.4),
               ),
             ),
             const SizedBox(height: 14),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Estimated Base L2 Gas:", style: GoogleFonts.inter(fontSize: 13, color: AppTheme.textSecondary)),
+                Text("Estimated Base L2 Gas:", style: GoogleFonts.plusJakartaSans(fontSize: 13, color: AppTheme.textSecondary)),
                 Text(
                   "~$estimatedGasEth ETH (\$$estimatedGasUsd)",
-                  style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
+                  style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
                 ),
               ],
             ),
@@ -117,7 +117,7 @@ class PaymasterFallbackModal extends StatelessWidget {
                   foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                 ),
-                child: Text("Pay Gas Directly via MetaMask", style: GoogleFonts.inter(fontWeight: FontWeight.w700)),
+                child: Text("Pay Gas Directly via MetaMask", style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w700)),
               ),
             ),
           ],

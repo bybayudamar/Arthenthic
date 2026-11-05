@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'core/theme.dart';
-import 'core/platform_capabilities.dart';
 import 'features/auth/app_lock_gate.dart';
 import 'features/auth/splash_screen.dart';
 import 'features/home/home_screen.dart';
@@ -52,7 +51,7 @@ class ArthenticApp extends StatelessWidget {
       return CertificateOfAuthenticityScreen(tokenId: tokenId);
     }
 
-    // 3. Institutional Web Consoles (Web Portals 1-3)
+    // 3. Institutional Consoles
     if (path.contains('/console/gallery') || path.contains('/gallery')) {
       return const GallerySafeConsole();
     }
@@ -63,12 +62,12 @@ class ArthenticApp extends StatelessWidget {
       return const AdminIncidentConsole();
     }
 
-    // 4. Genesis Intake Wizard (B-01..B-08)
+    // 4. Genesis Intake Wizard
     if (path.contains('/intake') || path.contains('/genesis')) {
       return const GenesisIntakeScreen();
     }
 
-    // 5. Restoration & 3-of-3 Chip Governance (E-01..E-07*, F-05)
+    // 5. Restoration & 3-of-3 Chip Governance
     if (path.contains('/restoration')) {
       final tokenId = uri.queryParameters['tokenId'] ?? '101';
       return RestorationScreen(tokenId: tokenId);
@@ -96,7 +95,7 @@ class ArthenticApp extends StatelessWidget {
     final deepLinked = _resolveDeepLinkWidget(initialRoute) ??
         _resolveDeepLinkWidget(Uri.base.toString());
     return MaterialApp(
-      title: 'Arthentic',
+      title: 'Arthentic Protocol',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       home: home ?? deepLinked ?? const SplashScreen(),
@@ -137,166 +136,150 @@ class _MainTabShellState extends State<MainTabShell> {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final isDesktop = PlatformCapabilities.isDesktopConsole(screenWidth);
-
-    final standardScreens = [
+    // All screens available across both mobile and macOS / desktop
+    final allScreens = [
       HomeScreen(onTabSelected: _onTabSelected),
       const ProvenanceScreen(),
-      const WalletScreen(),
-      const MarketplaceScreen(),
-    ];
-
-    final desktopScreens = [
-      ...standardScreens,
       const GallerySafeConsole(),
       const ConservatorStudioConsole(),
+      const WalletScreen(),
+      const MarketplaceScreen(),
       const AdminIncidentConsole(),
     ];
 
-    if (isDesktop) {
-      // Expanded Desktop / Web Institutional Console View (Part IV, Section 5.2)
-      return AppLockGate(
-        child: Scaffold(
-          body: Row(
-            children: [
-              NavigationRail(
-                selectedIndex: _currentIndex < desktopScreens.length ? _currentIndex : 0,
-                onDestinationSelected: _onTabSelected,
-                labelType: NavigationRailLabelType.all,
-                backgroundColor: Colors.white,
-                selectedIconTheme: const IconThemeData(color: AppTheme.brandBlue),
-                unselectedIconTheme: const IconThemeData(color: Color(0xFF64748B)),
-                selectedLabelTextStyle: GoogleFonts.inter(
-                  fontSize: 11,
-                  fontWeight: FontWeight.w700,
-                  color: AppTheme.brandBlue,
-                ),
-                unselectedLabelTextStyle: GoogleFonts.inter(
-                  fontSize: 11,
-                  fontWeight: FontWeight.w500,
-                  color: const Color(0xFF64748B),
-                ),
-                leading: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  child: Column(
-                    children: [
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          color: AppTheme.brandDark,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: const Icon(Icons.palette_rounded, color: Colors.white, size: 22),
-                      ),
-                      const SizedBox(height: 6),
-                      Text("ARTHENTIC", style: GoogleFonts.inter(fontSize: 9, fontWeight: FontWeight.w800, letterSpacing: 1.2)),
-                    ],
-                  ),
-                ),
-                destinations: const [
-                  NavigationRailDestination(
-                    icon: Icon(Icons.verified_user_outlined),
-                    selectedIcon: Icon(Icons.verified_user_rounded),
-                    label: Text('Verify'),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.access_time_outlined),
-                    selectedIcon: Icon(Icons.access_time_filled),
-                    label: Text('Provenance'),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.account_balance_wallet_outlined),
-                    selectedIcon: Icon(Icons.account_balance_wallet_rounded),
-                    label: Text('Wallet'),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.storefront_outlined),
-                    selectedIcon: Icon(Icons.storefront_rounded),
-                    label: Text('Market'),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.account_balance_outlined),
-                    selectedIcon: Icon(Icons.account_balance_rounded),
-                    label: Text('Gallery Safe'),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.biotech_outlined),
-                    selectedIcon: Icon(Icons.biotech_rounded),
-                    label: Text('Conservator'),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.shield_outlined),
-                    selectedIcon: Icon(Icons.shield_rounded),
-                    label: Text('Governance'),
-                  ),
-                ],
-              ),
-              const VerticalDivider(width: 1, thickness: 1, color: Color(0xFFE2E8F0)),
-              Expanded(
-                child: IndexedStack(
-                  index: _currentIndex < desktopScreens.length ? _currentIndex : 0,
-                  children: desktopScreens,
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-
-    // Compact Mobile View (< 900px) on iOS
+    // Airbnb-style Shell: Navigation is cleanly positioned at the BOTTOM
+    // for both macOS / Desktop and Mobile
     return AppLockGate(
       child: Scaffold(
+        backgroundColor: Colors.white,
         body: IndexedStack(
-          index: _currentIndex < standardScreens.length ? _currentIndex : 0,
-          children: standardScreens,
+          index: _currentIndex < allScreens.length ? _currentIndex : 0,
+          children: allScreens,
         ),
         bottomNavigationBar: Container(
           decoration: BoxDecoration(
             color: Colors.white,
-            border: Border(top: BorderSide(color: AppTheme.borderLight, width: 0.8)),
+            border: const Border(
+              top: BorderSide(color: Color(0xFFEBEBEB), width: 1.0),
+            ),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.02),
-                blurRadius: 8,
-                offset: const Offset(0, -2),
+                color: Colors.black.withValues(alpha: 0.04),
+                blurRadius: 16,
+                offset: const Offset(0, -3),
               ),
             ],
           ),
-          child: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            currentIndex: _currentIndex < standardScreens.length ? _currentIndex : 0,
-            onTap: _onTabSelected,
-            elevation: 0,
-            backgroundColor: Colors.white,
-            selectedItemColor: AppTheme.brandBlue,
-            unselectedItemColor: const Color(0xFF6B7280),
-            selectedLabelStyle: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600),
-            unselectedLabelStyle: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w500),
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.verified_user_outlined),
-                activeIcon: Icon(Icons.verified_user_rounded),
-                label: 'Verify',
+          child: SafeArea(
+            top: false,
+            child: SizedBox(
+              height: 68,
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 860),
+                  child: BottomNavigationBar(
+                    type: BottomNavigationBarType.fixed,
+                    currentIndex: _currentIndex < allScreens.length ? _currentIndex : 0,
+                    onTap: _onTabSelected,
+                    elevation: 0,
+                    backgroundColor: Colors.white,
+                    selectedItemColor: const Color(0xFFFF385C), // Airbnb Coral
+                    unselectedItemColor: const Color(0xFF717171),
+                    selectedFontSize: 10.5,
+                    unselectedFontSize: 10.5,
+                    selectedLabelStyle: GoogleFonts.plusJakartaSans(
+                      fontSize: 10.5,
+                      fontWeight: FontWeight.w700,
+                      color: const Color(0xFFFF385C),
+                    ),
+                    unselectedLabelStyle: GoogleFonts.plusJakartaSans(
+                      fontSize: 10.5,
+                      fontWeight: FontWeight.w500,
+                      color: const Color(0xFF717171),
+                    ),
+                    items: const [
+                      BottomNavigationBarItem(
+                        icon: Padding(
+                          padding: EdgeInsets.only(bottom: 2),
+                          child: Icon(Icons.verified_user_outlined),
+                        ),
+                        activeIcon: Padding(
+                          padding: EdgeInsets.only(bottom: 2),
+                          child: Icon(Icons.verified_user_rounded),
+                        ),
+                        label: 'Verify',
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Padding(
+                          padding: EdgeInsets.only(bottom: 2),
+                          child: Icon(Icons.history_edu_outlined),
+                        ),
+                        activeIcon: Padding(
+                          padding: EdgeInsets.only(bottom: 2),
+                          child: Icon(Icons.history_edu_rounded),
+                        ),
+                        label: 'Provenance',
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Padding(
+                          padding: EdgeInsets.only(bottom: 2),
+                          child: Icon(Icons.account_balance_outlined),
+                        ),
+                        activeIcon: Padding(
+                          padding: EdgeInsets.only(bottom: 2),
+                          child: Icon(Icons.account_balance_rounded),
+                        ),
+                        label: 'Gallery Safe',
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Padding(
+                          padding: EdgeInsets.only(bottom: 2),
+                          child: Icon(Icons.biotech_outlined),
+                        ),
+                        activeIcon: Padding(
+                          padding: EdgeInsets.only(bottom: 2),
+                          child: Icon(Icons.biotech_rounded),
+                        ),
+                        label: 'Conservator',
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Padding(
+                          padding: EdgeInsets.only(bottom: 2),
+                          child: Icon(Icons.account_balance_wallet_outlined),
+                        ),
+                        activeIcon: Padding(
+                          padding: EdgeInsets.only(bottom: 2),
+                          child: Icon(Icons.account_balance_wallet_rounded),
+                        ),
+                        label: 'Wallet',
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Padding(
+                          padding: EdgeInsets.only(bottom: 2),
+                          child: Icon(Icons.storefront_outlined),
+                        ),
+                        activeIcon: Padding(
+                          padding: EdgeInsets.only(bottom: 2),
+                          child: Icon(Icons.storefront_rounded),
+                        ),
+                        label: 'Market',
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Padding(
+                          padding: EdgeInsets.only(bottom: 2),
+                          child: Icon(Icons.shield_outlined),
+                        ),
+                        activeIcon: Padding(
+                          padding: EdgeInsets.only(bottom: 2),
+                          child: Icon(Icons.shield_rounded),
+                        ),
+                        label: 'Governance',
+                      ),
+                    ],
+                  ),
+                ),
               ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.access_time_outlined),
-                activeIcon: Icon(Icons.access_time_filled),
-                label: 'Provenance',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.account_balance_wallet_outlined),
-                activeIcon: Icon(Icons.account_balance_wallet_rounded),
-                label: 'Wallet',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.storefront_outlined),
-                activeIcon: Icon(Icons.storefront_rounded),
-                label: 'Market',
-              ),
-            ],
+            ),
           ),
         ),
       ),

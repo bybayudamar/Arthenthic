@@ -160,23 +160,23 @@ void main() {
           home: GallerySafeConsole(),
         ),
       );
-      expect(find.text('Institutional Verifier Console'), findsOneWidget);
-      expect(find.textContaining('Base Sepolia'), findsWidgets);
+      expect(find.text('Gallery Safe Vault'), findsOneWidget);
+      expect(find.textContaining('Base L2'), findsWidgets);
 
       await tester.pumpWidget(
         const MaterialApp(
           home: ConservatorStudioConsole(),
         ),
       );
-      expect(find.text('Conservation Studio Workspace'), findsOneWidget);
+      expect(find.text('Conservator Studio'), findsOneWidget);
 
       await tester.pumpWidget(
         const MaterialApp(
           home: AdminIncidentConsole(),
         ),
       );
-      expect(find.text('Security Incident & Governance Console'), findsOneWidget);
-      expect(find.text('Emergency Pause (J-01)'), findsOneWidget);
+      expect(find.text('Protocol Governance'), findsOneWidget);
+      expect(find.text('Circuit Breaker (J-01)'), findsOneWidget);
     });
 
     test('CoreNFC SDM Writer Bridge (B-05) provisions NTAG 424 DNA SDM URL template and AES-128 key slot', () async {
@@ -249,7 +249,7 @@ void main() {
         ),
       );
       await tester.pump();
-      expect(find.text('Institutional Verifier Console'), findsOneWidget);
+      expect(find.text('Gallery Safe Vault'), findsOneWidget);
 
       await tester.pumpWidget(
         const ArthenticApp(
@@ -257,7 +257,7 @@ void main() {
         ),
       );
       await tester.pump();
-      expect(find.text('Conservation Studio Workspace'), findsOneWidget);
+      expect(find.text('Conservator Studio'), findsOneWidget);
 
       await tester.pumpWidget(
         const ArthenticApp(
@@ -265,10 +265,10 @@ void main() {
         ),
       );
       await tester.pump();
-      expect(find.text('Security Incident & Governance Console'), findsOneWidget);
+      expect(find.text('Protocol Governance'), findsOneWidget);
     });
 
-    testWidgets('Milestone 4 Responsive Shell switches between Mobile BottomNav (<900px) and Desktop NavigationRail (>=900px)', (tester) async {
+    testWidgets('Milestone 4 Airbnb-style Bottom Navigation Dock renders on desktop and mobile', (tester) async {
       tester.view.physicalSize = const Size(1440, 900);
       tester.view.devicePixelRatio = 1.0;
       addTearDown(() {
@@ -282,7 +282,8 @@ void main() {
         ),
       );
       await tester.pump();
-      expect(find.byType(NavigationRail), findsOneWidget);
+      expect(find.byType(BottomNavigationBar), findsOneWidget);
+      expect(find.text('Verify'), findsOneWidget);
       expect(find.text('Gallery Safe'), findsOneWidget);
       expect(find.text('Conservator'), findsOneWidget);
       expect(find.text('Governance'), findsOneWidget);

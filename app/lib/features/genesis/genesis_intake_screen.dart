@@ -183,7 +183,7 @@ class _GenesisIntakeScreenState extends State<GenesisIntakeScreen> {
         elevation: 0,
         title: Text(
           '3-Stage Genesis Intake (UC-B)',
-          style: GoogleFonts.newsreader(
+          style: GoogleFonts.plusJakartaSans(
             fontWeight: FontWeight.w700,
             fontSize: 20,
             color: AppTheme.textPrimary,
@@ -208,7 +208,7 @@ class _GenesisIntakeScreenState extends State<GenesisIntakeScreen> {
                 Expanded(
                   child: Text(
                     '${ArthenticContractConfig.baseSepoliaNetworkName} · ArthenticNFT: ${ArthenticContractConfig.shortAddress(ArthenticContractConfig.arthenticNftAddress)}',
-                    style: GoogleFonts.inter(
+                    style: GoogleFonts.plusJakartaSans(
                       fontSize: 11,
                       fontWeight: FontWeight.w600,
                       color: AppTheme.brandBlue,
@@ -231,7 +231,7 @@ class _GenesisIntakeScreenState extends State<GenesisIntakeScreen> {
               ),
               child: Text(
                 _statusMessage!,
-                style: GoogleFonts.inter(
+                style: GoogleFonts.plusJakartaSans(
                   color: AppTheme.goldBadgeText,
                   fontSize: 13,
                   fontWeight: FontWeight.w600,
@@ -278,7 +278,7 @@ class _GenesisIntakeScreenState extends State<GenesisIntakeScreen> {
             child: Text(
               stages[i],
               textAlign: TextAlign.center,
-              style: GoogleFonts.inter(
+              style: GoogleFonts.plusJakartaSans(
                 color: active
                     ? AppTheme.brandBlue
                     : done
@@ -307,7 +307,7 @@ class _GenesisIntakeScreenState extends State<GenesisIntakeScreen> {
         children: [
           Text(
             'Stage 1: Gallery Intake Dossier & NTAG 424 DNA Binding',
-            style: GoogleFonts.inter(
+            style: GoogleFonts.plusJakartaSans(
               color: AppTheme.textPrimary,
               fontSize: 16,
               fontWeight: FontWeight.w700,
@@ -351,7 +351,7 @@ class _GenesisIntakeScreenState extends State<GenesisIntakeScreen> {
         children: [
           Text(
             'Stage 2: Mandatory Artist EIP-712 Co-Signature (ADR-02 / B-07)',
-            style: GoogleFonts.inter(
+            style: GoogleFonts.plusJakartaSans(
               color: AppTheme.textPrimary,
               fontSize: 16,
               fontWeight: FontWeight.w700,
@@ -362,7 +362,7 @@ class _GenesisIntakeScreenState extends State<GenesisIntakeScreen> {
             'Dossier ID: ${_activeDossier?['id'] ?? 'dos-109'}\n'
             'Metadata URI: ${_activeDossier?['metadata_uri'] ?? 'ar://...'}\n'
             'Royalty Allocation: 5.0% ERC-2981 Perpetual Artist Royalty',
-            style: GoogleFonts.inter(color: AppTheme.textSecondary, height: 1.5),
+            style: GoogleFonts.plusJakartaSans(color: AppTheme.textSecondary, height: 1.5),
           ),
           const SizedBox(height: 16),
           SizedBox(
@@ -391,7 +391,7 @@ class _GenesisIntakeScreenState extends State<GenesisIntakeScreen> {
         children: [
           Text(
             'Stage 3: Gallery Safe Genesis Mint (B-08) & Public CoA (B-12)',
-            style: GoogleFonts.inter(
+            style: GoogleFonts.plusJakartaSans(
               color: AppTheme.textPrimary,
               fontSize: 16,
               fontWeight: FontWeight.w700,
@@ -401,7 +401,7 @@ class _GenesisIntakeScreenState extends State<GenesisIntakeScreen> {
           Text(
             'Both Gallery intake and Artist EIP-712 co-signature are complete. '
             'Execute ArthenticNFT.genesisMint() via the Gallery Gnosis Safe.',
-            style: GoogleFonts.inter(color: AppTheme.textSecondary, height: 1.4),
+            style: GoogleFonts.plusJakartaSans(color: AppTheme.textSecondary, height: 1.4),
           ),
           const SizedBox(height: 16),
           SizedBox(

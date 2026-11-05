@@ -84,7 +84,7 @@ class StatusBadgeWidget extends StatelessWidget {
             const SizedBox(width: 4),
             Text(
               label,
-              style: GoogleFonts.inter(
+              style: GoogleFonts.plusJakartaSans(
                 fontSize: 10,
                 fontWeight: FontWeight.w700,
                 color: text,
@@ -101,7 +101,7 @@ class StatusBadgeWidget extends StatelessWidget {
                 ),
                 child: Text(
                   'TAMPER',
-                  style: GoogleFonts.inter(
+                  style: GoogleFonts.plusJakartaSans(
                     fontSize: 8,
                     fontWeight: FontWeight.w800,
                     color: Colors.white,
@@ -128,7 +128,7 @@ class StatusBadgeWidget extends StatelessWidget {
           const SizedBox(width: 6),
           Text(
             label,
-            style: GoogleFonts.inter(
+            style: GoogleFonts.plusJakartaSans(
               fontSize: 12,
               fontWeight: FontWeight.w700,
               color: text,
@@ -145,7 +145,7 @@ class StatusBadgeWidget extends StatelessWidget {
               ),
               child: Text(
                 'TAMPER DETECTED',
-                style: GoogleFonts.inter(
+                style: GoogleFonts.plusJakartaSans(
                   fontSize: 10,
                   fontWeight: FontWeight.w800,
                   color: Colors.white,
@@ -232,7 +232,7 @@ class StatusWarningBanner extends StatelessWidget {
           Expanded(
             child: Text(
               message,
-              style: GoogleFonts.inter(
+              style: GoogleFonts.plusJakartaSans(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
                 color: text,

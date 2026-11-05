@@ -138,7 +138,7 @@ class _PinPadBottomSheetState extends State<PinPadBottomSheet> with SingleTicker
             const SizedBox(height: 12),
             Text(
               'Enter Passcode',
-              style: GoogleFonts.newsreader(
+              style: GoogleFonts.plusJakartaSans(
                 fontSize: 24,
                 fontWeight: FontWeight.w600,
                 color: AppTheme.textPrimary,
@@ -147,7 +147,7 @@ class _PinPadBottomSheetState extends State<PinPadBottomSheet> with SingleTicker
             const SizedBox(height: 6),
             Text(
               'Enter your 4-digit security PIN',
-              style: GoogleFonts.inter(
+              style: GoogleFonts.plusJakartaSans(
                 fontSize: 13,
                 color: AppTheme.textSecondary,
               ),
@@ -191,7 +191,7 @@ class _PinPadBottomSheetState extends State<PinPadBottomSheet> with SingleTicker
                 padding: const EdgeInsets.only(bottom: 12),
                 child: Text(
                   _errorMessage!,
-                  style: GoogleFonts.inter(
+                  style: GoogleFonts.plusJakartaSans(
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
                     color: const Color(0xFFDC2626),
@@ -263,7 +263,7 @@ class _PinPadBottomSheetState extends State<PinPadBottomSheet> with SingleTicker
         child: Center(
           child: Text(
             digit,
-            style: GoogleFonts.inter(
+            style: GoogleFonts.plusJakartaSans(
               fontSize: 22,
               fontWeight: FontWeight.w600,
               color: AppTheme.textPrimary,

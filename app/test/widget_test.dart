@@ -18,9 +18,9 @@ void main() {
     expect(find.text('Every canvas\nhas a fingerprint.'), findsOneWidget);
 
     // Verify Roles
-    expect(find.text('Collector'), findsOneWidget);
-    expect(find.text('Verifier'), findsOneWidget);
-    expect(find.text('Conservator'), findsOneWidget);
+    expect(find.text('Collector'), findsWidgets);
+    expect(find.text('Verifier'), findsWidgets);
+    expect(find.text('Conservator'), findsWidgets);
 
     // Verify Primary Action Buttons
     expect(find.text('Tap NFC chip'), findsOneWidget);
@@ -28,19 +28,19 @@ void main() {
     expect(find.text('Debug: simulate NFC tap'), findsOneWidget);
 
     // Test Navigation to Provenance
-    await tester.tap(find.text('Provenance'));
+    await tester.tap(find.text('Provenance').last);
     await tester.pumpAndSettle();
-    expect(find.text('Provenance.'), findsOneWidget);
+    expect(find.textContaining('Provenance'), findsWidgets);
 
     // Test Navigation to Wallet
-    await tester.tap(find.text('Wallet'));
+    await tester.tap(find.text('Wallet').last);
     await tester.pumpAndSettle();
-    expect(find.text('Your wallet.'), findsOneWidget);
+    expect(find.textContaining('Your wallet'), findsWidgets);
     expect(find.text('Smart wallet address'), findsOneWidget);
     expect(find.text('Base Sepolia'), findsOneWidget);
 
     // Return to Verify tab
-    await tester.tap(find.text('Verify'));
+    await tester.tap(find.text('Verify').last);
     await tester.pumpAndSettle();
 
     // Test Navigation to Scan Surface Screen

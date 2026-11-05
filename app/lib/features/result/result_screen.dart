@@ -91,10 +91,9 @@ class _ResultScreenState extends State<ResultScreen> {
                 // Headline (Serif Italic)
                 Text(
                   isAuthentic ? "Authentic." : "Not Authentic.",
-                  style: GoogleFonts.newsreader(
+                  style: GoogleFonts.plusJakartaSans(
                     fontSize: 42,
                     fontWeight: FontWeight.w600,
-                    fontStyle: FontStyle.italic,
                     color: AppTheme.textPrimary,
                   ),
                 ),
@@ -136,7 +135,7 @@ class _ResultScreenState extends State<ResultScreen> {
                             ),
                             Text(
                               "$scorePct%",
-                              style: GoogleFonts.inter(
+                              style: GoogleFonts.plusJakartaSans(
                                 fontSize: 24,
                                 fontWeight: FontWeight.w800,
                                 color: AppTheme.textPrimary,
@@ -159,7 +158,7 @@ class _ResultScreenState extends State<ResultScreen> {
                               ),
                               child: Text(
                                 isAuthentic ? "Authentic" : "Unverified",
-                                style: GoogleFonts.inter(
+                                style: GoogleFonts.plusJakartaSans(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w700,
                                   color: isAuthentic ? AppTheme.goldBadgeText : const Color(0xFFB91C1C),
@@ -169,7 +168,7 @@ class _ResultScreenState extends State<ResultScreen> {
                             const SizedBox(height: 8),
                             Text(
                               "Threshold $thresholdPct%",
-                              style: GoogleFonts.inter(
+                              style: GoogleFonts.plusJakartaSans(
                                 fontSize: 14,
                                 color: AppTheme.textSecondary,
                               ),
@@ -177,7 +176,7 @@ class _ResultScreenState extends State<ResultScreen> {
                             const SizedBox(height: 2),
                             Text(
                               "Sample data",
-                              style: GoogleFonts.inter(
+                              style: GoogleFonts.plusJakartaSans(
                                 fontSize: 13,
                                 color: AppTheme.textMuted,
                               ),
@@ -247,7 +246,7 @@ class _ResultScreenState extends State<ResultScreen> {
                     children: [
                       Text(
                         "Signed attestation",
-                        style: GoogleFonts.inter(
+                        style: GoogleFonts.plusJakartaSans(
                           fontSize: 13,
                           color: AppTheme.textSecondary,
                         ),
@@ -255,7 +254,7 @@ class _ResultScreenState extends State<ResultScreen> {
                       const SizedBox(height: 4),
                       Text(
                         "0x9c41…e07a · expires in $_formattedTime",
-                        style: GoogleFonts.sourceCodePro(
+                        style: GoogleFonts.plusJakartaSans(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
                           color: AppTheme.textPrimary,
@@ -282,7 +281,7 @@ class _ResultScreenState extends State<ResultScreen> {
                     ),
                     child: Text(
                       _isRecordedOnChain ? "Recorded on-chain ✓" : "Record on-chain",
-                      style: GoogleFonts.inter(
+                      style: GoogleFonts.plusJakartaSans(
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
                         color: Colors.white,
@@ -298,7 +297,7 @@ class _ResultScreenState extends State<ResultScreen> {
                     onPressed: () => Navigator.of(context).pop(),
                     child: Text(
                       "Scan again",
-                      style: GoogleFonts.inter(
+                      style: GoogleFonts.plusJakartaSans(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                         color: AppTheme.textPrimary,
@@ -323,14 +322,14 @@ class _ResultScreenState extends State<ResultScreen> {
         children: [
           Text(
             label,
-            style: GoogleFonts.inter(
+            style: GoogleFonts.plusJakartaSans(
               fontSize: 15,
               color: AppTheme.textPrimary,
             ),
           ),
           Text(
             value,
-            style: GoogleFonts.inter(
+            style: GoogleFonts.plusJakartaSans(
               fontSize: 15,
               fontWeight: FontWeight.w600,
               color: AppTheme.textPrimary,

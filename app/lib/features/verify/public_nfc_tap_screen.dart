@@ -85,7 +85,7 @@ class _PublicNfcTapScreenState extends State<PublicNfcTapScreen> {
         elevation: 0,
         title: Text(
           'Public NFC Tap Verification (D-14*)',
-          style: GoogleFonts.inter(
+          style: GoogleFonts.plusJakartaSans(
             fontSize: 16,
             fontWeight: FontWeight.w700,
             color: AppTheme.textPrimary,
@@ -112,7 +112,7 @@ class _PublicNfcTapScreenState extends State<PublicNfcTapScreen> {
                         children: [
                           Text(
                             'NTAG 424 DNA SUN Tag',
-                            style: GoogleFonts.inter(
+                            style: GoogleFonts.plusJakartaSans(
                               fontSize: 13,
                               fontWeight: FontWeight.w700,
                               color: AppTheme.brandBlue,
@@ -124,7 +124,7 @@ class _PublicNfcTapScreenState extends State<PublicNfcTapScreen> {
                       const SizedBox(height: 12),
                       Text(
                         _result?['title']?.toString() ?? 'Study in Blue and Gold',
-                        style: GoogleFonts.newsreader(
+                        style: GoogleFonts.plusJakartaSans(
                           fontSize: 22,
                           fontWeight: FontWeight.w700,
                           color: AppTheme.textPrimary,
@@ -133,7 +133,7 @@ class _PublicNfcTapScreenState extends State<PublicNfcTapScreen> {
                       const SizedBox(height: 4),
                       Text(
                         'Artist: ${_result?['artist'] ?? 'Elena Vance'}',
-                        style: GoogleFonts.inter(
+                        style: GoogleFonts.plusJakartaSans(
                           fontSize: 13,
                           color: AppTheme.textSecondary,
                         ),
@@ -143,7 +143,7 @@ class _PublicNfcTapScreenState extends State<PublicNfcTapScreen> {
                         'Chip UID: ${widget.uid}\n'
                         'Monotonic Counter: #${widget.ctr}\n'
                         'AES-128 CMAC: ${widget.cmac}',
-                        style: GoogleFonts.sourceCodePro(
+                        style: GoogleFonts.plusJakartaSans(
                           fontSize: 12,
                           color: AppTheme.textPrimary,
                           height: 1.5,

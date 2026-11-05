@@ -65,6 +65,12 @@ app.include_router(conservation_router)
 os.makedirs("server/static/uploads", exist_ok=True)
 app.mount("/static", StaticFiles(directory="server/static"), name="static")
 
+# Mount standalone Web Landing Page (/learn-arthentic)
+landing_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "learn-arthentic"))
+if os.path.exists(landing_dir):
+    app.mount("/learn-arthentic", StaticFiles(directory=landing_dir, html=True), name="learn-arthentic")
+
+
 @app.get("/")
 def root():
     return {"status": "ok", "service": "Arthentic Backend", "version": "1.0.0"}

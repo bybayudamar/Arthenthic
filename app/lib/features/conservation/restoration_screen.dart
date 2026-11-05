@@ -94,7 +94,7 @@ class _RestorationScreenState extends State<RestorationScreen> with SingleTicker
       appBar: AppBar(
         title: Text(
           "Restoration & Chip Governance",
-          style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
+          style: GoogleFonts.plusJakartaSans(fontSize: 16, fontWeight: FontWeight.w700, color: AppTheme.textPrimary),
         ),
         backgroundColor: Colors.white,
         elevation: 0,
@@ -109,8 +109,8 @@ class _RestorationScreenState extends State<RestorationScreen> with SingleTicker
           unselectedLabelColor: AppTheme.textSecondary,
           indicatorColor: AppTheme.brandBlue,
           indicatorWeight: 2.5,
-          labelStyle: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w700),
-          unselectedLabelStyle: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w500),
+          labelStyle: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w700),
+          unselectedLabelStyle: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: FontWeight.w500),
           tabs: const [
             Tab(text: "Restoration (E-01..07)"),
             Tab(text: "Chip Swap (F-05 3-of-3)"),
@@ -127,9 +127,9 @@ class _RestorationScreenState extends State<RestorationScreen> with SingleTicker
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Restoration Lifecycle", style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.w800, color: AppTheme.textPrimary)),
+                  Text("Restoration Lifecycle", style: GoogleFonts.plusJakartaSans(fontSize: 18, fontWeight: FontWeight.w800, color: AppTheme.textPrimary)),
                   const SizedBox(height: 6),
-                  Text("Request repairs, review treatment dossiers, and sign EIP-712 owner consent (ADR-03).", style: GoogleFonts.inter(fontSize: 13, color: AppTheme.textSecondary)),
+                  Text("Request repairs, review treatment dossiers, and sign EIP-712 owner consent (ADR-03).", style: GoogleFonts.plusJakartaSans(fontSize: 13, color: AppTheme.textSecondary)),
                   const SizedBox(height: 20),
 
                   // Request Box
@@ -143,14 +143,14 @@ class _RestorationScreenState extends State<RestorationScreen> with SingleTicker
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("E-01: Create Restoration Request", style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w700)),
+                        Text("E-01: Create Restoration Request", style: GoogleFonts.plusJakartaSans(fontSize: 14, fontWeight: FontWeight.w700)),
                         const SizedBox(height: 12),
                         TextField(
                           controller: _damageController,
                           maxLines: 3,
                           decoration: InputDecoration(
                             hintText: "Describe physical canvas wear, craquelure, or pigment fading...",
-                            hintStyle: GoogleFonts.inter(fontSize: 13, color: AppTheme.textMuted),
+                            hintStyle: GoogleFonts.plusJakartaSans(fontSize: 13, color: AppTheme.textMuted),
                             filled: true,
                             fillColor: const Color(0xFFF8FAFC),
                             border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: AppTheme.borderLight)),
@@ -167,7 +167,7 @@ class _RestorationScreenState extends State<RestorationScreen> with SingleTicker
                               foregroundColor: Colors.white,
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                             ),
-                            child: Text("Submit Request to Conservator", style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
+                            child: Text("Submit Request to Conservator", style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w600)),
                           ),
                         ),
                       ],
@@ -191,13 +191,13 @@ class _RestorationScreenState extends State<RestorationScreen> with SingleTicker
                           children: [
                             const Icon(Icons.security_rounded, color: AppTheme.brandBlue, size: 20),
                             const SizedBox(width: 8),
-                            Text("E-07* / ADR-03: Collector Consent Gate", style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w700, color: AppTheme.brandBlue)),
+                            Text("E-07* / ADR-03: Collector Consent Gate", style: GoogleFonts.plusJakartaSans(fontSize: 14, fontWeight: FontWeight.w700, color: AppTheme.brandBlue)),
                           ],
                         ),
                         const SizedBox(height: 8),
                         Text(
                           "Conservators cannot mutate condition baselines on Base L2 without on-chain signature verification of the current NFT owner (ADR-03).",
-                          style: GoogleFonts.inter(fontSize: 12, color: const Color(0xFF1E3A8A)),
+                          style: GoogleFonts.plusJakartaSans(fontSize: 12, color: const Color(0xFF1E3A8A)),
                         ),
                         const SizedBox(height: 14),
                         SizedBox(
@@ -206,7 +206,7 @@ class _RestorationScreenState extends State<RestorationScreen> with SingleTicker
                           child: ElevatedButton.icon(
                             onPressed: _signOwnerConsent,
                             icon: const Icon(Icons.gesture_rounded, size: 18),
-                            label: Text("Sign Owner Consent (MetaMask)", style: GoogleFonts.inter(fontWeight: FontWeight.w600)),
+                            label: Text("Sign Owner Consent (MetaMask)", style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w600)),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppTheme.brandBlue,
                               foregroundColor: Colors.white,
@@ -227,9 +227,9 @@ class _RestorationScreenState extends State<RestorationScreen> with SingleTicker
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("F-05: 3-of-3 Chip Replacement", style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.w800, color: AppTheme.textPrimary)),
+                  Text("F-05: 3-of-3 Chip Replacement", style: GoogleFonts.plusJakartaSans(fontSize: 18, fontWeight: FontWeight.w800, color: AppTheme.textPrimary)),
                   const SizedBox(height: 6),
-                  Text("When a physical NFC tag is damaged, 3 distinct actors must co-sign to bind a new chip.", style: GoogleFonts.inter(fontSize: 13, color: AppTheme.textSecondary)),
+                  Text("When a physical NFC tag is damaged, 3 distinct actors must co-sign to bind a new chip.", style: GoogleFonts.plusJakartaSans(fontSize: 13, color: AppTheme.textSecondary)),
                   const SizedBox(height: 20),
 
                   Container(
@@ -245,7 +245,7 @@ class _RestorationScreenState extends State<RestorationScreen> with SingleTicker
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("Approval Progress", style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w700)),
+                            Text("Approval Progress", style: GoogleFonts.plusJakartaSans(fontSize: 14, fontWeight: FontWeight.w700)),
                             Container(
                               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                               decoration: BoxDecoration(
@@ -254,7 +254,7 @@ class _RestorationScreenState extends State<RestorationScreen> with SingleTicker
                               ),
                               child: Text(
                                 _chipStatus,
-                                style: GoogleFonts.inter(
+                                style: GoogleFonts.plusJakartaSans(
                                   fontSize: 11,
                                   fontWeight: FontWeight.w700,
                                   color: _collectedSignatures == 3 ? const Color(0xFF065F46) : const Color(0xFF92400E),
@@ -276,7 +276,7 @@ class _RestorationScreenState extends State<RestorationScreen> with SingleTicker
                             icon: const Icon(Icons.fingerprint_rounded, size: 20),
                             label: Text(
                               _collectedSignatures == 3 ? "All Approvals Recorded ✓" : "Sign Approval as Next Actor",
-                              style: GoogleFonts.inter(fontWeight: FontWeight.w600),
+                              style: GoogleFonts.plusJakartaSans(fontWeight: FontWeight.w600),
                             ),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppTheme.brandBlue,
@@ -316,7 +316,7 @@ class _RestorationScreenState extends State<RestorationScreen> with SingleTicker
             ),
           ),
           const SizedBox(width: 12),
-          Text(title, style: GoogleFonts.inter(fontSize: 13, fontWeight: isDone ? FontWeight.w700 : FontWeight.w500)),
+          Text(title, style: GoogleFonts.plusJakartaSans(fontSize: 13, fontWeight: isDone ? FontWeight.w700 : FontWeight.w500)),
         ],
       ),
     );
