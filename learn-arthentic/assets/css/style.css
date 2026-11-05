@@ -2271,21 +2271,21 @@ html[data-theme="dark"] .wp-top-nav {
 
 .wp-layout-container {
   display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 48px;
-  padding-top: 40px;
+  grid-template-columns: 320px 1fr;
+  gap: 40px;
+  padding-top: 32px;
   padding-bottom: 80px;
-  max-width: 1280px;
+  max-width: var(--max-w);
   margin: 0 auto;
 }
 
 /* Sticky Sidebar Table of Contents */
 .wp-sidebar {
   position: sticky;
-  top: 80px;
-  height: calc(100vh - 100px);
+  top: 136px;
+  height: calc(100vh - 160px);
   overflow-y: auto;
-  padding-right: 16px;
+  padding-right: 12px;
   scrollbar-width: thin;
 }
 
@@ -2364,7 +2364,7 @@ html[data-theme="dark"] .wp-top-nav {
 
 /* Whitepaper Article Content */
 .wp-article {
-  max-width: 860px;
+  max-width: 100%;
   min-width: 0;
 }
 
@@ -3003,4 +3003,172 @@ body.tokenomics-page .tko-analogy-title,
 body.tokenomics-page .nav-brand span {
   font-family: var(--font-sans) !important;
 }
+
+/* ==========================================================================
+   22. MODERN DOCUMENT SUBNAV & READING PROGRESS (WHITEPAPER & TOKENOMICS)
+   ========================================================================== */
+.reading-progress-track {
+  position: fixed;
+  top: 72px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(0, 0, 0, 0.04);
+  z-index: 999;
+  pointer-events: none;
+}
+
+html[data-theme="dark"] .reading-progress-track {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.reading-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--red-500) 0%, #F59E0B 50%, #10B981 100%);
+  box-shadow: 0 0 10px rgba(225, 29, 46, 0.4);
+  transition: width 0.08s linear;
+}
+
+.doc-subnav {
+  position: sticky;
+  top: 72px;
+  z-index: 900;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  padding: 10px 0;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+html[data-theme="dark"] .doc-subnav {
+  background: rgba(14, 17, 23, 0.85);
+}
+
+.doc-subnav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.doc-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8125rem;
+  color: var(--text-2);
+}
+
+.doc-breadcrumb a {
+  color: var(--text-1);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.doc-breadcrumb a:hover {
+  color: var(--red-500);
+}
+
+.doc-breadcrumb span.active {
+  color: var(--text-0);
+  font-weight: 700;
+}
+
+.doc-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.doc-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  color: var(--ok);
+  font-family: var(--font-mono);
+}
+
+.doc-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  color: var(--text-1);
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.doc-action-btn:hover {
+  color: var(--red-500);
+  border-color: var(--red-500);
+  background: var(--bg-2);
+  transform: translateY(-1px);
+}
+
+.live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ok);
+  display: inline-block;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: liveDotPulse 2s infinite;
+}
+
+@keyframes liveDotPulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* Modernized TOC Search */
+.wp-toc-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  margin-bottom: 12px;
+  transition: border-color 0.2s ease;
+}
+
+.wp-toc-search:focus-within {
+  border-color: var(--red-500);
+}
+
+.wp-toc-search input {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 0.75rem;
+  color: var(--text-0);
+  width: 100%;
+}
+
+.wp-toc-search svg {
+  color: var(--text-2);
+  flex-shrink: 0;
+}
+
+/* Enhanced Hero Glow & Modern Touch */
+.tko-hero-banner, .wp-meta-banner {
+  background: radial-gradient(circle at 90% 10%, rgba(225, 29, 46, 0.05), transparent 400px), var(--bg-1);
+}
+
 
