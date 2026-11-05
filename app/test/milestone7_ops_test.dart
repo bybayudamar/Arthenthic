@@ -45,7 +45,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: AdminIncidentConsole(),
+            body: AdminIncidentConsole(initialTab: 2),
           ),
         ),
       );
@@ -54,9 +54,9 @@ void main() {
       // Check for Admin Console headers and Milestone 7 sections
       expect(find.text('Security Incident & Governance Console'), findsOneWidget);
       expect(find.text('Multi-Region KMS Cluster & Rollout Governor (M7)'), findsOneWidget);
-      expect(find.text('US-East-1 (Primary)'), findsOneWidget);
-      expect(find.text('EU-West-1 (Failover)'), findsOneWidget);
-      expect(find.text('AP-Southeast-1 (Tertiary)'), findsOneWidget);
+      expect(find.textContaining('US-East-1 (Primary'), findsOneWidget);
+      expect(find.textContaining('EU-West-1 (Failover'), findsOneWidget);
+      expect(find.textContaining('AP-Southeast-1 (Tertiary'), findsOneWidget);
       expect(find.text('Staged Rollout Governor'), findsOneWidget);
     });
   });

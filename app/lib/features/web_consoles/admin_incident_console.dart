@@ -9,16 +9,23 @@ import '../shared/feature_help_dialog.dart';
 /// Node key rotation (A-09), and Paymaster balance monitor (K-03).
 /// Fully responsive for mobile and desktop screens.
 class AdminIncidentConsole extends StatefulWidget {
-  const AdminIncidentConsole({super.key});
+  final int initialTab;
+  const AdminIncidentConsole({super.key, this.initialTab = 0});
 
   @override
   State<AdminIncidentConsole> createState() => _AdminIncidentConsoleState();
 }
 
 class _AdminIncidentConsoleState extends State<AdminIncidentConsole> {
-  int _selectedTab = 0; // 0: Incidents, 1: Circuit Breaker, 2: KMS Cluster, 3: Paymaster
+  late int _selectedTab;
   bool _isPaused = false;
   bool _isRolloutPaused = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedTab = widget.initialTab;
+  }
 
   static const FeatureHelpData _governanceHelp = FeatureHelpData(
     title: "Protocol Security & Incident Governance",
@@ -81,9 +88,17 @@ class _AdminIncidentConsoleState extends State<AdminIncidentConsole> {
                             Text(
                               "Protocol Governance",
                               style: GoogleFonts.plusJakartaSans(
-                                fontSize: 17,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w800,
                                 color: AppTheme.textPrimary,
+                              ),
+                            ),
+                            Text(
+                              "Security Incident & Governance Console",
+                              style: GoogleFonts.plusJakartaSans(
+                                fontSize: 11,
+                                fontWeight: FontWeight.w600,
+                                color: AppTheme.textSecondary,
                               ),
                             ),
                             Row(
@@ -480,7 +495,7 @@ class _AdminIncidentConsoleState extends State<AdminIncidentConsole> {
             children: [
               Expanded(
                 child: Text(
-                  "Multi-Region KMS Cluster & Governor (M7)",
+                  "Multi-Region KMS Cluster & Rollout Governor (M7)",
                   style: GoogleFonts.plusJakartaSans(
                     fontSize: 15,
                     fontWeight: FontWeight.w800,

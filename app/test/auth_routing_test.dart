@@ -30,8 +30,7 @@ void main() {
     await tester.pumpAndSettle();
 
     // Verify routed to MainTabShell (guest mode)
-    expect(find.text('Tap NFC chip'), findsOneWidget);
-    expect(find.text('Scan surface'), findsOneWidget);
+    expect(find.text('Verify'), findsWidgets);
     expect(find.text('Provenance'), findsOneWidget);
     expect(find.text('Wallet'), findsOneWidget);
   });

@@ -146,7 +146,7 @@ class WelcomeScreen extends StatelessWidget {
                       shadowColor: AppTheme.goldenGateOrange.withValues(alpha: 0.3),
                     ),
                     child: Text(
-                      'Sign In to Protocol',
+                      'Sign In',
                       style: GoogleFonts.plusJakartaSans(
                         fontSize: 15,
                         fontWeight: FontWeight.w700,
@@ -175,7 +175,7 @@ class WelcomeScreen extends StatelessWidget {
                       ),
                     ),
                     child: Text(
-                      'Apply for Accreditation',
+                      'Create Account',
                       style: GoogleFonts.plusJakartaSans(
                         fontSize: 14.5,
                         fontWeight: FontWeight.w700,
@@ -196,7 +196,7 @@ class WelcomeScreen extends StatelessWidget {
                       );
                     },
                     child: Text(
-                      'Continue as Public Explorer',
+                      'Continue as guest',
                       style: GoogleFonts.plusJakartaSans(
                         fontSize: 13,
                         fontWeight: FontWeight.w700,

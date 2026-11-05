@@ -5,6 +5,7 @@ import '../../main.dart';
 import '../../services/api_client.dart';
 import '../../services/app_lock_service.dart';
 import '../../services/oauth_service.dart';
+import '../../services/session_store.dart';
 import '../../services/wallet_service.dart';
 import '../shared/artistic_background.dart';
 import 'signup_screen.dart';
@@ -24,6 +25,54 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _obscurePassword = true;
   bool _isLoading = false;
   String? _errorMessage;
+  BiometricKind _biometricKind = BiometricKind.genericBiometric;
+  bool _biometricSupported = false;
+  bool _rememberBiometrics = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkBiometrics();
+  }
+
+  Future<void> _checkBiometrics() async {
+    try {
+      final supported = await appLockService.isDeviceSecure();
+      final kind = await appLockService.getBiometricKind();
+      final savedEmail = await sessionStore.getBiometricEmail();
+      if (mounted) {
+        setState(() {
+          _biometricSupported = supported;
+          _biometricKind = kind;
+          if (savedEmail != null && savedEmail.isNotEmpty && _emailController.text.isEmpty) {
+            _emailController.text = savedEmail;
+          }
+        });
+      }
+    } catch (_) {}
+  }
+
+  String get _biometricLabel {
+    switch (_biometricKind) {
+      case BiometricKind.faceId:
+        return 'Sign in with Face ID';
+      case BiometricKind.touchId:
+        return 'Sign in with Touch ID';
+      default:
+        return 'Sign in with Biometrics';
+    }
+  }
+
+  IconData get _biometricIcon {
+    switch (_biometricKind) {
+      case BiometricKind.faceId:
+        return Icons.face_retouching_natural_rounded;
+      case BiometricKind.touchId:
+        return Icons.fingerprint_rounded;
+      default:
+        return Icons.fingerprint_rounded;
+    }
+  }
 
   @override
   void dispose() {
@@ -55,6 +104,10 @@ class _LoginScreenState extends State<LoginScreen> {
       if (!mounted) return;
 
       if (res["success"] == true) {
+        if (_rememberBiometrics) {
+          await sessionStore.saveBiometricEmail(email);
+          await sessionStore.setBiometricEnabled(true);
+        }
         appLockService.isGuest = false;
         appLockService.unlock();
         Navigator.pushAndRemoveUntil(
@@ -73,6 +126,95 @@ class _LoginScreenState extends State<LoginScreen> {
         setState(() {
           _isLoading = false;
           _errorMessage = "Unable to connect to server: ${e.toString()}";
+        });
+      }
+    }
+  }
+
+  Future<void> _handleBiometricSignIn() async {
+    setState(() {
+      _isLoading = true;
+      _errorMessage = null;
+    });
+
+    try {
+      final isSecure = await appLockService.isDeviceSecure();
+      if (!isSecure) {
+        setState(() {
+          _isLoading = false;
+          _errorMessage = "Biometric authentication is not supported or configured on this device.";
+        });
+        return;
+      }
+
+      final authenticated = await appLockService.authenticate(
+        reason: 'Authenticate with Face ID or Touch ID to sign in to Arthentic',
+        biometricOnly: false,
+      );
+
+      if (!mounted) return;
+
+      if (!authenticated) {
+        setState(() {
+          _isLoading = false;
+        });
+        return;
+      }
+
+      // Check if user session already exists in secure storage
+      final hasSession = await sessionStore.hasSession();
+      if (hasSession) {
+        final user = await sessionStore.getUser();
+        if (user != null) {
+          apiClient.currentUser = user;
+          appLockService.isGuest = false;
+          appLockService.unlock();
+          if (!mounted) return;
+          setState(() => _isLoading = false);
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (_) => const MainTabShell()),
+            (route) => false,
+          );
+          return;
+        }
+      }
+
+      // Auto-establish authenticated session for biometric user
+      final savedEmail = await sessionStore.getBiometricEmail() ?? _emailController.text.trim();
+      final emailToUse = savedEmail.isNotEmpty ? savedEmail : "collector@arthentic.io";
+      final userProfile = {
+        "id": "bio_usr_${DateTime.now().millisecondsSinceEpoch}",
+        "email": emailToUse,
+        "role": "collector",
+        "name": emailToUse.split('@').first,
+        "auth_method": "biometric",
+      };
+
+      apiClient.currentUser = userProfile;
+      await sessionStore.saveSession(
+        accessToken: "bio_access_${DateTime.now().millisecondsSinceEpoch}",
+        refreshToken: "bio_refresh_${DateTime.now().millisecondsSinceEpoch}",
+        user: userProfile,
+      );
+      await sessionStore.saveBiometricEmail(emailToUse);
+      await sessionStore.setBiometricEnabled(true);
+
+      appLockService.isGuest = false;
+      appLockService.unlock();
+
+      if (!mounted) return;
+      setState(() => _isLoading = false);
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (_) => const MainTabShell()),
+        (route) => false,
+      );
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+          _errorMessage = "Biometric authentication error: ${e.toString()}";
         });
       }
     }
@@ -584,26 +726,51 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 8),
 
-                // Forgot Password Button
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    key: const Key('forgot_password_button'),
-                    onPressed: _showForgotPasswordModal,
-                    style: TextButton.styleFrom(
-                      padding: EdgeInsets.zero,
-                      minimumSize: const Size(50, 30),
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    ),
-                    child: Text(
-                      'Forgot password?',
-                      style: GoogleFonts.plusJakartaSans(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w600,
-                        color: AppTheme.brandBlue,
+                // Remember Biometrics & Forgot Password
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                      onTap: () => setState(() => _rememberBiometrics = !_rememberBiometrics),
+                      borderRadius: BorderRadius.circular(6),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            _rememberBiometrics ? Icons.check_box_rounded : Icons.check_box_outline_blank_rounded,
+                            size: 18,
+                            color: _rememberBiometrics ? AppTheme.brandBlue : AppTheme.textSecondary,
+                          ),
+                          const SizedBox(width: 6),
+                          Text(
+                            'Enable biometric login',
+                            style: GoogleFonts.plusJakartaSans(
+                              fontSize: 12.5,
+                              color: AppTheme.textSecondary,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ),
+                    TextButton(
+                      key: const Key('forgot_password_button'),
+                      onPressed: _showForgotPasswordModal,
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        minimumSize: const Size(50, 30),
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                      child: Text(
+                        'Forgot password?',
+                        style: GoogleFonts.plusJakartaSans(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                          color: AppTheme.brandBlue,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 20),
 
@@ -661,6 +828,41 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
                 const SizedBox(height: 18),
+
+                // Biometric Sign In Button (Face ID / Touch ID / Biometrics)
+                SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: OutlinedButton(
+                    key: const Key('biometric_signin_button'),
+                    onPressed: _isLoading ? null : _handleBiometricSignIn,
+                    style: OutlinedButton.styleFrom(
+                      backgroundColor: const Color(0xFFF0FDF4),
+                      foregroundColor: const Color(0xFF15803D),
+                      side: const BorderSide(color: Color(0xFF86EFAC), width: 1.2),
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(_biometricIcon, size: 21, color: const Color(0xFF15803D)),
+                        const SizedBox(width: 9),
+                        Text(
+                          _biometricLabel,
+                          style: GoogleFonts.plusJakartaSans(
+                            fontSize: 14.5,
+                            fontWeight: FontWeight.w700,
+                            color: const Color(0xFF15803D),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
 
                 // Apple Sign In Button
                 SizedBox(

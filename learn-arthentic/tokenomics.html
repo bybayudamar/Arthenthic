@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tokenomics ATHN · Arthentic Protocol</title>
+  <meta name="description" content="Penjelasan interaktif dan komprehensif mengenai tokenomics Arthentic (ATHN): utilitas staking, distribusi 1 miliar token, jadwal vesting, dan simulasi pembakaran.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Chart.js for Interactive Visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="wp-body tokenomics-page">
+
+  <!-- ==========================================================================
+       TOP NAVIGATION
+       ========================================================================== -->
+  <header class="wp-top-nav">
+    <div class="container wp-nav-inner">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <a href="index.html" class="nav-brand" aria-label="Arthentic Beranda">
+          <div class="brand-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2L2 12l10 10 10-10L12 2zm0 4.5l6.5 6.5-6.5 6.5L5.5 13 12 6.5z"/>
+            </svg>
+          </div>
+          <span>ARTHENTIC</span>
+        </a>
+        <span class="wp-nav-title">/ TOKENOMICS (ATHN)</span>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <a href="index.html" class="wp-back-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          <span>Kembali ke Beranda</span>
+        </a>
+
+        <a href="whitepaper.html" class="wp-back-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+          <span>Whitepaper Teknis</span>
+        </a>
+
+        <button type="button" class="wp-back-btn" onclick="window.print()" title="Cetak atau Simpan sebagai PDF">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 6 2 18 2 18 9"/>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+            <rect x="6" y="14" width="12" height="8"/>
+          </svg>
+          <span>Cetak</span>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button class="theme-toggle-btn" id="wp-theme-toggle" aria-label="Ganti Tema">
+          <svg width="18" height="18" viewBox="0 0 24 24" id="theme-toggle-icon">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       MAIN CONTENT
+       ========================================================================== -->
+  <main class="container" style="padding-top: 40px; padding-bottom: 80px;">
+
+    <!-- Hero Banner -->
+    <div class="tko-hero-banner">
+      <div class="wp-doc-type">
+        <span>● BLUEPRINT EKONOMI PROTOKOL · BASE L2 ERC-20</span>
+      </div>
+      <h1 class="wp-title" style="margin-bottom: 12px;">Tokenomics Arthentic (ATHN)</h1>
+      <p class="wp-subtitle" style="max-width: 1100px; margin-bottom: 0;">
+        Penjelasan lengkap, transparan, dan interaktif mengenai token utilitas <strong>ATHN</strong>. Didesain secara akademis untuk mengikat kejujuran verifikator seni, memberi insentif pada penjaga jaringan, dan menjamin hak cipta seniman di seluruh dunia tanpa membebani pengguna biasa.
+      </p>
+
+      <!-- 6 Key Stat Cards -->
+      <div class="tko-stat-grid">
+        <div class="tko-stat-card">
+          <div class="tko-stat-lbl">Total Pasokan (Fixed)</div>
+          <div class="tko-stat-val" style="color: var(--red-500);">1.000.000.000</div>
+          <div class="tko-stat-sub">1 Miliar ATHN (Tanpa Minting Baru)</div>
+        </div>
+
+        <div class="tko-stat-card">
+          <div class="tko-stat-lbl">Jaringan & Standar</div>
+          <div class="tko-stat-val">Base (L2)</div>
+          <div class="tko-stat-sub">ERC-20, ERC20Permit, Votes</div>
+        </div>
+
+        <div class="tko-stat-card">
+          <div class="tko-stat-lbl">Beredar di TGE (Bulan 0)</div>
+          <div class="tko-stat-val">~5%</div>
+          <div class="tko-stat-sub">50 Juta ATHN (Likuiditas Awal)</div>
+        </div>
+
+        <div class="tko-stat-card">
+          <div class="tko-stat-lbl">Diskon Biaya Protokol</div>
+          <div class="tko-stat-val" style="color: var(--ok);">20% OFF</div>
+          <div class="tko-stat-sub">Saat bayar verifikasi dengan ATHN</div>
+        </div>
+
+        <div class="tko-stat-card">
+          <div class="tko-stat-lbl">Alokasi Pembakaran (Burn)</div>
+          <div class="tko-stat-val" style="color: #F59E0B;">30% Fee</div>
+          <div class="tko-stat-sub">Dihancurkan permanen (Deflasi)</div>
+        </div>
+
+        <div class="tko-stat-card">
+          <div class="tko-stat-lbl">Syarat untuk Seniman</div>
+          <div class="tko-stat-val" style="color: var(--ok);">0 Token</div>
+          <div class="tko-stat-sub">Tidak wajib beli atau pegang ATHN</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         SECTION 1: FONDASI & ARSITEKTUR UTILITAS TOKEN ATHN
+         ====================================================================== -->
+    <section class="wp-section" style="margin-top: 48px;">
+      <div class="wp-section-header">
+        <span class="wp-section-num">1.0</span>
+        <h2 class="wp-section-title">Fondasi & Arsitektur Utilitas Token ATHN</h2>
+      </div>
+
+      <p style="font-size: 1.05rem; line-height: 1.8;">
+        Token <strong>ATHN</strong> dirancang sebagai instrumen ekonomi protokol (game theory) untuk mengikat integritas verifikator seni, memberi insentif kepada penjaga infrastruktur jaringan, dan mendukung keberlanjutan ekosistem desentralisasi. Pertanyaan kuncinya: <em>Bagaimana protokol memastikan tidak ada pihak yang dapat memalsukan data fisik maupun memanipulasi sertifikat digital?</em> Berikut 6 pilar utilitas utama token ATHN:
+      </p>
+
+      <div class="tko-analogy-grid">
+        <!-- Analogi 1 -->
+        <div class="tko-analogy-card">
+          <div class="tko-analogy-header">
+            <div class="tko-analogy-icon" style="background: rgba(225, 29, 46, 0.1); color: var(--red-500);">
+              🏢
+            </div>
+            <div>
+              <h3 class="tko-analogy-title">Agunan Integritas & Anti-Pemalsuan</h3>
+              <span class="tko-analogy-tag" style="background: rgba(225, 29, 46, 0.1); color: var(--red-500);">Staking & Slashing</span>
+            </div>
+          </div>
+          <p class="tko-analogy-story">
+            Galeri seni dan entitas verifikator wajib mendepositkan token ATHN sebagai agunan sebelum memperoleh hak menerbitkan sertifikat keaslian. Jika verifikasi berjalan jujur, agunan tetap utuh dan menghasilkan imbal hasil. Namun bila terbukti menerbitkan data tiruan, agunan mereka <strong>disita secara permanen (*slashed*)</strong> oleh protokol.
+          </p>
+          <div class="tko-analogy-punchline">
+            🎯 Menciptakan penalti finansial langsung sehingga verifikator memiliki risiko nyata bila tidak jujur.
+          </div>
+        </div>
+
+        <!-- Analogi 2 -->
+        <div class="tko-analogy-card">
+          <div class="tko-analogy-header">
+            <div class="tko-analogy-icon" style="background: rgba(16, 185, 129, 0.1); color: var(--ok);">
+              💻
+            </div>
+            <div>
+              <h3 class="tko-analogy-title">Insentif Operator Node Validator</h3>
+              <span class="tko-analogy-tag" style="background: rgba(16, 185, 129, 0.1); color: var(--ok);">Node Operator Rewards</span>
+            </div>
+          </div>
+          <p class="tko-analogy-story">
+            Server independen (*Node Validator k-of-n*) bertugas memverifikasi tanda tangan kriptografis chip NFC dan ekstraksi serat kanvas selama 24 jam nonstop. Token ATHN didistribusikan sebagai imbal jasa atas ketersediaan komputasi, bandwidth, dan keamanan gerbang data.
+          </p>
+          <div class="tko-analogy-punchline">
+            🎯 Menjaga integritas jaringan tetap mandiri tanpa bergantung pada server tunggal yang rentan diretas.
+          </div>
+        </div>
+
+        <!-- Analogi 3 -->
+        <div class="tko-analogy-card">
+          <div class="tko-analogy-header">
+            <div class="tko-analogy-icon" style="background: rgba(245, 158, 11, 0.1); color: #F59E0B);">
+              🎟️
+            </div>
+            <div>
+              <h3 class="tko-analogy-title">Diskon Tarif Layanan Protokol</h3>
+              <span class="tko-analogy-tag" style="background: rgba(245, 158, 11, 0.1); color: #F59E0B);">Fee Reduction Utility</span>
+            </div>
+          </div>
+          <p class="tko-analogy-story">
+            Institusi seni, balai lelang, dan kurator yang menggunakan ATHN untuk melunasi biaya pendaftaran karya atau verifikasi berkala secara otomatis memperoleh <strong>potongan biaya langsung sebesar 20%</strong> dibanding pembayaran menggunakan mata uang standar.
+          </p>
+          <div class="tko-analogy-punchline">
+            🎯 Memberikan utilitas ekonomis riil dan efisiensi biaya operasional bagi pengguna korporat bervolume tinggi.
+          </div>
+        </div>
+
+        <!-- Analogi 4 -->
+        <div class="tko-analogy-card">
+          <div class="tko-analogy-header">
+            <div class="tko-analogy-icon" style="background: rgba(59, 130, 246, 0.1); color: #3B82F6);">
+              🗳️
+            </div>
+            <div>
+              <h3 class="tko-analogy-title">Hak Suara & Tata Kelola On-Chain</h3>
+              <span class="tko-analogy-tag" style="background: rgba(59, 130, 246, 0.1); color: #3B82F6);">Governance (ERC20Votes)</span>
+            </div>
+          </div>
+          <p class="tko-analogy-story">
+            Pemegang token ATHN memiliki hak pemungutan suara (*voting power*) untuk menentukan arah kebijakan protokol: pembaruan smart contract, persetujuan standar sensor mikroskopis baru, penyesuaian ambang batas kemiripan, hingga penyaluran dana hibah seniman.
+          </p>
+          <div class="tko-analogy-punchline">
+            🎯 Menjamin evolusi protokol dikendalikan secara transparan dan demokratis melalui konsensus komunitas.
+          </div>
+        </div>
+
+        <!-- Analogi 5 -->
+        <div class="tko-analogy-card">
+          <div class="tko-analogy-header">
+            <div class="tko-analogy-icon" style="background: rgba(236, 72, 153, 0.1); color: #EC4899);">
+              🔥
+            </div>
+            <div>
+              <h3 class="tko-analogy-title">Mekanisme Pembakaran Deflasioner</h3>
+              <span class="tko-analogy-tag" style="background: rgba(236, 72, 153, 0.1); color: #EC4899);">Deflationary Burn</span>
+            </div>
+          </div>
+          <p class="tko-analogy-story">
+            Dari setiap biaya verifikasi dan layanan yang dibayarkan ke protokol, <strong>30% dari token ATHN tersebut langsung dimusnahkan (*burned*)</strong> ke alamat mati secara permanen. Pasokan beredar berkurang seiring dengan meningkatnya aktivitas di ekosistem.
+          </p>
+          <div class="tko-analogy-punchline">
+            🎯 Total pasokan maksimum 1 miliar token akan terus menyusut secara berkelanjutan seiring volume penggunaan.
+          </div>
+        </div>
+
+        <!-- Analogi 6 (Paling Penting) -->
+        <div class="tko-analogy-card" style="border: 2px solid var(--ok); background: rgba(16, 185, 129, 0.03);">
+          <div class="tko-analogy-header">
+            <div class="tko-analogy-icon" style="background: rgba(16, 185, 129, 0.2); color: var(--ok);">
+              🎨
+            </div>
+            <div>
+              <h3 class="tko-analogy-title" style="color: var(--ok);">Akses Inklusif: Nol Beban Bagi Kreator & Publik</h3>
+              <span class="tko-analogy-tag" style="background: var(--ok); color: #fff;">Zero Requirement</span>
+            </div>
+          </div>
+          <p class="tko-analogy-story">
+            Pengguna akhir tidak dibebani kerumitan aset kripto. <strong>Seniman, kolektor individu, dan penikmat seni TIDAK DIWAJIBKAN membeli atau memiliki token ATHN</strong> untuk memverifikasi atau mendaftarkan karyanya. Seluruh biaya gas awal disponsori melalui Paymaster ERC-4337.
+          </p>
+          <div class="tko-analogy-punchline" style="color: var(--ok);">
+            ✅ Layanan berjalan mulus dengan login biometrik (Face ID/Touch ID) tanpa hambatan friksi Web3.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 2: GRAFIK INTERAKTIF DISTRIBUSI & VESTING
+         ====================================================================== -->
+    <section class="wp-section" style="margin-top: 56px;">
+      <div class="wp-section-header">
+        <span class="wp-section-num">2.0</span>
+        <h2 class="wp-section-title">Distribusi 1 Miliar Token & Jadwal Rilis (Vesting) 📊</h2>
+      </div>
+
+      <p>
+        Total pasokan token ATHN dikunci tetap sebesar <strong>1.000.000.000 (1 Miliar)</strong> tanpa ada fungsi minting tambahan setelah peluncuran. Alokasi didesain untuk jangka panjang (hingga 60 bulan / 5 tahun) guna mencegah aksi jual masif (*dumping*).
+      </p>
+
+      <div class="tko-charts-grid">
+        <!-- Chart 1: Doughnut Alokasi -->
+        <div class="tko-chart-box">
+          <div class="tko-chart-header">
+            <div>
+              <h3 class="tko-chart-title">Alokasi Token ATHN (100%)</h3>
+              <div class="tko-chart-desc">Arahkan kursor atau sentuh diagram untuk melihat rincian alokasi</div>
+            </div>
+            <span class="trust-badge" style="margin-top:0;">1 Miliar ATHN</span>
+          </div>
+
+          <div class="tko-canvas-container">
+            <canvas id="chart-allocation"></canvas>
+          </div>
+        </div>
+
+        <!-- Chart 2: Kurva Pasokan Beredar (Vesting Timeline) -->
+        <div class="tko-chart-box">
+          <div class="tko-chart-header">
+            <div>
+              <h3 class="tko-chart-title">Estimasi Pasokan Beredar (Bulan 0 s/d 60)</h3>
+              <div class="tko-chart-desc">Kurva pembukaan token bertahap (*cliff & linear release*)</div>
+            </div>
+            <span class="trust-badge" style="margin-top:0; color: var(--ok);">Anti-Dumping Lock</span>
+          </div>
+
+          <div class="tko-canvas-container">
+            <canvas id="chart-vesting"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabel Rincian Alokasi & Jadwal Vesting -->
+      <div class="wp-table-wrapper" style="margin-top: 24px;">
+        <table class="wp-table">
+          <thead>
+            <tr>
+              <th>Kelompok Penerima</th>
+              <th>Porsi (%)</th>
+              <th>Jumlah (ATHN)</th>
+              <th>Jadwal Vesting</th>
+              <th>Tujuan & Alasan Alokasi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Ekosistem & Insentif</strong></td>
+              <td><span style="color: #3B82F6; font-weight: 700;">30%</span></td>
+              <td>300.000.000</td>
+              <td>Linier 48 bulan sejak TGE</td>
+              <td>Hibah pilot museum, program kemitraan galeri global, integrasi seniman.</td>
+            </tr>
+            <tr>
+              <td><strong>Cadangan Staking & Keamanan</strong></td>
+              <td><span style="color: #10B981; font-weight: 700;">15%</span></td>
+              <td>150.000.000</td>
+              <td>Linier 60 bulan (5 tahun)</td>
+              <td>Imbalan jangka panjang untuk operator Node k-of-n dan staker penjaga jaringan.</td>
+            </tr>
+            <tr>
+              <td><strong>Kas Protokol (Treasury / DAO)</strong></td>
+              <td><span style="color: #F59E0B; font-weight: 700;">15%</span></td>
+              <td>150.000.000</td>
+              <td>Cliff 12 bulan, lalu linier 36 bulan</td>
+              <td>Operasional protokol, audit keamanan smart contract, dan bug bounty.</td>
+            </tr>
+            <tr>
+              <td><strong>Tim Pendiri (Founding Team)</strong></td>
+              <td><span style="color: #E11D2E; font-weight: 700;">15%</span></td>
+              <td>150.000.000</td>
+              <td>Cliff 12 bulan, lalu linier 36 bulan</td>
+              <td>Penyelarasan komitmen jangka panjang tim inti (terkunci rapat di tahun pertama).</td>
+            </tr>
+            <tr>
+              <td><strong>Investor Strategis</strong></td>
+              <td><span style="color: #8B5CF6; font-weight: 700;">10%</span></td>
+              <td>100.000.000</td>
+              <td>Cliff 6 bulan, lalu linier 24 bulan</td>
+              <td>Dibuka hanya setelah uji coba pilot dan kepatuhan hukum tuntas.</td>
+            </tr>
+            <tr>
+              <td><strong>Komunitas (Seniman & Kolektor Awal)</strong></td>
+              <td><span style="color: #EC4899; font-weight: 700;">5%</span></td>
+              <td>50.000.000</td>
+              <td>Linier 24 bulan</td>
+              <td>Penghargaan kontribusi komunitas perintis dan kurator awal.</td>
+            </tr>
+            <tr>
+              <td><strong>Likuiditas Peluncuran (DEX/CEX)</strong></td>
+              <td><span style="color: #06B6D4; font-weight: 700;">5%</span></td>
+              <td>50.000.000</td>
+              <td>100% saat TGE (terkunci 12 bulan)</td>
+              <td>Menyediakan kedalaman pasar wajar tanpa dominasi satu pihak.</td>
+            </tr>
+            <tr>
+              <td><strong>Penasihat & Mitra Galeri</strong></td>
+              <td><span style="color: #64748B; font-weight: 700;">5%</span></td>
+              <td>50.000.000</td>
+              <td>Cliff 6 bulan, lalu linier 24 bulan</td>
+              <td>Akses jaringan kurasi museum, balai lelang, dan konservator internasional.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 3: KALKULATOR INTERAKTIF STAKING & SLASHING
+         ====================================================================== -->
+    <section class="wp-section" style="margin-top: 56px;">
+      <div class="wp-section-header">
+        <span class="wp-section-num">3.0</span>
+        <h2 class="wp-section-title">Simulasi Interaktif: Staking & Slashing Penjaga Kejujuran 🛡️</h2>
+      </div>
+
+      <p>
+        Setiap pihak yang memiliki kewenangan menulis data krusial ke blockchain wajib mengunci (*stake*) token ATHN. Jika mereka berbuat curang (misal galeri mencoba mendaftarkan lukisan tiruan), sistem tata kelola akan <strong>memotong deposit mereka (*slashing*)</strong> dan mencabut izin operasinya.
+      </p>
+
+      <div class="tko-sim-box">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <h3 style="margin: 0; font-size: 1.2rem; font-weight: 800;">Kalkulator Komitmen Staking Institusional</h3>
+            <div style="color: var(--text-2); font-size: 0.8125rem;">Pilih peran institusi untuk menghitung kebutuhan jaminan dan risiko penalti</div>
+          </div>
+          <!-- Role selector pills -->
+          <div style="display: inline-flex; gap: 6px; background: var(--bg-2); padding: 4px; border-radius: var(--radius-full); border: 1px solid var(--line);">
+            <button type="button" class="phase-tab-btn active" id="btn-role-gallery" onclick="selectSimRole('gallery')">
+              🏛️ Galeri / Verifier
+            </button>
+            <button type="button" class="phase-tab-btn" id="btn-role-conservator" onclick="selectSimRole('conservator')">
+              🔬 Konservator Seni
+            </button>
+            <button type="button" class="phase-tab-btn" id="btn-role-node" onclick="selectSimRole('node')">
+              🖥️ Operator Node (k-of-n)
+            </button>
+          </div>
+        </div>
+
+        <div class="tko-sim-grid">
+          <!-- Left Controls -->
+          <div>
+            <div class="tko-slider-group">
+              <div class="tko-slider-label-row">
+                <span>Jumlah Token ATHN yang Di-Stake:</span>
+                <span class="tko-slider-val" id="disp-stake-amount">50.000 ATHN</span>
+              </div>
+              <input type="range" class="tko-range-input" id="slider-stake" min="20000" max="500000" step="5000" value="50000" oninput="updateStakingSim()">
+              <div style="display: flex; justify-content: space-between; font-size: 0.6875rem; color: var(--text-2); font-family: var(--font-mono); margin-top: 4px;">
+                <span>Min: 20.000</span>
+                <span>250.000</span>
+                <span>Max: 500.000 ATHN</span>
+              </div>
+            </div>
+
+            <div class="tko-slider-group">
+              <div class="tko-slider-label-row">
+                <span>Volume Karya yang Dikelola per Bulan:</span>
+                <span class="tko-slider-val" id="disp-art-volume">25 Karya</span>
+              </div>
+              <input type="range" class="tko-range-input" id="slider-volume" min="5" max="200" step="5" value="25" oninput="updateStakingSim()">
+              <div style="display: flex; justify-content: space-between; font-size: 0.6875rem; color: var(--text-2); font-family: var(--font-mono); margin-top: 4px;">
+                <span>5 Lukisan</span>
+                <span>100 Lukisan</span>
+                <span>200 Lukisan/Bln</span>
+              </div>
+            </div>
+
+            <div class="wp-callout wp-callout-tip" style="margin: 0; padding: 14px 18px;">
+              <span style="font-size: 1.2rem;">⏱️</span>
+              <div style="font-size: 0.8125rem;">
+                <strong>Periode Pelepasan (*Unbonding Period*): 14 Hari</strong><br>
+                Jika institusi ingin menarik depositnya, mereka harus menunggu 14 hari agar tidak bisa kabur sesaat sebelum investigasi kecurangan dieksekusi.
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Results Card -->
+          <div class="tko-result-card">
+            <div style="font-size: 0.8125rem; font-weight: 700; color: var(--text-2); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; font-family: var(--font-mono);">
+              STATUS KEPATUHAN & IMBALAN PROTOKOL
+            </div>
+
+            <div class="tko-result-row">
+              <span style="color: var(--text-1);">Status Syarat Minimum:</span>
+              <span class="tko-result-val" id="disp-min-status" style="color: var(--ok);">✓ MEMENUHI SYARAT</span>
+            </div>
+
+            <div class="tko-result-row">
+              <span style="color: var(--text-1);">Batas Maksimum Penalti Slashing:</span>
+              <span class="tko-result-val" id="disp-max-slash" style="color: var(--red-500);">50% (25.000 ATHN)</span>
+            </div>
+
+            <div class="tko-result-row">
+              <span style="color: var(--text-1);">Alasan Pemicu Slashing:</span>
+              <span class="tko-result-val" id="disp-slash-reason" style="font-size: 0.75rem; max-width: 200px; text-align: right;">Memalsukan Genesis Data / Karya Tiruan</span>
+            </div>
+
+            <div class="tko-result-row">
+              <span style="color: var(--text-1);">Estimasi Imbalan Tahunan Staker:</span>
+              <span class="tko-result-val" id="disp-staking-reward" style="color: var(--ok);">~4.200 ATHN / thn</span>
+            </div>
+
+            <div class="tko-result-row">
+              <span style="color: var(--text-1);">Hak Suara Governance (ERC20Votes):</span>
+              <span class="tko-result-val" id="disp-voting-power">50.000 Suara</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 4: ARUS NILAI PROTOKOL & SIMULASI PEMBAKARAN (BURN)
+         ====================================================================== -->
+    <section class="wp-section" style="margin-top: 56px;">
+      <div class="wp-section-header">
+        <span class="wp-section-num">4.0</span>
+        <h2 class="wp-section-title">Arus Nilai & Simulasi Pembakaran Token (*Burn*) 🔥</h2>
+      </div>
+
+      <p>
+        Setiap kali ada biaya layanan protokol yang dibayarkan di ekosistem Arthentic (misalnya biaya pendaftaran karya baru, verifikasi berbayar, atau langganan portal galeri), dana tersebut dibagi dengan rumus baku:
+      </p>
+
+      <div class="tko-sim-box">
+        <h3 style="margin: 0; font-size: 1.2rem; font-weight: 800;">Simulasi Pembagian Biaya Protokol Bulanan</h3>
+        <p style="color: var(--text-2); font-size: 0.8125rem; margin-top: 4px;">
+          Geser slider pendapatan biaya protokol untuk melihat pembagian alokasi dana secara waktu nyata (*real-time*)
+        </p>
+
+        <div style="margin: 28px 0 20px 0;">
+          <div class="tko-slider-label-row">
+            <span>Estimasi Biaya Protokol Terkumpul per Bulan:</span>
+            <span class="tko-slider-val" id="disp-fee-volume" style="font-size: 1.25rem;">$10.000 USD</span>
+          </div>
+          <input type="range" class="tko-range-input" id="slider-fee-volume" min="1000" max="100000" step="1000" value="10000" oninput="updateFeeBurnSim()">
+          <div style="display: flex; justify-content: space-between; font-size: 0.6875rem; color: var(--text-2); font-family: var(--font-mono); margin-top: 4px;">
+            <span>$1.000 / bln</span>
+            <span>$50.000 / bln</span>
+            <span>$100.000 / bln</span>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 24px;">
+          <!-- 40% Treasury -->
+          <div style="background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 20px; border-top: 4px solid #3B82F6;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 0.75rem; font-weight: 700; color: #3B82F6; font-family: var(--font-mono);">40% · KAS PROTOKOL</span>
+              <span style="font-size: 1.25rem;">🏦</span>
+            </div>
+            <div style="font-size: 1.4rem; font-weight: 800; color: var(--text-0);" id="disp-fee-treasury">$4.000</div>
+            <div style="font-size: 0.75rem; color: var(--text-2); margin-top: 6px; line-height: 1.5;">
+              Digunakan untuk mensponsori gas transaksi pengguna (Paymaster ERC-4337), pemeliharaan server, dan audit keamanan.
+            </div>
+          </div>
+
+          <!-- 30% Stakers & Operators -->
+          <div style="background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 20px; border-top: 4px solid #10B981;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 0.75rem; font-weight: 700; color: #10B981; font-family: var(--font-mono);">30% · IMBALAN VALIDATOR & STAKER</span>
+              <span style="font-size: 1.25rem;">🛡️</span>
+            </div>
+            <div style="font-size: 1.4rem; font-weight: 800; color: var(--ok);" id="disp-fee-rewards">$3.000</div>
+            <div style="font-size: 0.75rem; color: var(--text-2); margin-top: 6px; line-height: 1.5;">
+              Didistribusikan ke dompet operator Node dan staker yang jujur memverifikasi integritas karya fisik.
+            </div>
+          </div>
+
+          <!-- 30% Burn -->
+          <div style="background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 20px; border-top: 4px solid var(--red-500);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 0.75rem; font-weight: 700; color: var(--red-500); font-family: var(--font-mono);">30% · DIBAKAR PERMANEN (BURN)</span>
+              <span style="font-size: 1.25rem;">🔥</span>
+            </div>
+            <div style="font-size: 1.4rem; font-weight: 800; color: var(--red-500);" id="disp-fee-burn">$3.000</div>
+            <div style="font-size: 0.75rem; color: var(--text-2); margin-top: 6px; line-height: 1.5;">
+              Token ATHN yang setara dengan nilai ini langsung dimusnahkan ke alamat mati (*black hole*), mengurangi pasokan yang beredar.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 5: ROADMAP BERTAHAP & KEPATUHAN HUKUM
+         ====================================================================== -->
+    <section class="wp-section" style="margin-top: 56px;">
+      <div class="wp-section-header">
+        <span class="wp-section-num">5.0</span>
+        <h2 class="wp-section-title">Roadmap Peluncuran Bertahap & Kepatuhan Hukum ⚖️</h2>
+      </div>
+
+      <p>
+        Sesuai regulasi terbaru di Indonesia, pengawasan perdagangan aset kripto beralih ke <strong>Otoritas Jasa Keuangan (OJK)</strong> sejak 10 Januari 2025 melalui POJK 27 Tahun 2024. Oleh karena itu, Arthentic mengadopsi pendekatan bertahap (*gated rollout*) yang memprioritaskan kepatuhan hukum:
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 24px 0;">
+        <div style="background: var(--bg-1); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 20px;">
+          <div style="font-size: 0.75rem; font-weight: 700; color: var(--text-2); font-family: var(--font-mono); margin-bottom: 6px;">FASE 0 (2026 - 2027)</div>
+          <h4 style="margin: 0 0 8px 0; font-size: 1rem;">Validasi & Uji Coba Pilot</h4>
+          <p style="font-size: 0.8125rem; color: var(--text-1); margin: 0; line-height: 1.6;">
+            Protokol berjalan di Base Sepolia Testnet. ATHN hanya ada di testnet untuk simulasi staking institusi. <strong>Tidak ada penjualan token ke publik (*no public sale*)</strong>.
+          </p>
+        </div>
+
+        <div style="background: var(--bg-1); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 20px;">
+          <div style="font-size: 0.75rem; font-weight: 700; color: #F59E0B; font-family: var(--font-mono); margin-bottom: 6px;">FASE 1 (2027 - 2028)</div>
+          <h4 style="margin: 0 0 8px 0; font-size: 1rem;">Token Utilitas Terbatas</h4>
+          <p style="font-size: 0.8125rem; color: var(--text-1); margin: 0; line-height: 1.6;">
+            ATHN dirilis di Base Mainnet khusus untuk staking galeri dan konservator mitra pilot. Diskon biaya protokol aktif. Didahului legal opinion resmi.
+          </p>
+        </div>
+
+        <div style="background: var(--bg-1); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 20px;">
+          <div style="font-size: 0.75rem; font-weight: 700; color: #10B981; font-family: var(--font-mono); margin-bottom: 6px;">FASE 2 (2028 - 2029)</div>
+          <h4 style="margin: 0 0 8px 0; font-size: 1rem;">Desentralisasi Penuh</h4>
+          <p style="font-size: 0.8125rem; color: var(--text-1); margin: 0; line-height: 1.6;">
+            Operator Node k-of-n independen mulai aktif dengan staking. Tata kelola on-chain (*timelock*) mengambil alih hak admin dari Safe multisig pendiri.
+          </p>
+        </div>
+
+        <div style="background: var(--bg-1); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 20px;">
+          <div style="font-size: 0.75rem; font-weight: 700; color: #3B82F6; font-family: var(--font-mono); margin-bottom: 6px;">FASE 3 (2029+)</div>
+          <h4 style="margin: 0 0 8px 0; font-size: 1rem;">Ekspansi Ekosistem</h4>
+          <p style="font-size: 0.8125rem; color: var(--text-1); margin: 0; line-height: 1.6;">
+            Integrasi asuransi karya seni bernilai tinggi, balai lelang global, dan edisi cetak berlisensi (ERC-1155).
+          </p>
+        </div>
+      </div>
+
+      <!-- Legal Disclaimer Callout -->
+      <div class="wp-callout wp-callout-note" style="margin-top: 32px;">
+        <span style="font-size: 1.4rem;">📜</span>
+        <div>
+          <strong>Disclaimer Akademik & Kepatuhan Regulasi</strong><br>
+          Rancangan tokenomics ini disusun sebagai dokumen arsitektur akademis dan spesifikasi teknis protokol. Dokumen ini <strong>bukan merupakan penawaran investasi, ajakan membeli efek, ataupun nasihat keuangan</strong>. Pemrosesan data mitra institusional mematuhi UU Nomor 27 Tahun 2022 tentang Perlindungan Data Pribadi (UU PDP), dan seluruh data on-chain bersifat pseudonim tanpa memuat informasi identitas pribadi (Zero PII on-chain).
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Actions -->
+    <div style="margin-top: 60px; display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;">
+      <a href="index.html" class="btn-primary">Kembali ke Beranda Utama →</a>
+      <a href="whitepaper.html" class="btn-ghost">Baca Whitepaper Protokol Lengkap</a>
+    </div>
+
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="footer">
+    <div class="container footer-bottom" style="border-top: 1px solid var(--line); padding-top: 24px;">
+      <div>© 2026 Arthentic Protocol. Dokumen Tokenomics Resmi ATHN. Terbuka untuk Seluruh Seniman di Dunia.</div>
+      <div>
+        <a href="index.html" style="color: var(--text-1); text-decoration: none; margin-right: 16px;">Beranda</a>
+        <a href="whitepaper.html" style="color: var(--text-1); text-decoration: none; margin-right: 16px;">Whitepaper</a>
+        <a href="#" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;" style="color: var(--red-500); text-decoration: none; font-weight: 600;">Kembali ke Atas ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       JAVASCRIPT: CHARTS & SIMULATOR LOGIC
+       ========================================================================== -->
+  <script>
+    // Theme Manager Synchronizer
+    const themeBtn = document.getElementById("wp-theme-toggle");
+    const storedTheme = localStorage.getItem("arthentic-theme") || "light";
+    document.documentElement.setAttribute("data-theme", storedTheme);
+
+    if (themeBtn) {
+      themeBtn.addEventListener("click", () => {
+        const current = document.documentElement.getAttribute("data-theme") || "light";
+        const next = current === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", next);
+        localStorage.setItem("arthentic-theme", next);
+        if (allocationChart) allocationChart.update();
+        if (vestingChart) vestingChart.update();
+      });
+    }
+
+    // Chart.js Instances
+    let allocationChart = null;
+    let vestingChart = null;
+
+    function initCharts() {
+      if (typeof Chart !== "undefined") {
+        Chart.defaults.font.family = "'JetBrains Mono', monospace";
+      }
+
+      // 1. Token Allocation Doughnut Chart
+      const allocCtx = document.getElementById("chart-allocation");
+      if (allocCtx && typeof Chart !== "undefined") {
+        allocationChart = new Chart(allocCtx, {
+          type: "doughnut",
+          data: {
+            labels: [
+              "Ekosistem & Insentif (30%)",
+              "Cadangan Staking & Keamanan (15%)",
+              "Kas Protokol / Treasury (15%)",
+              "Tim Pendiri (15%)",
+              "Investor Strategis (10%)",
+              "Komunitas Seniman & Kolektor (5%)",
+              "Likuiditas Peluncuran (5%)",
+              "Penasihat & Mitra Galeri (5%)"
+            ],
+            datasets: [{
+              data: [30, 15, 15, 15, 10, 5, 5, 5],
+              backgroundColor: [
+                "#3B82F6", // Blue
+                "#10B981", // Emerald
+                "#F59E0B", // Amber
+                "#E11D2E", // Red
+                "#8B5CF6", // Purple
+                "#EC4899", // Pink
+                "#06B6D4", // Cyan
+                "#64748B"  // Slate
+              ],
+              borderWidth: 2,
+              borderColor: document.documentElement.getAttribute("data-theme") === "dark" ? "#191D28" : "#FFFFFF",
+              hoverOffset: 8
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: "right",
+                labels: {
+                  boxWidth: 12,
+                  font: {
+                    family: "'Plus Jakarta Sans', sans-serif",
+                    size: 11
+                  },
+                  color: document.documentElement.getAttribute("data-theme") === "dark" ? "#E2E8F0" : "#334155"
+                }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    const val = context.raw;
+                    const amount = (val * 10000000).toLocaleString("id-ID");
+                    return ` ${context.label}: ${amount} ATHN`;
+                  }
+                }
+              }
+            },
+            cutout: "62%"
+          }
+        });
+      }
+
+      // 2. Circulating Supply Vesting Timeline Chart
+      const vestCtx = document.getElementById("chart-vesting");
+      if (vestCtx && typeof Chart !== "undefined") {
+        vestingChart = new Chart(vestCtx, {
+          type: "line",
+          data: {
+            labels: ["TGE (Bulan 0)", "Bulan 6", "Bulan 12", "Bulan 24", "Bulan 36", "Bulan 48", "Bulan 60"],
+            datasets: [{
+              label: "Pasokan Beredar (%)",
+              data: [5, 12, 22, 52, 77, 92, 100],
+              borderColor: "#E11D2E",
+              backgroundColor: "rgba(225, 29, 46, 0.12)",
+              fill: true,
+              tension: 0.35,
+              borderWidth: 3,
+              pointBackgroundColor: "#E11D2E",
+              pointRadius: 5,
+              pointHoverRadius: 8
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                min: 0,
+                max: 100,
+                ticks: {
+                  callback: function(value) { return value + "%"; },
+                  color: "#94A3B8"
+                },
+                grid: {
+                  color: "rgba(148, 163, 184, 0.12)"
+                }
+              },
+              x: {
+                ticks: {
+                  font: { family: "'JetBrains Mono', monospace", size: 10 },
+                  color: "#94A3B8"
+                },
+                grid: {
+                  color: "rgba(148, 163, 184, 0.08)"
+                }
+              }
+            },
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    const pct = context.raw;
+                    const tokens = (pct * 10000000).toLocaleString("id-ID");
+                    return ` Beredar: ${pct}% (~${tokens} ATHN)`;
+                  }
+                }
+              }
+            }
+          }
+        });
+      }
+    }
+
+    // Role Staking Simulator Logic
+    let currentSimRole = "gallery";
+    const roleConfig = {
+      gallery: {
+        name: "Galeri / Verifier",
+        minStake: 50000,
+        maxSlashPct: 50,
+        reason: "Mendaftarkan lukisan tiruan / kecurangan pada genesisMint",
+        baseRewardRate: 0.084 // 8.4% APR estimate
+      },
+      conservator: {
+        name: "Konservator Seni",
+        minStake: 20000,
+        maxSlashPct: 50,
+        reason: "Memalsukan laporan sains restorasi atau riwayat kanvas",
+        baseRewardRate: 0.075 // 7.5% APR estimate
+      },
+      node: {
+        name: "Operator Node (k-of-n)",
+        minStake: 200000,
+        maxSlashPct: 100,
+        reason: "Menandatangani attestation palsu (100%) atau sering offline",
+        baseRewardRate: 0.115 // 11.5% APR estimate
+      }
+    };
+
+    function selectSimRole(role) {
+      currentSimRole = role;
+      document.querySelectorAll("#btn-role-gallery, #btn-role-conservator, #btn-role-node").forEach(btn => btn.classList.remove("active"));
+      const activeBtn = document.getElementById(`btn-role-${role}`);
+      if (activeBtn) activeBtn.classList.add("active");
+
+      const slider = document.getElementById("slider-stake");
+      const cfg = roleConfig[role];
+      if (slider) {
+        slider.min = cfg.minStake;
+        if (parseInt(slider.value) < cfg.minStake) {
+          slider.value = cfg.minStake;
+        }
+      }
+      updateStakingSim();
+    }
+
+    function updateStakingSim() {
+      const stakeInput = document.getElementById("slider-stake");
+      const volInput = document.getElementById("slider-volume");
+      if (!stakeInput || !volInput) return;
+
+      const stake = parseInt(stakeInput.value);
+      const vol = parseInt(volInput.value);
+      const cfg = roleConfig[currentSimRole];
+
+      document.getElementById("disp-stake-amount").textContent = stake.toLocaleString("id-ID") + " ATHN";
+      document.getElementById("disp-art-volume").textContent = vol + " Karya / bln";
+
+      // Status check
+      const statusEl = document.getElementById("disp-min-status");
+      if (stake >= cfg.minStake) {
+        statusEl.textContent = `✓ MEMENUHI SYARAT (Min. ${cfg.minStake.toLocaleString("id-ID")})`;
+        statusEl.style.color = "var(--ok)";
+      } else {
+        statusEl.textContent = `✗ DI BAWAH SYARAT MINIMUM (${cfg.minStake.toLocaleString("id-ID")})`;
+        statusEl.style.color = "var(--red-500)";
+      }
+
+      // Max slash
+      const slashAmt = Math.round(stake * (cfg.maxSlashPct / 100));
+      document.getElementById("disp-max-slash").textContent = `${cfg.maxSlashPct}% (${slashAmt.toLocaleString("id-ID")} ATHN)`;
+      document.getElementById("disp-slash-reason").textContent = cfg.reason;
+
+      // Reward calc
+      const rewardAmt = Math.round(stake * cfg.baseRewardRate + vol * 12 * 8);
+      document.getElementById("disp-staking-reward").textContent = `~${rewardAmt.toLocaleString("id-ID")} ATHN / thn`;
+      document.getElementById("disp-voting-power").textContent = stake.toLocaleString("id-ID") + " Suara";
+    }
+
+    // Fee & Burn Simulator Logic
+    function updateFeeBurnSim() {
+      const feeInput = document.getElementById("slider-fee-volume");
+      if (!feeInput) return;
+      const totalFee = parseInt(feeInput.value);
+
+      document.getElementById("disp-fee-volume").textContent = "$" + totalFee.toLocaleString("en-US") + " USD";
+
+      const treasury = Math.round(totalFee * 0.40);
+      const rewards = Math.round(totalFee * 0.30);
+      const burn = Math.round(totalFee * 0.30);
+
+      document.getElementById("disp-fee-treasury").textContent = "$" + treasury.toLocaleString("en-US");
+      document.getElementById("disp-fee-rewards").textContent = "$" + rewards.toLocaleString("en-US");
+      document.getElementById("disp-fee-burn").textContent = "$" + burn.toLocaleString("en-US");
+    }
+
+    // Initialize all logic on load
+    document.addEventListener("DOMContentLoaded", () => {
+      initCharts();
+      updateStakingSim();
+      updateFeeBurnSim();
+    });
+  </script>
+</body>
+</html>
+

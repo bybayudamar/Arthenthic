@@ -2676,3 +2676,331 @@ html[data-theme="dark"] .wp-top-nav {
     color: #000 !important;
   }
 }
+
+/* ==========================================================================
+   20. TOKENOMICS PAGE LAYOUT & INTERACTIVE COMPONENTS
+   ========================================================================== */
+.tko-hero-banner {
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  padding: 40px 44px;
+  margin-bottom: 40px;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.tko-hero-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #10B981, #F59E0B, #E11D2E, #3B82F6);
+}
+
+.tko-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.tko-stat-card {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+}
+
+.tko-stat-lbl {
+  font-size: 0.6875rem;
+  color: var(--text-2);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.tko-stat-val {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-0);
+  line-height: 1.2;
+}
+
+.tko-stat-sub {
+  font-size: 0.75rem;
+  color: var(--text-2);
+  margin-top: 4px;
+}
+
+/* Analogies Grid (SMA Explainer) */
+.tko-analogy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 20px;
+  margin: 28px 0;
+}
+
+.tko-analogy-card {
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 24px 26px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+
+.tko-analogy-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.tko-analogy-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.tko-analogy-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  flex-shrink: 0;
+}
+
+.tko-analogy-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-0);
+  margin: 0;
+}
+
+.tko-analogy-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  margin-top: 4px;
+}
+
+.tko-analogy-story {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--text-1);
+}
+
+.tko-analogy-punchline {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-2);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-0);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Interactive Charts Layout */
+.tko-charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 32px 0;
+}
+
+.tko-chart-box {
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.tko-chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.tko-chart-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-0);
+  margin: 0;
+}
+
+.tko-chart-desc {
+  font-size: 0.78125rem;
+  color: var(--text-2);
+  margin-top: 2px;
+}
+
+.tko-canvas-container {
+  position: relative;
+  height: 280px;
+  width: 100%;
+}
+
+/* Interactive Simulator / Calculator */
+.tko-sim-box {
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  padding: 32px 36px;
+  margin: 32px 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.tko-sim-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 32px;
+  margin-top: 24px;
+  align-items: center;
+}
+
+.tko-slider-group {
+  margin-bottom: 24px;
+}
+
+.tko-slider-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.tko-slider-val {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--red-500);
+}
+
+.tko-range-input {
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--bg-2);
+  outline: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.tko-range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--red-500);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(225, 29, 46, 0.4);
+  border: 2px solid #fff;
+}
+
+.tko-result-card {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+
+.tko-result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--line);
+  font-size: 0.875rem;
+}
+
+.tko-result-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.tko-result-val {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--text-0);
+}
+
+@media (max-width: 1024px) {
+  .tko-charts-grid {
+    grid-template-columns: 1fr;
+  }
+  .tko-sim-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   21. TOKENOMICS PAGE TYPOGRAPHY (MONOSPACE WITH SANS HEADINGS)
+   ========================================================================== */
+body.tokenomics-page,
+body.tokenomics-page p,
+body.tokenomics-page span,
+body.tokenomics-page a,
+body.tokenomics-page li,
+body.tokenomics-page button,
+body.tokenomics-page input,
+body.tokenomics-page select,
+body.tokenomics-page textarea,
+body.tokenomics-page td,
+body.tokenomics-page th,
+body.tokenomics-page label,
+body.tokenomics-page small,
+body.tokenomics-page strong,
+body.tokenomics-page em,
+body.tokenomics-page .wp-subtitle,
+body.tokenomics-page .tko-stat-val,
+body.tokenomics-page .tko-stat-sub,
+body.tokenomics-page .tko-stat-lbl,
+body.tokenomics-page .tko-analogy-story,
+body.tokenomics-page .tko-analogy-punchline,
+body.tokenomics-page .tko-chart-desc,
+body.tokenomics-page .wp-table,
+body.tokenomics-page .btn-primary,
+body.tokenomics-page .btn-ghost,
+body.tokenomics-page .wp-back-btn,
+body.tokenomics-page .phase-tab-btn,
+body.tokenomics-page .tko-result-row,
+body.tokenomics-page .tko-result-val,
+body.tokenomics-page .footer {
+  font-family: var(--font-mono) !important;
+}
+
+body.tokenomics-page h1,
+body.tokenomics-page h2,
+body.tokenomics-page h3,
+body.tokenomics-page h4,
+body.tokenomics-page h5,
+body.tokenomics-page h6,
+body.tokenomics-page .wp-title,
+body.tokenomics-page .wp-section-title,
+body.tokenomics-page .tko-chart-title,
+body.tokenomics-page .tko-analogy-title,
+body.tokenomics-page .nav-brand span {
+  font-family: var(--font-sans) !important;
+}
+

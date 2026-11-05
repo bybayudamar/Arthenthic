@@ -106,6 +106,7 @@ class AppLockService extends ChangeNotifier {
   }
 
   Future<bool> isDeviceSecure() async {
+    if (customAuthenticate != null) return true;
     try {
       final supported = await _auth.isDeviceSupported();
       final canCheck = await _auth.canCheckBiometrics;

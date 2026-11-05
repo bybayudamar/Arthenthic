@@ -9,6 +9,8 @@ class SessionStore {
   static const _keyUser = 'auth_user_profile';
   static const _keyInstallId = 'auth_install_id';
   static const _keyActiveRole = 'auth_active_role';
+  static const _keyBiometricEnabled = 'auth_biometric_enabled';
+  static const _keyBiometricEmail = 'auth_biometric_email';
 
   SessionStore({FlutterSecureStorage? storage})
       : _storage = storage ??
@@ -73,6 +75,27 @@ class SessionStore {
 
   Future<void> setActiveRole(String role) async {
     await _storage.write(key: _keyActiveRole, value: role);
+  }
+
+  Future<void> setBiometricEnabled(bool enabled) async {
+    await _storage.write(key: _keyBiometricEnabled, value: enabled ? 'true' : 'false');
+  }
+
+  Future<bool> isBiometricEnabled() async {
+    final val = await _storage.read(key: _keyBiometricEnabled);
+    // Defaults to true if a session exists and not explicitly disabled
+    if (val == null) {
+      return await hasSession();
+    }
+    return val == 'true';
+  }
+
+  Future<void> saveBiometricEmail(String email) async {
+    await _storage.write(key: _keyBiometricEmail, value: email);
+  }
+
+  Future<String?> getBiometricEmail() async {
+    return await _storage.read(key: _keyBiometricEmail);
   }
 
   Future<void> clearSession() async {

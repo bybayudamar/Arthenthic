@@ -111,5 +111,57 @@ void main() {
       expect(appLockService.isLocked, isFalse);
       expect(find.byType(MainTabShell), findsOneWidget);
     });
+
+    testWidgets('LoginScreen displays biometric login button and supports biometric auth', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: LoginScreen(),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.byKey(const Key('biometric_signin_button')), findsOneWidget);
+      expect(find.textContaining('Sign in with'), findsWidgets);
+    });
+
+    testWidgets('Biometric sign in success unlocks app and navigates to MainTabShell', (WidgetTester tester) async {
+      appLockService.customAuthenticate = ({required localizedReason, bool biometricOnly = false}) async {
+        return true;
+      };
+
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: LoginScreen(),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      await tester.ensureVisible(find.byKey(const Key('biometric_signin_button')));
+      await tester.tap(find.byKey(const Key('biometric_signin_button')));
+      await tester.pumpAndSettle();
+
+      expect(appLockService.isGuest, isFalse);
+      expect(appLockService.isLocked, isFalse);
+      expect(find.byType(MainTabShell), findsOneWidget);
+    });
+
+    testWidgets('Biometric sign in cancelled remains on LoginScreen', (WidgetTester tester) async {
+      appLockService.customAuthenticate = ({required localizedReason, bool biometricOnly = false}) async {
+        return false;
+      };
+
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: LoginScreen(),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      await tester.ensureVisible(find.byKey(const Key('biometric_signin_button')));
+      await tester.tap(find.byKey(const Key('biometric_signin_button')));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(LoginScreen), findsOneWidget);
+    });
   });
 }
